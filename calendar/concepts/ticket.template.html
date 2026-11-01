@@ -1,0 +1,676 @@
+<title>Admit One</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Bitter:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #07141f;
+  --grid-a: #0c2133;
+  --grid-b: #14354f;
+  --text: #d7e7f3;
+  --dim: #8badc4;
+  --ink: #0b121a;
+  --paper: #f4cf3a;
+  --stub: #ff5a37;
+  --paper2: #c6d5e1;
+  --line: #2f5e82;
+  --focus: #5fd8ff;
+  --heat1: #1f3f63;
+  --heat2: #2a6f86;
+  --heat3: #2fa08a;
+  --heat4: #86cc5c;
+  --heat5: #f4cf3a;
+  --f-disp: "Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
+  --f-quote: Bitter, Rockwell, "Roboto Slab", Georgia, serif;
+  --f-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --stubw: 224px;
+  --stubh: 176px;
+}
+* { box-sizing: border-box }
+html { -webkit-text-size-adjust: 100% }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid-b) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-b) 1px, transparent 1px),
+    linear-gradient(var(--grid-a) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-a) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  background-position: -1px -1px;
+  color: var(--text);
+  font-family: var(--f-quote);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; -webkit-tap-highlight-color: transparent }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap }
+.mono { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase }
+
+.page {
+  max-width: 1240px; margin: 0 auto;
+  padding-top: calc(14px + env(safe-area-inset-top, 0px));
+  padding-bottom: 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* corners */
+.corners { display: flex; justify-content: space-between; gap: 12px; color: var(--dim); line-height: 1.55 }
+.corners .r { text-align: right }
+.corners h1 { margin: 0; font: inherit; color: var(--text); font-weight: 500 }
+.corners b { color: var(--paper); font-weight: 500 }
+.live { display: inline-block; width: 7px; height: 7px; background: var(--stub); margin-right: 6px; animation: blink 1.4s steps(2, jump-none) infinite }
+@keyframes blink { 50% { opacity: .15 } }
+
+/* date head */
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; margin-top: 18px; position: relative; z-index: 0 }
+.dateblock { min-width: 0 }
+.datemeta { color: var(--dim); display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center }
+.datemeta .mon { color: var(--text) }
+.today-btn { border: 1.5px solid var(--line); padding: 3px 8px; color: var(--text) }
+.today-btn:hover { background: var(--text); color: var(--ink) }
+.today-btn[hidden] { display: none }
+h2#dtitle { margin: 10px 0 0; font: inherit }
+.num {
+  display: block;
+  font-family: var(--f-disp); font-weight: 900;
+  font-size: clamp(120px, 30vw, 300px); line-height: .78; letter-spacing: -.01em;
+  color: transparent; -webkit-text-stroke: 2px #3d7aa3;
+  margin-left: -.04em; padding-top: .06em;
+}
+.nav { display: flex; gap: 8px; padding-bottom: 6px }
+.nav button {
+  display: flex; align-items: center; gap: 8px; border: 1.5px solid var(--line); padding: 12px 14px;
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; background: rgba(7, 20, 31, .7);
+}
+.nav button:hover { background: var(--paper); color: var(--ink); border-color: var(--paper) }
+.nav svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: square }
+
+/* layout */
+.layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; margin-top: 14px }
+.board { order: -1 }
+@media (min-width: 1000px) {
+  .layout { grid-template-columns: minmax(0, 1fr) 340px; gap: 32px; align-items: start; margin-top: 0 }
+  .board { order: 1; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); margin-top: 18px }
+  .main { margin-top: calc(var(--num, 300px) * -.12) }
+  .head { align-items: flex-start }
+  .nav { padding-top: 14px }
+}
+
+/* box office board */
+.board-inner { border: 1.5px solid var(--line); background: rgba(7, 20, 31, .86); padding: 14px }
+.board-toggle {
+  display: none; width: 100%; align-items: center; justify-content: space-between; gap: 10px;
+  border: 1.5px solid var(--line); background: rgba(7, 20, 31, .86); padding: 12px 14px;
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-align: left;
+}
+.board-toggle .lbl { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.board-toggle svg { width: 14px; height: 14px; flex: none; stroke: currentColor; fill: none; stroke-width: 2.2; transition: transform .2s }
+.board.open .board-toggle svg { transform: rotate(180deg) }
+@media (max-width: 639px) {
+  .board-toggle { display: flex }
+  .board:not(.open) .board-inner { display: none }
+  .board.open .board-inner { border-top: 0 }
+}
+@media (min-width: 640px) and (max-width: 999px) { .board { max-width: 540px } }
+.b-title { display: flex; justify-content: space-between; color: var(--dim); margin-bottom: 10px }
+.search { width: 100%; font: 16px/1.2 var(--f-mono); color: var(--text); background: transparent; border: 1.5px solid var(--line); padding: 10px 12px; border-radius: 0; -webkit-appearance: none; appearance: none }
+.search::placeholder { color: var(--dim) }
+.search::-webkit-search-cancel-button { filter: invert(1) }
+.filters { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin: 10px 0 14px }
+.filters button { border: 1.5px solid var(--line); padding: 8px 10px; font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; text-align: left; display: flex; justify-content: space-between; gap: 8px }
+.filters button small { color: var(--dim); font-size: 11px }
+.filters button:hover { border-color: var(--text) }
+.filters button[aria-pressed="true"] { background: var(--paper); border-color: var(--paper); color: var(--ink) }
+.filters button[aria-pressed="true"] small { color: var(--ink) }
+.months { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin-bottom: 12px }
+.months button { padding: 7px 0; border-bottom: 2px solid var(--line); font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); text-align: center }
+.months button:hover { color: var(--text); border-color: var(--text) }
+.months button[aria-pressed="true"] { color: var(--ink); background: var(--text); border-color: var(--text) }
+.days { display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); gap: 5px }
+.chip {
+  position: relative; height: 38px; font-family: var(--f-disp); font-weight: 800; font-size: 18px; line-height: 1; color: var(--dim);
+  background: var(--heat0, transparent);
+  --cm: radial-gradient(circle 4px at 0 50%, #0000 98%, #000), radial-gradient(circle 4px at 100% 50%, #0000 98%, #000);
+  -webkit-mask-image: var(--cm); mask-image: var(--cm);
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+}
+.chip.none { background: rgba(47, 94, 130, .22); color: #5f86a3 }
+.chip.h1 { background: var(--heat1); color: #e6f2f8 }
+.chip.h2 { background: var(--heat2); color: #f1fbff }
+.chip.h3 { background: var(--heat3); color: var(--ink) }
+.chip.h4 { background: var(--heat4); color: var(--ink) }
+.chip.h5 { background: var(--heat5); color: var(--ink) }
+.chip:hover { filter: brightness(1.18) }
+.chip.today::after { content: ""; position: absolute; top: 4px; right: 7px; width: 5px; height: 5px; background: var(--stub) }
+.chip[aria-current="date"] { background: #fff; color: var(--ink); box-shadow: inset 0 -4px 0 var(--stub) }
+.chip:focus-visible { outline: none; background: var(--focus); color: var(--ink); box-shadow: inset 0 0 0 3px var(--ink) }
+.legend { display: flex; align-items: center; gap: 4px; margin-top: 14px; color: var(--dim) }
+.legend i { width: 14px; height: 8px; display: block }
+.legend span { margin-right: 6px }
+.stats { display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line); color: var(--dim) }
+.stats b { color: var(--text); font-weight: 500 }
+
+/* the ticket */
+.main { min-width: 0; position: relative; z-index: 1 }
+.ruler { height: 12px; margin-bottom: 8px; color: var(--dim); background: repeating-linear-gradient(90deg, #3d7aa3 0 1px, transparent 1px 10px); background-size: 100% 5px; background-repeat: no-repeat; background-position: 0 100%; position: relative; border-bottom: 1px solid #3d7aa3 }
+.shadow { filter: drop-shadow(0 22px 26px rgba(0, 0, 0, .5)) }
+.tilt { transition: transform .14s ease-out; will-change: transform }
+.ticket {
+  --nr: 14px; --r: 5px; --t: 18px;
+  --n1: radial-gradient(circle var(--nr) at calc(100% - var(--stubw)) 0, #0000 98%, #000);
+  --n2: radial-gradient(circle var(--nr) at calc(100% - var(--stubw)) 100%, #0000 98%, #000);
+  --mask: var(--n1), var(--n2),
+    radial-gradient(circle var(--r) at calc(var(--t) / 2) 0, #0000 98%, #000),
+    radial-gradient(circle var(--r) at calc(var(--t) / 2) 100%, #0000 98%, #000),
+    radial-gradient(circle var(--r) at 0 calc(var(--t) / 2), #0000 98%, #000),
+    radial-gradient(circle var(--r) at 100% calc(var(--t) / 2), #0000 98%, #000);
+  position: relative; isolation: isolate; color: var(--ink);
+  display: grid; grid-template-columns: minmax(0, 1fr) var(--stubw);
+  background: linear-gradient(90deg, var(--paper) calc(100% - var(--stubw)), var(--stub) 0);
+  -webkit-mask-image: var(--mask); mask-image: var(--mask);
+  -webkit-mask-size: 100% 100%, 100% 100%, var(--t) 100%, var(--t) 100%, 100% var(--t), 100% var(--t);
+  mask-size: 100% 100%, 100% 100%, var(--t) 100%, var(--t) 100%, 100% var(--t), 100% var(--t);
+  -webkit-mask-repeat: no-repeat, no-repeat, repeat-x, repeat-x, repeat-y, repeat-y;
+  mask-repeat: no-repeat, no-repeat, repeat-x, repeat-x, repeat-y, repeat-y;
+  -webkit-mask-composite: source-in, source-in, source-in, source-in, source-in, source-in;
+  mask-composite: intersect, intersect, intersect, intersect, intersect, intersect;
+}
+.foil {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .6; mix-blend-mode: soft-light;
+  background:
+    radial-gradient(circle at var(--gx, 28%) var(--gy, 22%), rgba(255, 255, 255, .95), rgba(255, 255, 255, 0) 46%),
+    repeating-linear-gradient(105deg, rgba(255, 255, 255, 0) 0 9px, rgba(255, 255, 255, .22) 9px 10px),
+    linear-gradient(115deg, #ff5fc4 0%, #7a7dff 20%, #2fe0ea 40%, #b4f55b 60%, #ffe14d 80%, #ff5fc4 100%);
+  background-size: 100% 100%, 100% 100%, 260% 100%;
+  background-position: 0 0, 0 0, var(--fx, 38%) 0;
+}
+.ticket.void .foil { display: none }
+.t-body { position: relative; z-index: 1; padding: 24px 28px 20px; display: flex; flex-direction: column; gap: 16px; min-width: 0; min-height: 380px }
+.t-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px }
+.admit { font-family: var(--f-disp); font-weight: 900; font-size: 34px; line-height: .9; letter-spacing: .06em; text-transform: uppercase }
+.serial { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; white-space: nowrap }
+.quote { margin: 4px 0 0; font-family: var(--f-quote); font-weight: 600; line-height: 1.16; letter-spacing: -.01em; overflow-wrap: anywhere; text-wrap: pretty; flex: 1 }
+.quote.qs { font-size: clamp(34px, 5.6vw, 62px); font-weight: 700 }
+.quote.qm { font-size: clamp(27px, 4vw, 42px) }
+.quote.ql { font-size: clamp(22px, 3vw, 31px) }
+.quote.qx { font-size: clamp(19px, 2.4vw, 25px); line-height: 1.25 }
+mark { background: var(--ink); color: var(--paper); padding: 0 .14em; margin: 0 -.02em; -webkit-box-decoration-break: clone; box-decoration-break: clone }
+.scene { margin: 0; font-style: italic; font-size: 15px; line-height: 1.4; opacity: .82; max-width: 52ch; text-wrap: pretty }
+.scene b { font: 500 10px var(--f-mono); letter-spacing: .1em; font-style: normal; margin-right: 8px; opacity: .8; vertical-align: 1px }
+.seat { margin: 0; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 26px; padding-top: 14px; border-top: 2px solid var(--ink) }
+.seat div { display: flex; flex-direction: column; gap: 3px }
+.seat dt { font: 500 10px var(--f-mono); letter-spacing: .12em }
+.seat dd { margin: 0; font-family: var(--f-disp); font-weight: 900; font-size: 30px; line-height: .85; letter-spacing: .02em }
+.mem { display: flex; gap: 3px; padding-top: 2px }
+.mem i { width: 9px; height: 15px; border: 1.5px solid var(--ink); display: block }
+.mem i.on { background: var(--ink) }
+.stamp { margin-left: auto; font-family: var(--f-disp); font-weight: 900; font-size: 22px; letter-spacing: .12em; border: 3px solid var(--stub); color: var(--stub); padding: 3px 10px 1px; transform: rotate(-7deg); mix-blend-mode: multiply; align-self: center; text-transform: uppercase; background: rgba(255, 90, 55, .06) }
+.stamp.q { border-color: var(--ink); color: var(--ink); background: none; opacity: .8; font-size: 17px }
+
+.stub { position: relative; z-index: 1; padding: 22px 20px 18px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; border-left: 2px dashed rgba(11, 18, 26, .55); min-width: 0; color: var(--ink) }
+.s-top { display: flex; justify-content: space-between; gap: 8px }
+.s-title { margin: 0; font-family: var(--f-disp); font-weight: 900; font-size: 38px; line-height: .92; text-transform: uppercase; letter-spacing: .01em; overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; line-clamp: 5; overflow: hidden; text-wrap: balance }
+.s-kind { margin: 8px 0 0; font: 500 11px var(--f-mono); letter-spacing: .1em; text-transform: uppercase }
+.who { margin: 12px 0 0; font-family: var(--f-quote); font-weight: 700; font-size: 17px; line-height: 1.15; overflow-wrap: anywhere }
+.who small { display: block; font: 500 10px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 3px; opacity: .8 }
+.who em { font-style: normal; font: 500 11px var(--f-mono); letter-spacing: .08em }
+.who.unk { font-weight: 400; font-style: italic; opacity: .85 }
+.who.unk span { display: inline-block; width: 4.5em; height: .9em; background: repeating-linear-gradient(90deg, var(--ink) 0 3px, transparent 3px 5px); vertical-align: -.1em; margin-right: .4em }
+.s-bar .bars { display: block; width: 100%; height: 54px; fill: var(--ink); shape-rendering: crispEdges }
+.s-bar .no { display: flex; justify-content: space-between; margin-top: 6px; font: 500 10px var(--f-mono); letter-spacing: .12em }
+
+.ticket.void { background: linear-gradient(90deg, rgba(244, 207, 58, .07) calc(100% - var(--stubw)), rgba(255, 90, 55, .08) 0); color: var(--text) }
+.void .stub { color: var(--text); border-left-color: var(--line) }
+.void .t-body, .void .stub { color: var(--text) }
+.void .admit { color: var(--dim) }
+.void .seat { border-top-color: var(--line) }
+.void .seat dd { color: var(--dim) }
+.void h3 { margin: 6px 0 0; font-family: var(--f-disp); font-weight: 900; font-size: clamp(54px, 10vw, 112px); line-height: .85; text-transform: uppercase; color: transparent; -webkit-text-stroke: 2px var(--stub) }
+.void .quote { font-size: 22px; font-weight: 400; max-width: 34ch; flex: none }
+.void .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px }
+.void .actions button { border: 1.5px solid var(--text); padding: 9px 12px; font: 500 12px var(--f-mono); letter-spacing: .08em; text-transform: uppercase }
+.void .actions button:hover { background: var(--text); color: var(--ink) }
+
+.tear { position: fixed; z-index: 60; pointer-events: none; background: var(--stub); box-shadow: 0 10px 20px rgba(0, 0, 0, .4); margin: 0 }
+
+/* other lines: mini tickets */
+.others { margin-top: 36px }
+.o-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; color: var(--dim); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line) }
+.o-head b { color: var(--text); font-weight: 500 }
+.minis { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px 16px }
+.mini-w { border-radius: 2px; min-width: 0 }
+.mini-w:has(:focus-visible) { outline: 2px solid var(--focus); outline-offset: 4px }
+.mini {
+  --mf: 56px;
+  --mask: radial-gradient(circle 9px at 0 calc(100% - var(--mf)), #0000 98%, #000), radial-gradient(circle 9px at 100% calc(100% - var(--mf)), #0000 98%, #000),
+    radial-gradient(circle 3.5px at 0 10px, #0000 98%, #000), radial-gradient(circle 3.5px at 100% 10px, #0000 98%, #000);
+  -webkit-mask-image: var(--mask); mask-image: var(--mask);
+  -webkit-mask-size: 100% 100%, 100% 100%, 100% 20px, 100% 20px; mask-size: 100% 100%, 100% 100%, 100% 20px, 100% 20px;
+  -webkit-mask-repeat: no-repeat, no-repeat, repeat-y, repeat-y; mask-repeat: no-repeat, no-repeat, repeat-y, repeat-y;
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+  display: flex; flex-direction: column; width: 100%; height: 100%; text-align: left; background: var(--paper2); color: var(--ink);
+  transition: transform .18s ease-out, background .15s;
+}
+.mini:hover { transform: translateY(-4px) rotate(-.4deg); background: #dce7ef }
+.mini:focus-visible { outline: none; background: var(--focus) }
+.mini .m-top { display: flex; justify-content: space-between; gap: 8px; padding: 12px 18px 0; font: 500 10px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; opacity: .85 }
+.mini .m-top .seen { color: #b6290b; font-weight: 500; opacity: 1 }
+.mini .m-q { flex: 1; padding: 10px 18px 0; margin-bottom: 14px; max-height: calc(1.25em * 5 + 10px); font-family: var(--f-quote); font-weight: 600; font-size: 17px; line-height: 1.25; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; line-clamp: 5; overflow: hidden; overflow-wrap: anywhere }
+.mini mark { background: var(--ink); color: var(--paper2) }
+.mini .m-foot { height: var(--mf); border-top: 2px dashed rgba(11, 18, 26, .5); padding: 8px 18px 0; display: flex; flex-direction: column; gap: 2px; min-width: 0 }
+.mini .m-title { font-family: var(--f-disp); font-weight: 800; font-size: 20px; line-height: 1; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.mini .m-who { font: 400 11px var(--f-mono); letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.more { margin-top: 22px; border: 1.5px solid var(--text); padding: 10px 16px; font: 500 12px var(--f-mono); letter-spacing: .1em; text-transform: uppercase }
+.more:hover { background: var(--text); color: var(--ink) }
+
+/* phone ticket: stub underneath */
+@media (max-width: 699px) {
+  .ticket {
+    --n1: radial-gradient(circle var(--nr) at 0 calc(100% - var(--stubh)), #0000 98%, #000);
+    --n2: radial-gradient(circle var(--nr) at 100% calc(100% - var(--stubh)), #0000 98%, #000);
+    grid-template-columns: minmax(0, 1fr); grid-template-rows: auto var(--stubh);
+    background: linear-gradient(180deg, var(--paper) calc(100% - var(--stubh)), var(--stub) 0);
+  }
+  .ticket.void { background: linear-gradient(180deg, rgba(244, 207, 58, .07) calc(100% - var(--stubh)), rgba(255, 90, 55, .08) 0) }
+  .t-body { padding: 20px 18px 16px; min-height: 0; gap: 14px }
+  .admit { font-size: 28px }
+  .stub { border-left: 0; border-top: 2px dashed rgba(11, 18, 26, .55); padding: 14px 18px 12px; gap: 8px; height: var(--stubh); overflow: hidden }
+  .void .stub { border-top-color: var(--line) }
+  .s-top { display: none }
+  .s-title { font-size: 27px; -webkit-line-clamp: 2; line-clamp: 2 }
+  .s-kind { margin-top: 5px }
+  .who { margin-top: 6px; font-size: 15px }
+  .who small { display: inline; margin: 0 6px 0 0 }
+  .s-bar { display: flex; align-items: center; gap: 12px }
+  .s-bar .bars { height: 26px; flex: 1 }
+  .s-bar .no { margin: 0; gap: 10px }
+  .s-bar .no .d { display: none }
+  .seat dd { font-size: 26px }
+  .seat { gap: 10px 20px }
+  .mem { padding-top: 0 }
+  .stamp { font-size: 17px; margin-left: 0 }
+  .tear .s-top { display: none }
+}
+@media (max-width: 420px) {
+  .scene { font-size: 14px }
+  .nav button { padding: 11px 10px }
+  .nav .nl { display: none }
+  .nav button { gap: 0 }
+}
+
+/* motion */
+@media (hover: none) {
+  .foil { animation: drift 6s ease-in-out infinite alternate }
+}
+@keyframes drift { from { background-position: 0 0, 0 0, 0% 0 } to { background-position: 0 0, 0 0, 100% 0 } }
+@media (prefers-reduced-motion: reduce) {
+  .foil { animation: none }
+  .tilt, .mini, .board-toggle svg { transition: none }
+  .mini:hover { transform: none }
+  .live { animation: none }
+}
+</style>
+
+<div class="page">
+  <div class="corners mono">
+    <div class="l"><h1>Said On This Day</h1><span>Box office &middot; <b>Admit one</b></span><br><span id="shows">366 screenings</span></div>
+    <div class="r"><span><i class="live"></i><span id="clock">--:--:--</span></span><br><span id="tdy">&nbsp;</span></div>
+  </div>
+
+  <div class="head" id="head">
+    <div class="dateblock">
+      <div class="datemeta mono"><span class="mon" id="dmon"></span><span id="dno"></span><button type="button" class="today-btn" id="today" hidden>Back to today</button></div>
+      <h2 id="dtitle"><span class="sr" id="dsr"></span><span class="num" id="dnum" aria-hidden="true"></span></h2>
+    </div>
+    <div class="nav">
+      <button type="button" id="prev" aria-label="Previous day"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7 3L2.5 8L7 13"/></svg><span class="nl">Prev</span></button>
+      <button type="button" id="next" aria-label="Next day"><span class="nl">Next</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 3l4.5 5L9 13"/></svg></button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="board" id="board" aria-label="Box office: pick a day">
+      <button type="button" class="board-toggle" id="btoggle" aria-expanded="false" aria-controls="binner"><span class="lbl" id="blabel">Box office</span><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5l5 5l5-5"/></svg></button>
+      <div class="board-inner" id="binner">
+        <div class="b-title mono"><span>Box office</span><span>Window 01</span></div>
+        <input type="search" class="search" id="q" placeholder="Title, speaker, line" aria-label="Search title, speaker or quote" autocomplete="off" spellcheck="false">
+        <div class="filters" id="filters" role="group" aria-label="Filter lines">
+          <button type="button" data-f="all" aria-pressed="true">All <small id="c-all"></small></button>
+          <button type="button" data-f="movie" aria-pressed="false">Films <small id="c-movie"></small></button>
+          <button type="button" data-f="tv" aria-pressed="false">Shows <small id="c-tv"></small></button>
+          <button type="button" data-f="mine" aria-pressed="false">Seen by me <small id="c-mine"></small></button>
+        </div>
+        <div class="months" id="months" role="group" aria-label="Month"></div>
+        <div class="days" id="days" role="group" aria-label="Day"></div>
+        <div class="legend mono" aria-hidden="true"><span>Mem</span><i style="background:var(--heat1)"></i><i style="background:var(--heat2)"></i><i style="background:var(--heat3)"></i><i style="background:var(--heat4)"></i><i style="background:var(--heat5)"></i><span style="margin-left:8px">1&ndash;5</span><i style="border:1px dashed #5f86a3"></i></div>
+        <div class="stats mono" id="stats"></div>
+      </div>
+    </aside>
+
+    <main class="main" id="main">
+      <div class="ruler mono" aria-hidden="true"></div>
+      <div class="shadow" id="shadow"><div class="tilt" id="tilt"></div></div>
+      <section class="others" id="others" aria-label="Other lines on this day"></section>
+    </main>
+  </div>
+  <div class="sr" id="live" aria-live="polite"></div>
+</div>
+
+<script>
+const LINES = __DATA__;
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const MON3 = MONTHS.map(m => m.slice(0, 3).toUpperCase());
+const MAXD = [31,29,31,30,31,30,31,31,30,31,30,31];
+const DOY = []; { let a = 0; for (const n of MAXD) { DOY.push(a); a += n } }
+const dayNo = k => DOY[Math.floor(k / 100) - 1] + k % 100;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pad = (n, w) => String(n).padStart(w, "0");
+const validKey = k => { const m = Math.floor(k / 100), d = k % 100; return m >= 1 && m <= 12 && d >= 1 && d <= MAXD[m - 1] };
+
+/* ---------- data: sort once, filter cheaply ---------- */
+for (const l of LINES) l._h = (l.t + " " + l.sp + " " + l.q).toLowerCase();
+const rank = l => [-l.mem, l.tag === "watched" ? 0 : l.tag === "watchlist" ? 1 : 2, l.k === "movie" ? 0 : 1, l.sp === "unknown" ? 1 : 0];
+const cmp = (a, b) => { const x = rank(a), y = rank(b); for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return x[i] - y[i]; return 0 };
+function byDay(list) {
+  const m = new Map();
+  for (const l of list) { const k = l.m * 100 + l.d; (m.get(k) || m.set(k, []).get(k)).push(l) }
+  for (const v of m.values()) v.sort(cmp);
+  return m;
+}
+const ALL = byDay(LINES);             // sorted once; filters below keep this order (Array.filter is stable)
+const COUNTS = { all: LINES.length, movie: 0, tv: 0, mine: 0 };
+for (const l of LINES) { COUNTS[l.k]++; if (l.tag === "watched") COUNTS.mine++ }
+
+let kind = "all", query = "", sel = 0, pick = 0, showAll = false;
+let view = ALL, viewLines = LINES.length, viewTitles = 0;
+function computeView() {
+  const q = query.trim().toLowerCase();
+  if (kind === "all" && !q) { view = ALL; viewLines = LINES.length; }
+  else {
+    const ok = l => (kind === "all" || (kind === "mine" ? l.tag === "watched" : l.k === kind)) && (!q || l._h.includes(q));
+    view = new Map(); viewLines = 0;
+    for (const [k, arr] of ALL) { const f = arr.filter(ok); if (f.length) { view.set(k, f); viewLines += f.length } }
+  }
+  const t = new Set(); for (const arr of view.values()) for (const l of arr) t.add(l.t);
+  viewTitles = t.size;
+}
+
+/* ---------- ticket print helpers ---------- */
+function hash32(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) } return h >>> 0 }
+function rng(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296 } }
+function barcode(seed) {
+  const r = rng(seed), H = 40; let x = 0, d = "";
+  const bar = w => { d += `M${x} 0h${w}v${H}h-${w}z`; x += w }, gap = w => { x += w };
+  bar(2); gap(1); bar(1); gap(2);
+  for (let i = 0; i < 30; i++) { bar(1 + (r() * 4 | 0)); gap(1 + (r() * 3 | 0)) }
+  bar(1); gap(1); bar(2); gap(1); bar(2);
+  return `<svg class="bars" viewBox="0 0 ${x} ${H}" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="${d}"/></svg>`;
+}
+const splitTitle = t => { const m = t.match(/^(.*?)\s*\((\d{4})\)\s*$/); return m ? { name: m[1], year: m[2] } : { name: t, year: "" } };
+function said(l) {
+  const q = esc(l.q);
+  if (!l.match) return q;
+  const pat = esc(l.match).replace(/[.*+?^${}()|[\]\\]/g, "\\$&").split(/\s+/).join("\\s+");
+  return q.replace(new RegExp(pat, "i"), s => `<mark>${s}</mark>`);
+}
+const qclass = q => q.length <= 62 ? "qs" : q.length <= 125 ? "qm" : q.length <= 200 ? "ql" : "qx";
+const memBars = n => `<span class="mem" role="img" aria-label="Memorable ${n} of 5">${[1,2,3,4,5].map(i => `<i${i <= n ? ' class="on"' : ""}></i>`).join("")}</span>`;
+function whoHTML(l, label) {
+  const lab = label ? "<small>Speaker</small>" : "";
+  if (l.sp === "unknown") return `<p class="who unk">${lab}<span></span>not on file</p>`;
+  if (l.sp === "Narrator") return `<p class="who">${lab}Narrator <em>V.O.</em></p>`;
+  return `<p class="who">${lab}${esc(l.sp)}</p>`;
+}
+function ticketHTML(l, k, i, n) {
+  const m = Math.floor(k / 100), d = k % 100;
+  const h = hash32(`${k}|${l.t}|${l.q}`);
+  const serial = pad(h % 10000000, 7), screen = pad(h % 14 + 1, 2);
+  const { name, year } = splitTitle(l.t);
+  const kindTxt = (l.k === "movie" ? "Film" : "Show") + (year ? " &middot; " + year : "") + (l.ep ? " &middot; " + esc(l.ep) : "");
+  const stamp = l.tag === "watched" ? '<span class="stamp">Seen</span>' : l.tag === "watchlist" ? '<span class="stamp q">Watchlist</span>' : "";
+  return `<article class="ticket" id="ticket" aria-label="Ticket: ${esc(name)}, ${MONTHS[m - 1]} ${d}">
+    <div class="foil" aria-hidden="true"></div>
+    <div class="t-body">
+      <div class="t-head"><span class="admit">Admit one</span><span class="serial">No. ${serial}</span></div>
+      <p class="quote ${qclass(l.q)}">${said(l)}</p>
+      ${l.sc ? `<p class="scene"><b>SCENE</b>${esc(l.sc)}</p>` : ""}
+      <dl class="seat">
+        <div><dt>ROW</dt><dd>${MON3[m - 1]}</dd></div>
+        <div><dt>SEAT</dt><dd>${d}</dd></div>
+        <div><dt>SCREEN</dt><dd>${screen}</dd></div>
+        <div><dt>LINE</dt><dd>${i + 1}/${n}</dd></div>
+        <div><dt>MEM</dt><dd>${memBars(l.mem)}</dd></div>
+        ${stamp}
+      </dl>
+    </div>
+    <div class="stub">
+      <div class="s-top mono"><span>Stub</span><span>Scr ${screen}</span></div>
+      <div>
+        <h3 class="s-title" title="${esc(l.t)}">${esc(name)}</h3>
+        <p class="s-kind">${kindTxt}</p>
+        ${whoHTML(l, true)}
+      </div>
+      <div class="s-bar">${barcode(h)}<div class="no"><span>${serial}</span><span class="d">${MON3[m - 1]} ${pad(d, 2)}</span></div></div>
+    </div>
+  </article>`;
+}
+function voidHTML(k) {
+  const m = Math.floor(k / 100), d = k % 100;
+  const total = (ALL.get(k) || []).length, hidden = total > 0;
+  const next = nextShowing(k);
+  const msg = hidden
+    ? `${total} line${total > 1 ? "s" : ""} on ${MONTHS[m - 1]} ${d} ${total > 1 ? "are" : "is"} hidden by the current filter or search.`
+    : `Nobody says ${MONTHS[m - 1]} ${d} out loud in anything searched so far.`;
+  return `<article class="ticket void" id="ticket" aria-label="No screening on ${MONTHS[m - 1]} ${d}">
+    <div class="t-body">
+      <div class="t-head"><span class="admit">Admit none</span><span class="serial">No. 0000000</span></div>
+      <h3>No show</h3>
+      <p class="quote">${esc(msg)}</p>
+      <div class="actions">
+        ${hidden ? '<button type="button" data-act="clear">Clear filter and search</button>' : ""}
+        ${next ? `<button type="button" data-act="next" data-k="${next}">Next showing: ${MON3[Math.floor(next / 100) - 1]} ${next % 100}</button>` : ""}
+      </div>
+      <dl class="seat"><div><dt>ROW</dt><dd>${MON3[m - 1]}</dd></div><div><dt>SEAT</dt><dd>${d}</dd></div><div><dt>SCREEN</dt><dd>--</dd></div></dl>
+    </div>
+    <div class="stub"><div class="s-top mono"><span>Stub</span><span>Void</span></div><div><h3 class="s-title">Sold out of lines</h3><p class="s-kind">Seat ${d} not on sale</p></div><div class="s-bar"><div class="no"><span>VOID</span><span>${MON3[m - 1]} ${pad(d, 2)}</span></div></div></div>
+  </article>`;
+}
+function nextShowing(from) {
+  let k = from;
+  for (let i = 0; i < 366; i++) { k = stepKey(k, 1); if (k !== from && view.has(k)) return k }
+  return 0;
+}
+function stepKey(k, dir) {
+  let m = Math.floor(k / 100), d = k % 100 + dir;
+  if (d < 1) { m = m === 1 ? 12 : m - 1; d = MAXD[m - 1] }
+  else if (d > MAXD[m - 1]) { m = m === 12 ? 1 : m + 1; d = 1 }
+  return m * 100 + d;
+}
+
+/* ---------- render ---------- */
+const heat = b => b >= 5 ? 5 : b;
+function renderBoard() {
+  const m = Math.floor(sel / 100);
+  $("months").innerHTML = MON3.map((n, i) => `<button type="button" data-m="${i + 1}" aria-pressed="${i + 1 === m}" aria-label="${MONTHS[i]}">${n}</button>`).join("");
+  const now = new Date(), tk = (now.getMonth() + 1) * 100 + now.getDate();
+  let h = "";
+  for (let d = 1; d <= MAXD[m - 1]; d++) {
+    const k = m * 100 + d, ls = view.get(k);
+    h += `<button type="button" class="chip ${ls ? "h" + heat(ls[0].mem) : "none"}${k === tk ? " today" : ""}" data-k="${k}"${k === sel ? ' aria-current="date"' : ""} aria-label="${MONTHS[m - 1]} ${d}: ${ls ? ls.length + (ls.length > 1 ? " lines" : " line") + ", best memorable " + ls[0].mem : "no lines"}">${d}</button>`;
+  }
+  $("days").innerHTML = h;
+  $("stats").innerHTML = `<span><b>${view.size}</b> days</span><span><b>${viewLines.toLocaleString()}</b> lines</span><span><b>${viewTitles}</b> titles</span>`;
+  const fl = { all: "All", movie: "Films", tv: "Shows", mine: "Seen by me" }[kind];
+  $("blabel").textContent = `Box office \u00b7 ${MON3[m - 1]} ${sel % 100} \u00b7 ${fl}${query.trim() ? ` \u00b7 "${query.trim()}"` : ""}`;
+}
+function renderStage() {
+  const m = Math.floor(sel / 100), d = sel % 100;
+  const ls = view.get(sel) || [];
+  $("dmon").textContent = MONTHS[m - 1];
+  $("dno").textContent = `Day ${dayNo(sel)} / 366`;
+  $("dsr").textContent = `${MONTHS[m - 1]} ${d}`;
+  $("dnum").textContent = d;
+  const now = new Date(), tk = (now.getMonth() + 1) * 100 + now.getDate();
+  $("today").hidden = sel === tk;
+  const tilt = $("tilt");
+  if (!ls.length) {
+    tilt.innerHTML = voidHTML(sel);
+    $("others").innerHTML = "";
+    $("live").textContent = `${MONTHS[m - 1]} ${d}: no lines.`;
+    return;
+  }
+  const i0 = Math.min(pick, ls.length - 1), f = ls[i0];
+  tilt.innerHTML = ticketHTML(f, sel, i0, ls.length);
+  $("live").textContent = `${MONTHS[m - 1]} ${d}: ${ls.length} line${ls.length > 1 ? "s" : ""}. Showing ${splitTitle(f.t).name}.`;
+  const rest = ls.map((l, i) => [l, i]).filter(([, i]) => i !== i0);
+  const shown = showAll ? rest : rest.slice(0, 8);
+  $("others").innerHTML = rest.length ? `
+    <div class="o-head mono"><span>Also screening &middot; <b>${rest.length}</b></span><span>Tap a ticket to swap it in</span></div>
+    <ul class="minis">${shown.map(([l, i]) => {
+      const h = hash32(`${sel}|${l.t}|${l.q}`), { name } = splitTitle(l.t);
+      return `<li class="mini-w"><button type="button" class="mini" data-i="${i}" aria-label="Make this the main ticket: ${esc(name)}">
+        <span class="m-top"><span>No. ${pad(h % 10000000, 7)}</span>${l.tag === "watched" ? '<span class="seen">Seen</span>' : `<span>${l.k === "movie" ? "Film" : "Show"}${l.ep ? " " + esc(l.ep) : ""}</span>`}</span>
+        <span class="m-q">${said(l)}</span>
+        <span class="m-foot"><span class="m-title">${esc(name)}</span><span class="m-who">${l.sp === "unknown" ? "speaker not on file" : l.sp === "Narrator" ? "Narrator (V.O.)" : esc(l.sp)}</span></span></button></li>`;
+    }).join("")}</ul>
+    ${!showAll && rest.length > 8 ? `<button type="button" class="more" id="more">Show all ${rest.length}</button>` : ""}` : "";
+}
+function renderAll() { renderBoard(); renderStage() }
+
+/* ---------- transitions: stub tears away, new ticket slides up ---------- */
+function transition(dir, apply) {
+  const sh = $("shadow"), tilt = $("tilt");
+  if (reduced() || !sh.animate || !tilt.firstElementChild) { apply(); return }
+  const r = sh.getBoundingClientRect();
+  const stub = sh.querySelector(".stub");
+  const sr = stub ? stub.getBoundingClientRect() : null;
+  const old = sh.cloneNode(true);
+  old.removeAttribute("id"); old.querySelectorAll("[id]").forEach(e => e.removeAttribute("id"));
+  Object.assign(old.style, { position: "fixed", left: r.left + "px", top: r.top + "px", width: r.width + "px", margin: "0", zIndex: 59, pointerEvents: "none" });
+  const ostub = old.querySelector(".stub"); if (ostub) ostub.style.visibility = "hidden";
+  const frag = [old];
+  let tear = null;
+  if (stub && sr) {
+    tear = stub.cloneNode(true); tear.classList.add("tear");
+    Object.assign(tear.style, { left: sr.left + "px", top: sr.top + "px", width: sr.width + "px", height: sr.height + "px" });
+    frag.push(tear);
+  }
+  document.body.append(...frag);
+  const done = el => a => { const rm = () => el.remove(); a.addEventListener("finish", rm); a.addEventListener("cancel", rm) };
+  done(old)(old.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(-26px)" }], { duration: 360, easing: "ease-in", fill: "forwards" }));
+  if (tear) done(tear)(tear.animate([
+    { transform: "none", opacity: 1, offset: 0 },
+    { transform: `translate(${dir * 8}px, 6px) rotate(${dir * 3}deg)`, opacity: 1, offset: .18 },
+    { transform: `translate(${dir * 90}px, 340px) rotate(${dir * 24}deg)`, opacity: 0, offset: 1 }
+  ], { duration: 720, easing: "cubic-bezier(.45,.05,.7,.6)", fill: "forwards" }));
+  apply();
+  sh.animate([{ opacity: 0, transform: "translateY(54px) scale(.985)" }, { opacity: 1, transform: "none" }], { duration: 520, delay: 140, easing: "cubic-bezier(.2,.85,.25,1)", fill: "backwards" });
+}
+function swapIn() {
+  const sh = $("shadow");
+  if (!reduced() && sh.animate) sh.animate([{ opacity: .2, transform: "translateY(18px) rotate(-.6deg)" }, { opacity: 1, transform: "none" }], { duration: 300, easing: "cubic-bezier(.2,.85,.25,1)" });
+  const t = sh.getBoundingClientRect().top;
+  if (t < 0 || t > innerHeight * .6) $("head").scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "start" });
+}
+
+/* ---------- state changes ---------- */
+function writeHash() { try { history.replaceState(null, "", "#d" + sel) } catch (e) {} }
+function select(k, dir) {
+  if (!validKey(k)) return;
+  const go = () => { sel = k; pick = 0; showAll = false; renderAll() };
+  if (k !== sel) { const dd = dir || (k > sel ? 1 : -1); transition(dd, go) } else go();
+  writeHash();
+}
+function step(dir) { select(stepKey(sel, dir), dir) }
+function refilter() { computeView(); pick = 0; showAll = false; renderAll() }
+function closeBoard() { $("board").classList.remove("open"); $("btoggle").setAttribute("aria-expanded", "false") }
+
+/* ---------- events ---------- */
+$("months").addEventListener("click", e => { const b = e.target.closest("button[data-m]"); if (!b) return; const m = +b.dataset.m; select(m * 100 + Math.min(sel % 100, MAXD[m - 1])) });
+$("days").addEventListener("click", e => {
+  const b = e.target.closest("button[data-k]"); if (!b) return;
+  select(+b.dataset.k);
+  if (matchMedia("(max-width: 639px)").matches) { closeBoard(); $("head").scrollIntoView({ block: "start" }) }
+});
+$("btoggle").addEventListener("click", () => { const o = $("board").classList.toggle("open"); $("btoggle").setAttribute("aria-expanded", String(o)) });
+$("prev").onclick = () => step(-1);
+$("next").onclick = () => step(1);
+$("today").onclick = () => { const n = new Date(); select((n.getMonth() + 1) * 100 + n.getDate()) };
+$("filters").addEventListener("click", e => {
+  const b = e.target.closest("button[data-f]"); if (!b) return;
+  kind = b.dataset.f;
+  [...$("filters").children].forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  refilter();
+});
+let qTimer = 0;
+$("q").addEventListener("input", e => { query = e.target.value; cancelAnimationFrame(qTimer); qTimer = requestAnimationFrame(refilter) });
+$("others").addEventListener("click", e => {
+  if (e.target.closest("#more")) { showAll = true; renderStage(); return }
+  const b = e.target.closest(".mini"); if (!b) return;
+  pick = +b.dataset.i; renderStage(); swapIn();
+});
+$("tilt").addEventListener("click", e => {
+  const b = e.target.closest("button[data-act]"); if (!b) return;
+  if (b.dataset.act === "next") select(+b.dataset.k, 1);
+  else {
+    kind = "all"; query = ""; $("q").value = "";
+    [...$("filters").children].forEach(x => x.setAttribute("aria-pressed", String(x.dataset.f === "all")));
+    refilter();
+  }
+});
+document.addEventListener("keydown", e => {
+  const t = e.target; if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT")) return;
+  if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
+  if (e.key === "ArrowLeft") { e.preventDefault(); step(-1) }
+  else if (e.key === "ArrowRight") { e.preventDefault(); step(1) }
+});
+window.addEventListener("hashchange", () => { const k = +(location.hash.match(/^#d(\d{3,4})$/) || [])[1]; if (k && k !== sel && validKey(k)) select(k) });
+
+/* ---------- holographic foil + tilt ---------- */
+let px = .5, py = .3, raf = 0;
+function paintTilt() {
+  raf = 0;
+  const t = $("tilt");
+  t.style.transform = `perspective(1100px) rotateX(${((.5 - py) * 9).toFixed(2)}deg) rotateY(${((px - .5) * 14).toFixed(2)}deg)`;
+  t.style.setProperty("--fx", (px * 100).toFixed(1) + "%");
+  t.style.setProperty("--gx", (px * 100).toFixed(1) + "%");
+  t.style.setProperty("--gy", (py * 100).toFixed(1) + "%");
+}
+function aim(e) {
+  if (reduced()) return;
+  const r = $("shadow").getBoundingClientRect();
+  px = Math.max(-.15, Math.min(1.15, (e.clientX - r.left) / r.width));
+  py = Math.max(-.2, Math.min(1.2, (e.clientY - r.top) / r.height));
+  if (!raf) raf = requestAnimationFrame(paintTilt);
+}
+function rest() { if (reduced()) return; px = .5; py = .3; if (!raf) raf = requestAnimationFrame(paintTilt) }
+$("main").addEventListener("pointermove", aim);
+$("main").addEventListener("pointerleave", rest);
+$("main").addEventListener("pointerup", e => { if (e.pointerType === "touch") rest() });
+$("main").addEventListener("pointercancel", rest);
+
+/* ---------- clock ---------- */
+function tick() {
+  const n = new Date();
+  $("clock").textContent = `${pad(n.getHours(), 2)}:${pad(n.getMinutes(), 2)}:${pad(n.getSeconds(), 2)}`;
+}
+tick(); setInterval(tick, 1000);
+
+/* ---------- boot ---------- */
+for (const f of ["all", "movie", "tv", "mine"]) $("c-" + f).textContent = COUNTS[f].toLocaleString();
+$("shows").textContent = `${ALL.size} days on the bill`;
+const now0 = new Date(), todayKey = (now0.getMonth() + 1) * 100 + now0.getDate();
+$("tdy").textContent = `${MON3[now0.getMonth()]} ${now0.getDate()} ${now0.getFullYear()}`;
+const hk = +(location.hash.match(/^#d(\d{3,4})$/) || [])[1];
+sel = hk && validKey(hk) ? hk : todayKey;
+computeView();
+renderAll();
+writeHash();
+</script>

@@ -1,0 +1,553 @@
+<title>Shooting Script</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* THE SHOOTING SCRIPT. One deliberate look: pale script pages on a dark desk (color-scheme dark).
+   Every day is one page; every line said that day is a numbered scene; the binder is the navigator. */
+:root {
+  color-scheme: dark;
+  --desk: #131518;
+  --desk-2: #1b1e22;
+  --desk-3: #252a30;
+  --desk-line: #363c45;
+  --desk-ink: #d9dce2;
+  --desk-dim: #959ca8;
+  --brass: #c8a24c;
+  --brass-hi: #f1dc9b;
+  --brass-lo: #6f561d;
+  --focus: #7db0ff;
+  --focus-paper: #1b45c9;
+  /* revision page colours, in the real industry order: white, blue, pink, yellow, green */
+  --paper-1: #fbfbf7;
+  --paper-2: #d7e6f6;
+  --paper-3: #f8d7de;
+  --paper-4: #f8efb0;
+  --paper-5: #d4eed1;
+  --ink: #15140f;
+  --ink-dim: #55544d;
+  --hl: rgba(21, 20, 15, .13);
+  --sheet: var(--paper-1);
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --script: "Courier Prime", "Courier New", Courier, monospace;
+}
+* { box-sizing: border-box }
+html { -webkit-text-size-adjust: 100% }
+body {
+  margin: 0;
+  background-color: var(--desk);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 25% 0%, rgba(125, 150, 190, .09), transparent 70%),
+    repeating-linear-gradient(98deg, rgba(255, 255, 255, .014) 0 1px, transparent 1px 6px);
+  color: var(--desk-ink);
+  font-family: var(--mono);
+}
+button, input { font: inherit; color: inherit }
+button { cursor: pointer }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px }
+.sheet :focus-visible { outline-color: var(--focus-paper) }
+.sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0 }
+
+/* ---------- desk ---------- */
+.desk {
+  min-height: 100vh;
+  overflow-x: clip;
+  padding: calc(env(safe-area-inset-top, 0px) + 14px) 0 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.frame { max-width: 1070px; margin: 0 auto }
+.corners { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px }
+.lbl { font: 500 11px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--desk-dim); font-variant-numeric: tabular-nums }
+.lbl b { color: var(--brass); font-weight: 500 }
+.corners.bottom { margin-top: 18px }
+.hint-touch { display: inline }
+.hint-keys { display: none }
+@media (hover: hover) and (pointer: fine) { .hint-touch { display: none } .hint-keys { display: inline } }
+
+.layout { display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 40px; margin-top: 16px; align-items: start }
+
+/* ---------- binder ---------- */
+.binder {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px);
+  max-height: calc(100vh - 24px); overflow: auto;
+  background: var(--desk-2); border: 1px solid var(--desk-line); border-radius: 4px;
+  outline: 1px dashed rgba(255, 255, 255, .09); outline-offset: -6px;
+  padding: 16px 14px 14px;
+}
+.b-title { font: 700 21px/1.05 var(--script); letter-spacing: .02em; text-transform: uppercase; margin: 0 }
+.b-sub { margin: 6px 0 0; font: 400 11px/1.5 var(--mono); color: var(--desk-dim); letter-spacing: .04em }
+.bind-toggle { display: none }
+.b-body { display: grid; gap: 14px; margin-top: 14px }
+.index { display: grid; grid-template-columns: 50px minmax(0, 1fr); align-items: stretch }
+.tabs { display: grid; grid-auto-rows: minmax(32px, auto); gap: 3px }
+.tab {
+  text-align: left; padding: 0 0 0 9px; border: 1px solid var(--desk-line); border-right: 0;
+  border-radius: 5px 0 0 5px; background: var(--desk-3); color: var(--desk-dim);
+  font: 500 11px var(--mono); letter-spacing: .1em;
+}
+.tab:hover { color: var(--desk-ink) }
+.tab[aria-pressed="true"] { background: var(--desk); color: var(--desk-ink); box-shadow: inset 3px 0 0 var(--brass); margin-right: -1px; position: relative; z-index: 1 }
+.panel { background: var(--desk); border: 1px solid var(--desk-line); border-radius: 0 4px 4px 0; padding: 10px 9px; display: flex; flex-direction: column; gap: 10px; min-width: 0 }
+.days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px }
+.day {
+  position: relative; aspect-ratio: 1; min-width: 0; padding: 0; border: 1px solid transparent; border-radius: 2px;
+  font: 500 12px var(--mono); color: var(--ink); background: var(--paper-1); font-variant-numeric: tabular-nums;
+}
+.day.h2 { background: var(--paper-2) } .day.h3 { background: var(--paper-3) }
+.day.h4 { background: var(--paper-4) } .day.h5 { background: var(--paper-5) }
+.day.e { background: transparent; color: var(--desk-dim); border: 1px dashed var(--desk-line) }
+.day:hover { filter: brightness(.9) }
+.day.e:hover { filter: none; border-color: var(--desk-dim) }
+.day.sel { box-shadow: 0 0 0 2px var(--desk), 0 0 0 4px var(--brass); font-weight: 600; z-index: 1 }
+.day.today::after { content: ""; position: absolute; top: 2px; right: 2px; width: 5px; height: 5px; border-radius: 50%; background: currentColor }
+.legend { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 3px; font: 400 10px/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--desk-dim) }
+.legend span:first-child { flex-basis: 100% }
+.legend i { font-style: normal; width: 20px; height: 20px; display: grid; place-items: center; color: var(--ink); font-size: 10px; border-radius: 2px }
+.mstats { margin-top: auto; font: 400 11px/1.5 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--desk-dim) }
+.mstats b { color: var(--desk-ink); font-weight: 500 }
+.filters { display: grid; grid-template-columns: 1fr 1fr; gap: 6px }
+.filters button, .more-btn {
+  padding: 9px 8px; min-height: 40px; border: 1px solid var(--desk-line); border-radius: 3px; background: transparent;
+  font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--desk-ink);
+}
+.filters button:hover { border-color: var(--desk-dim) }
+.filters button[aria-pressed="true"] { background: var(--paper-1); color: var(--ink); border-color: var(--paper-1) }
+.search input {
+  width: 100%; min-height: 42px; padding: 9px 11px; border-radius: 3px; border: 1px solid var(--desk-line);
+  background: var(--desk); color: var(--desk-ink); font: 400 13px var(--mono); letter-spacing: .02em;
+}
+.search input::placeholder { color: var(--desk-dim); text-transform: uppercase; letter-spacing: .1em; font-size: 11px }
+.search input:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px }
+.bstats { font: 400 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--desk-dim) }
+.bstats b { color: var(--desk-ink); font-weight: 500 }
+
+/* ---------- the page ---------- */
+.stage { min-width: 0 }
+.sheetwrap { position: relative; container-type: inline-size; perspective: 2400px; perspective-origin: 15% 40%; max-width: 700px; scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 12px) }
+.sheet {
+  position: relative; z-index: 2; display: flex; flex-direction: column;
+  aspect-ratio: 8.5 / 11;
+  background: var(--sheet); color: var(--ink); font-family: var(--script);
+  padding: 22px clamp(26px, 6%, 54px) 24px clamp(52px, 13%, 96px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 30px 60px -18px rgba(0, 0, 0, .75), 0 3px 0 -1px rgba(255, 255, 255, .16), 5px 6px 0 -1px #e9e7e0, 9px 11px 0 -2px #cfcdc5;
+  transform-origin: 0 50%;
+  backface-visibility: hidden;
+  --bx: 24px;
+}
+.sheet[data-rev="2"] { --sheet: var(--paper-2) } .sheet[data-rev="3"] { --sheet: var(--paper-3) }
+.sheet[data-rev="4"] { --sheet: var(--paper-4) } .sheet[data-rev="5"] { --sheet: var(--paper-5) }
+.sheet.ghost { position: absolute; top: 0; left: 0; right: 0; z-index: 1; pointer-events: none }
+@media (min-width: 560px) { .sheet { --bx: 38px } }
+
+/* three-hole punch: top and bottom hold brass brads, the middle hole stays empty */
+.hole { position: absolute; left: calc(var(--bx) - 11px); width: 22px; height: 22px; border-radius: 50%; background: var(--desk); box-shadow: inset 0 2px 4px rgba(0, 0, 0, .8), 0 1px 0 rgba(255, 255, 255, .5) }
+.hole.t { top: calc(14% - 11px) } .hole.m { top: calc(50% - 11px) } .hole.b { bottom: calc(14% - 11px) }
+@supports (width: 1cqw) {
+  /* holes keep real-page spacing from the top and bottom edges even when a busy day makes the page tall */
+  .hole.t { top: calc(18.1cqw - 11px) } .hole.b { top: auto; bottom: calc(18.1cqw - 11px) }
+  .brad.t { top: calc(18.1cqw - 22px) } .brad.b { top: auto; bottom: calc(18.1cqw - 22px) }
+}
+.brad { position: absolute; left: calc(var(--bx) - 22px); width: 44px; height: 44px; margin: 0; padding: 0; border: 0; background: none; border-radius: 50% }
+.brad.t { top: calc(14% - 22px) } .brad.b { bottom: calc(14% - 22px) }
+.brad::before {
+  content: ""; position: absolute; inset: 10px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, var(--brass-hi), var(--brass) 48%, var(--brass-lo) 100%);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .55), 0 0 0 1px rgba(0, 0, 0, .25);
+}
+.brad::after { content: ""; position: absolute; left: 16px; right: 16px; top: calc(50% - 1px); height: 2px; background: rgba(60, 40, 5, .75); border-radius: 1px; transition: transform .25s }
+.brad:hover::after, .brad:focus-visible::after { transform: rotate(45deg) }
+.brad:active::before { filter: brightness(.85) }
+.brad.spin { animation: spin .7s cubic-bezier(.3, .6, .3, 1) }
+@keyframes spin { to { transform: rotate(540deg) } }
+
+.run { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px }
+.runtxt { font: 400 10px/1.5 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-dim); padding-top: 3px }
+.pn { font: 400 18px/1 var(--script); font-variant-numeric: tabular-nums }
+.rev { margin-top: 2px; font: 600 10px/1.5 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-dim) }
+.trans-in { margin-top: 14px; font: 400 14px var(--script); text-transform: uppercase }
+.date { margin: 4px 0 6px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0 14px; font-weight: 700 }
+.dn { font-size: clamp(84px, 17vw, 136px); line-height: .8; letter-spacing: -.07em }
+.dm { font-size: clamp(14px, 2.1vw, 19px); letter-spacing: .3em; text-transform: uppercase; padding-bottom: .1em }
+
+.scene { position: relative; display: block; width: 100%; margin: 26px 0 0; padding: 0; text-align: left; font: inherit; color: inherit; background: none; border: 0; --dsz: 17px }
+.scene.hero { margin-top: 14px; --dsz: clamp(19px, 2.6vw, 25px) }
+.slug { position: relative; display: block; font: 700 13px/1.4 var(--script); text-transform: uppercase; letter-spacing: .01em; overflow-wrap: anywhere }
+.scene.hero .slug { font-size: 15px }
+.sn { position: absolute; top: 0; width: 34px; font-weight: 400; font-variant-numeric: tabular-nums }
+.sn.l { right: 100%; margin-right: 12px; text-align: right }
+.sn.r { left: 100%; margin-left: 12px; text-align: left }
+.col { display: block; max-width: 35ch; margin: 0 auto; font-size: var(--dsz) }
+.scene.hero .col { max-width: 33ch }
+.cue { display: block; margin: 14px 0 2px; text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: clamp(14px, .72em, 18px); overflow-wrap: anywhere }
+.cue.unk { font-weight: 400; color: var(--ink-dim); letter-spacing: .12em }
+.dlg { display: block; line-height: 1.45; overflow-wrap: anywhere }
+.dlg mark { background: linear-gradient(transparent 60%, var(--hl) 60%); color: inherit; font-weight: 700 }
+.star { position: absolute; right: -30px; top: 0; width: 28px; font-size: var(--dsz); line-height: 1.45; font-weight: 700; text-align: left; visibility: hidden }
+.meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 14px; margin-top: 10px; font: 400 10px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-dim) }
+.meta .seen { color: var(--ink); font-weight: 600 }
+.pick { cursor: pointer; padding: 8px 0 10px; margin-left: 0 }
+.pick:hover { background: rgba(0, 0, 0, .05) }
+.pick:hover .slug { text-decoration: underline; text-underline-offset: 3px }
+.also { margin: 30px 0 -8px; font: 400 14px/1.5 var(--script); color: var(--ink-dim) }
+.more-btn { display: block; margin: 20px auto 0; min-height: 44px; padding: 10px 14px; border: 1px solid var(--ink); border-radius: 0; background: transparent; color: var(--ink); font: 700 14px var(--script); letter-spacing: .02em; text-transform: uppercase }
+.more-btn:hover { background: var(--ink); color: var(--sheet) }
+.cut { align-self: flex-end; margin-top: auto; padding: 18px 0 2px 16px; min-height: 44px; border: 0; background: none; font: 400 15px var(--script); text-transform: uppercase; color: var(--ink) }
+.cut:hover { text-decoration: underline; text-underline-offset: 4px }
+.act { display: block; margin-top: 18px; max-width: 40ch; font: 400 17px/1.5 var(--script) }
+.jumps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px }
+.jumps .more-btn { margin: 0 }
+
+/* page turn: the page hinges on the brads */
+.go-next > .ghost { z-index: 3; animation: away .6s cubic-bezier(.55, .05, .75, .4) forwards }
+.go-prev > .sheet:not(.ghost) { z-index: 3; animation: back .6s cubic-bezier(.2, .7, .3, 1) }
+@keyframes away { 0% { transform: rotateY(0); opacity: 1 } 75% { opacity: 1 } 100% { transform: rotateY(-112deg); opacity: 0 } }
+@keyframes back { 0% { transform: rotateY(-112deg); opacity: 0 } 25% { opacity: 1 } 100% { transform: rotateY(0); opacity: 1 } }
+
+/* under the page */
+.turn { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; max-width: 700px; margin-top: 22px }
+.turn button {
+  min-height: 48px; padding: 0 14px; border: 1px solid var(--desk-line); border-radius: 3px; background: var(--desk-2);
+  font: 500 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--desk-ink); display: flex; align-items: center; gap: 10px;
+}
+.turn button:hover { border-color: var(--brass); color: var(--brass-hi) }
+.turn button small { font-size: 11px; color: var(--desk-dim); letter-spacing: .06em }
+#prev { justify-content: flex-start } #next { justify-content: flex-end } #today { justify-content: center }
+
+/* ---------- small screens: the binder collapses above the page ---------- */
+@media (max-width: 959px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 22px }
+  .binder { position: static; max-height: none; overflow: visible }
+  .bind-toggle {
+    display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; min-height: 44px; padding: 0 12px;
+    border: 1px solid var(--desk-line); border-radius: 3px; background: var(--desk); font: 500 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--desk-ink);
+  }
+  .b-body { display: none }
+  .binder.open .b-body { display: grid }
+  .sheetwrap, .turn { margin-left: auto; margin-right: auto }
+}
+@media (max-width: 559px) {
+  .sheet { padding-left: 52px; padding-right: 28px }
+  .sn { width: 26px; font-size: 12px }
+  .sn.l { margin-right: 6px } .sn.r { margin-left: 6px }
+  .star { right: -24px; width: 22px }
+  .turn { grid-template-columns: 1fr 1fr } #today { grid-column: 1 / -1; order: 3 }
+  .hint-long { display: none }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important }
+}
+</style>
+
+<div class="desk">
+  <div class="frame">
+    <div class="corners top">
+      <span class="lbl" id="clock">INT. YOUR ROOM</span>
+      <span class="lbl" id="doy">DAY</span>
+    </div>
+
+    <div class="layout">
+      <aside class="binder" id="binder" aria-label="Script binder">
+        <h1 class="b-title">Said On<br>This Day</h1>
+        <p class="b-sub">Dates spoken aloud in films and shows. One page per day, 366 pages.</p>
+        <button type="button" class="bind-toggle" id="bt" aria-expanded="false" aria-controls="bbody"><span id="btl">Script binder</span><span id="bta" aria-hidden="true">+</span></button>
+        <div class="b-body" id="bbody">
+          <div class="index">
+            <div class="tabs" id="months" role="group" aria-label="Month"></div>
+            <div class="panel">
+              <div class="days" id="days" role="group" aria-label="Day"></div>
+              <div class="legend" aria-label="Page colour by best line, one to five">
+                <span>Page colour = best line</span>
+                <i style="background:var(--paper-1)">1</i><i style="background:var(--paper-2)">2</i><i style="background:var(--paper-3)">3</i><i style="background:var(--paper-4)">4</i><i style="background:var(--paper-5)">5</i>
+              </div>
+              <div class="mstats" id="mstats"></div>
+            </div>
+          </div>
+          <div class="filters" id="filters" role="group" aria-label="Filter">
+            <button type="button" data-k="all" aria-pressed="true">All</button>
+            <button type="button" data-k="movie" aria-pressed="false">Films</button>
+            <button type="button" data-k="tv" aria-pressed="false">Shows</button>
+            <button type="button" data-k="mine" aria-pressed="false">Seen by me</button>
+          </div>
+          <label class="search"><span class="sr">Search title, speaker or quote</span><input type="search" id="q" placeholder="Title, speaker, line" autocomplete="off" spellcheck="false"></label>
+          <div class="bstats" id="stats"></div>
+        </div>
+      </aside>
+
+      <main class="stage">
+        <div class="sheetwrap" id="wrap">
+          <article class="sheet" id="sheet" data-rev="1" aria-label="Script page"></article>
+        </div>
+        <nav class="turn" aria-label="Turn the page">
+          <button type="button" id="prev" aria-label="Previous day"><span aria-hidden="true">&larr;</span> Prev <small id="prevn"></small></button>
+          <button type="button" id="today" aria-label="Jump to today">Today</button>
+          <button type="button" id="next" aria-label="Next day"><small id="nextn"></small> Next <span aria-hidden="true">&rarr;</span></button>
+        </nav>
+      </main>
+    </div>
+
+    <div class="corners bottom">
+      <span class="lbl" id="scount"></span>
+      <span class="lbl"><span class="hint-keys">&larr; &rarr; turn the page &middot; </span><span class="hint-touch">tap </span><b>brass brad</b> = random page</span>
+    </div>
+  </div>
+</div>
+<div class="sr" id="live" aria-live="polite"></div>
+
+<script>
+const LINES = __DATA__;
+/*PURE-START*/
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const MON3 = MONTHS.map(m => m.slice(0, 3).toUpperCase());
+const MAXD = [31,29,31,30,31,30,31,31,30,31,30,31];
+const CUM = []; { let s = 0; for (const n of MAXD) { CUM.push(s); s += n } }
+const KEYS = []; MAXD.forEach((n, i) => { for (let d = 1; d <= n; d++) KEYS.push((i + 1) * 100 + d) });
+const doy = k => CUM[Math.floor(k / 100) - 1] + k % 100;
+const REVN = ["", "White", "Blue", "Pink", "Yellow", "Green"];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const tagRank = t => t === "watched" ? 0 : t === "watchlist" ? 1 : 2;
+const rank = l => [-l.mem, tagRank(l.tag), l.k === "movie" ? 0 : 1, l.sp === "unknown" ? 1 : 0];
+const cmp = (a, b) => { const x = rank(a), y = rank(b); for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return x[i] - y[i]; return 0 };
+// sorted once; filtering keeps this order, so no per-keystroke sort
+const ALL = LINES.slice().sort(cmp);
+for (const l of ALL) l.h = (l.t + " " + l.sp + " " + l.q).toLowerCase();
+function buildDays(kind, query) {
+  const q = query.trim().toLowerCase();
+  const vis = ALL.filter(l => (kind === "all" || (kind === "mine" ? l.tag === "watched" : l.k === kind)) && (!q || l.h.includes(q)));
+  const days = new Map(), ts = new Set();
+  for (const l of vis) { const k = l.m * 100 + l.d; let a = days.get(k); if (!a) days.set(k, a = []); a.push(l); ts.add(l.t) }
+  return { vis, days, titles: ts.size };
+}
+function hl(q, m) {
+  if (m) {
+    let i = q.toLowerCase().indexOf(m.toLowerCase());
+    if (i < 0) {
+      const x = new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+"), "i").exec(q);
+      if (x) { i = x.index; m = x[0] }
+    }
+    if (i >= 0) return esc(q.slice(0, i)) + "<mark>" + esc(q.slice(i, i + m.length)) + "</mark>" + esc(q.slice(i + m.length));
+  }
+  return esc(q);
+}
+const cueOf = l => l.sp === "unknown" ? "Unknown" : l.sp === "Narrator" ? "Narrator (V.O.)" : l.sp;
+function parseHash(h) {
+  const x = /^#d(\d{3,4})$/.exec(h); if (!x) return 0;
+  const n = +x[1], m = Math.floor(n / 100), d = n % 100;
+  return m >= 1 && m <= 12 && d >= 1 && d <= MAXD[m - 1] ? n : 0;
+}
+/*PURE-END*/
+
+const $ = id => document.getElementById(id);
+const RM = window.matchMedia("(prefers-reduced-motion: reduce)");
+const PER_PAGE = 8;
+let kind = "all", query = "", sel = 0, pick = 0, showAll = false;
+let st = buildDays(kind, query);
+const nowKey = () => { const n = new Date(); return (n.getMonth() + 1) * 100 + n.getDate() };
+const fmt = n => n.toLocaleString("en-US");
+
+/* ---------- binder ---------- */
+function renderBinder() {
+  const m = Math.floor(sel / 100), tk = nowKey();
+  $("months").innerHTML = MON3.map((n, i) => `<button type="button" class="tab" data-m="${i + 1}" aria-pressed="${i + 1 === m}" aria-label="${MONTHS[i]}">${n}</button>`).join("");
+  let h = "", filled = 0;
+  for (let d = 1; d <= MAXD[m - 1]; d++) {
+    const k = m * 100 + d, ls = st.days.get(k);
+    if (ls) filled++;
+    h += `<button type="button" class="day ${ls ? "h" + ls[0].mem : "e"}${k === sel ? " sel" : ""}${k === tk ? " today" : ""}" data-k="${k}"${k === sel ? ' aria-current="date"' : ""} aria-label="${MONTHS[m - 1]} ${d}, ${ls ? ls.length + (ls.length > 1 ? " scenes" : " scene") : "no lines"}">${d}</button>`;
+  }
+  $("days").innerHTML = h;
+  $("mstats").innerHTML = `<b>${MON3[m - 1]}</b> ${filled} of ${MAXD[m - 1]} pages written`;
+  $("stats").innerHTML = `<b>${fmt(st.days.size)}</b> pages &middot; <b>${fmt(st.vis.length)}</b> lines &middot; <b>${fmt(st.titles)}</b> titles`;
+  $("btl").textContent = `Script binder · ${MON3[m - 1]} ${sel % 100}`;
+}
+
+/* ---------- the page ---------- */
+function sceneHTML(l, i, hero) {
+  const n = i + 1, ep = l.ep ? " " + esc(l.ep) : "";
+  const slugTxt = esc(l.t) + ep + (l.sc ? " — " + esc(l.sc) : "");
+  const dlg = hl(l.q, l.match);
+  const tag = l.tag === "watched" ? '<span class="seen">■ Seen by me</span>' : l.tag === "watchlist" ? "<span>Watchlist</span>" : "";
+  const body = `<span class="slug"${hero ? ' role="heading" aria-level="3"' : ""}><span class="sn l" aria-hidden="true">${n}</span>${slugTxt}<span class="sn r" aria-hidden="true">${n}</span></span>
+    <span class="col"><span class="cue${l.sp === "unknown" ? " unk" : ""}">${esc(cueOf(l))}</span><span class="dlg">${dlg}</span>
+    <span class="meta"><span>${l.k === "movie" ? "Film" : "Show"}</span>${tag}<span role="img" aria-label="Memorable ${l.mem} of 5">${"●".repeat(l.mem)}${"○".repeat(5 - l.mem)}</span></span></span>
+    ${dlg.includes("<mark>") ? '<span class="star" aria-hidden="true">*</span>' : ""}`;
+  return hero
+    ? `<section class="scene hero" tabindex="-1" aria-label="Scene ${n}">${body}</section>`
+    : `<button type="button" class="scene pick" data-pick="${i}" title="Make this scene the lead">${body}</button>`;
+}
+
+function sheetHTML() {
+  const m = Math.floor(sel / 100), d = sel % 100, ls = st.days.get(sel) || [];
+  const best = ls.length ? ls[0].mem : 1;
+  const filtered = kind !== "all" || query.trim() !== "";
+  let scenes = "";
+  if (!ls.length) {
+    const msg = st.days.size === 0
+      ? "No line matches this filter and search. Reset them to bring the pages back."
+      : `Nobody says ${MONTHS[m - 1]} ${d} out loud in ${filtered ? "anything matching the current filter" : "anything searched so far"}.`;
+    scenes = `<section class="scene hero" tabindex="-1" aria-label="Omitted page"><span class="slug" role="heading" aria-level="3"><span class="sn l" aria-hidden="true">1</span>Omitted<span class="sn r" aria-hidden="true">1</span></span>
+      <span class="act">${msg}</span>
+      <span class="jumps">${st.days.size ? '<button type="button" class="more-btn" data-act="jump" data-dir="-1">&larr; Last page with lines</button><button type="button" class="more-btn" data-act="jump" data-dir="1">Next page with lines &rarr;</button>' : ""}${filtered ? '<button type="button" class="more-btn" data-act="reset">Reset filter</button>' : ""}</span></section>`;
+  } else {
+    const i0 = Math.min(pick, ls.length - 1);
+    scenes = sceneHTML(ls[i0], i0, true);
+    const rest = ls.map((l, i) => [l, i]).filter(([, i]) => i !== i0);
+    if (rest.length) {
+      const shown = showAll ? rest : rest.slice(0, PER_PAGE);
+      scenes += `<p class="also">Also said on ${MONTHS[m - 1]} ${d}. Pick a scene to move it to the top.</p>` + shown.map(([l, i]) => sceneHTML(l, i, false)).join("");
+      if (!showAll && rest.length > PER_PAGE) scenes += `<button type="button" class="more-btn" data-act="more">(More) ${rest.length - PER_PAGE} further scenes</button>`;
+    }
+  }
+  const lead = sel === 101 ? "Fade in:" : "Continued:";
+  const leap = sel === 229 ? " · Leap-day page" : "";
+  return {
+    rev: best,
+    html: `<i class="hole t" aria-hidden="true"></i><i class="hole m" aria-hidden="true"></i><i class="hole b" aria-hidden="true"></i>
+    <button type="button" class="brad t" data-act="rand" aria-label="Random page. Pull the top brass brad."></button>
+    <button type="button" class="brad b" data-act="rand" aria-label="Random page. Pull the bottom brass brad."></button>
+    <div class="run"><span class="runtxt">Said on this day &mdash; shooting draft &middot; ${fmt(LINES.length)} lines</span><span class="pn">${doy(sel)}.</span></div>
+    <div class="rev">${best === 1 ? "White page" : REVN[best] + " revision"} &mdash; ${d} ${MON3[m - 1]}${leap}</div>
+    <div class="trans-in">${lead}</div>
+    <h2 class="date"><span class="dn">${d}</span><span class="dm">${MONTHS[m - 1]}</span></h2>
+    ${scenes}
+    <button type="button" class="cut" data-act="next">${sel === 1231 ? "Fade out." : "Cut to:"}</button>`,
+    n: ls.length
+  };
+}
+
+// the revision asterisk sits in the right margin, level with the line that holds the spoken date
+function placeStars() {
+  for (const sc of document.querySelectorAll("#sheet .scene")) {
+    const mk = sc.querySelector("mark"), star = sc.querySelector(".star");
+    if (!mk || !star) continue;
+    let y = 0, el = mk;
+    while (el && el !== sc) { y += el.offsetTop; el = el.offsetParent }
+    star.style.top = y + "px"; star.style.visibility = "visible";
+  }
+}
+
+function renderSheet(dir) {
+  const wrap = $("wrap"), sheet = $("sheet");
+  wrap.querySelectorAll(".ghost").forEach(g => g.remove());
+  wrap.classList.remove("go-next", "go-prev");
+  const animate = dir && !RM.matches;
+  let ghost = null;
+  if (animate) {
+    ghost = sheet.cloneNode(true);
+    ghost.removeAttribute("id"); ghost.classList.add("ghost"); ghost.setAttribute("aria-hidden", "true"); ghost.inert = true;
+    ghost.querySelectorAll("[tabindex]").forEach(x => x.removeAttribute("tabindex"));
+    wrap.appendChild(ghost);
+  }
+  const s = sheetHTML();
+  sheet.dataset.rev = s.rev;
+  sheet.innerHTML = s.html;
+  placeStars();
+  if (animate) {
+    void wrap.offsetWidth;
+    wrap.classList.add(dir > 0 ? "go-next" : "go-prev");
+    setTimeout(() => { if (ghost) ghost.remove(); wrap.classList.remove("go-next", "go-prev") }, 700);
+  }
+  const m = Math.floor(sel / 100), d = sel % 100;
+  $("doy").innerHTML = `Day <b>${doy(sel)}</b> / 366`;
+  $("scount").textContent = s.n ? `${s.n} scene${s.n > 1 ? "s" : ""} on this page` : "Omitted";
+  $("live").textContent = `${MONTHS[m - 1]} ${d}, page ${doy(sel)}, ${s.n ? s.n + (s.n > 1 ? " scenes" : " scene") : "no scenes"}`;
+  const i = KEYS.indexOf(sel);
+  $("prevn").textContent = doy(KEYS[(i + 365) % 366]) + ".";
+  $("nextn").textContent = doy(KEYS[(i + 1) % 366]) + ".";
+}
+
+function draw(dir) { renderBinder(); renderSheet(dir) }
+function reveal() {
+  const r = $("wrap").getBoundingClientRect();
+  if (r.top < 0 || r.top > window.innerHeight * 0.85) $("wrap").scrollIntoView({ block: "start", behavior: RM.matches ? "auto" : "smooth" });
+}
+function select(k, dir) {
+  const old = sel;
+  if (dir === undefined) dir = old && old !== k ? (doy(k) > doy(old) ? 1 : -1) : 0;
+  sel = k; pick = 0; showAll = false;
+  draw(dir);
+  try { history.replaceState(null, "", "#d" + k) } catch (e) {}
+  reveal();
+}
+function step(dir) { select(KEYS[(KEYS.indexOf(sel) + dir + KEYS.length) % KEYS.length], dir) }
+function jumpTo(dir) {
+  const i = KEYS.indexOf(sel);
+  for (let n = 1; n <= KEYS.length; n++) {
+    const k = KEYS[(i + dir * n + KEYS.length * 2) % KEYS.length];
+    if (st.days.has(k)) return select(k, dir);
+  }
+}
+function applyFilter() { st = buildDays(kind, query); pick = 0; showAll = false; draw(0) }
+
+/* ---------- events ---------- */
+$("sheet").addEventListener("click", e => {
+  const t = e.target.closest("[data-act],[data-pick]"); if (!t) return;
+  if (t.dataset.pick !== undefined) {
+    pick = +t.dataset.pick; renderSheet(0);
+    const h = $("sheet").querySelector(".hero"); if (h) h.focus({ preventScroll: true });
+    reveal(); return;
+  }
+  switch (t.dataset.act) {
+    case "next": step(1); break;
+    case "more": showAll = true; renderSheet(0); break;
+    case "jump": jumpTo(+t.dataset.dir); break;
+    case "reset": kind = "all"; query = ""; $("q").value = ""; syncFilters(); applyFilter(); break;
+    case "rand": {
+      t.classList.remove("spin"); void t.offsetWidth; if (!RM.matches) t.classList.add("spin");
+      const pool = st.days.size ? [...st.days.keys()] : KEYS;
+      let k = sel, guard = 0;
+      while (k === sel && guard++ < 20) k = pool[Math.floor(Math.random() * pool.length)];
+      select(k); break;
+    }
+  }
+});
+function syncFilters() { [...$("filters").children].forEach(x => x.setAttribute("aria-pressed", String(x.dataset.k === kind))) }
+const mobileBinder = () => getComputedStyle($("bt")).display !== "none";
+function setBinder(open) { $("binder").classList.toggle("open", open); $("bt").setAttribute("aria-expanded", String(open)); $("bta").textContent = open ? "−" : "+" }
+$("bt").addEventListener("click", () => setBinder(!$("binder").classList.contains("open")));
+$("months").addEventListener("click", e => {
+  const b = e.target.closest("button[data-m]"); if (!b) return;
+  const m = +b.dataset.m; select(m * 100 + Math.min(sel % 100, MAXD[m - 1]));
+});
+$("days").addEventListener("click", e => {
+  const b = e.target.closest("button[data-k]"); if (!b) return;
+  select(+b.dataset.k);
+  if (mobileBinder()) setBinder(false);
+});
+$("filters").addEventListener("click", e => {
+  const b = e.target.closest("button[data-k]"); if (!b) return;
+  kind = b.dataset.k; syncFilters(); applyFilter();
+});
+let qt = 0;
+$("q").addEventListener("input", e => { clearTimeout(qt); const v = e.target.value; qt = setTimeout(() => { query = v; applyFilter() }, 90) });
+$("q").addEventListener("keydown", e => {
+  if (e.key === "Enter") { clearTimeout(qt); query = e.target.value; st = buildDays(kind, query); pick = 0; showAll = false; if (!st.days.has(sel) && st.days.size) jumpTo(1); else draw(0) }
+});
+$("prev").addEventListener("click", () => step(-1));
+$("next").addEventListener("click", () => step(1));
+$("today").addEventListener("click", () => select(nowKey()));
+document.addEventListener("keydown", e => {
+  if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+  const t = e.target;
+  if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable)) return;
+  if (e.key === "ArrowLeft") { e.preventDefault(); step(-1) }
+  else if (e.key === "ArrowRight") { e.preventDefault(); step(1) }
+});
+window.addEventListener("hashchange", () => { const k = parseHash(location.hash); if (k && k !== sel) select(k) });
+
+/* ---------- clock slugline ---------- */
+function tick() {
+  const n = new Date(), p = x => String(x).padStart(2, "0");
+  const t = "INT. YOUR ROOM — " + p(n.getHours()) + ":" + p(n.getMinutes());
+  const c = $("clock"); if (c.textContent !== t) c.textContent = t;
+}
+tick(); setInterval(tick, 1000);
+
+/* ---------- boot ---------- */
+if ("ResizeObserver" in window) new ResizeObserver(placeStars).observe($("sheet"));
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeStars);
+sel = parseHash(location.hash) || nowKey();
+draw(0);
+try { history.replaceState(null, "", "#d" + sel) } catch (e) {}
+</script>

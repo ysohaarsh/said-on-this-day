@@ -1,0 +1,777 @@
+<title>Film Leader</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Big+Shoulders+Display:wght@600;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#070706; --panel:#0f0e0c; --panel2:#171510; --line:#2c2924; --line2:#443f34;
+  --ink:#f3efe2; --dim:#a8a290; --faint:#6f6a5c;
+  --sub:#ffffff; --mark:#ffd21f; --cue:#ff5a2a;
+  --film:#1b1813; --hole:#050504;
+  --f1:#221f18; --f2:#40382a; --f3:#6e6141; --f4:#ad985c; --f5:#f2dd9b;
+  --bar:clamp(34px,5.4vh,46px); --fw:56px;
+  --disp:"Big Shoulders Display","Barlow Condensed",Impact,"Arial Narrow",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --subf:"Atkinson Hyperlegible",Verdana,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--subf);overflow-x:clip;min-height:100vh}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;border-radius:0}
+:focus-visible{outline:2px solid var(--cue);outline-offset:2px}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lab{font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mbtn{font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1px solid var(--line2);color:var(--ink);padding:0 12px;min-height:36px;display:inline-flex;align-items:center;gap:8px;transition:background .12s,color .12s,border-color .12s}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn[aria-pressed="true"]{background:var(--ink);color:#0a0907;border-color:var(--ink)}
+@media (pointer:coarse){.mbtn{min-height:44px}}
+
+/* ---------- the projected screen ---------- */
+.screen{position:relative;isolation:isolate;overflow:hidden;background:#000;height:clamp(500px,72vh,860px);height:clamp(500px,72svh,860px);display:grid;grid-template-rows:var(--bar) minmax(0,1fr) auto var(--bar)}
+.screen::before{content:"";position:absolute;left:0;right:0;top:var(--bar);bottom:var(--bar);z-index:0;background:radial-gradient(120% 95% at 28% 18%,#1b1810 0%,#0d0c09 48%,#050504 100%)}
+.bar{position:relative;z-index:6;background:#000;display:flex;align-items:center;justify-content:space-between;gap:12px;white-space:nowrap}
+.bar .lab{color:#d3ccb8}
+.bar h1{font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;margin:0;color:#d3ccb8}
+.tc{color:var(--ink)!important;font-variant-numeric:tabular-nums}
+.rec{display:inline-block;width:7px;height:7px;background:var(--cue);margin-right:8px;vertical-align:1px}
+.card{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;min-height:0;padding-top:clamp(8px,1.8vh,20px);padding-bottom:10px}
+.date{margin:0;font:900 clamp(56px,17vw,280px)/.84 var(--disp);letter-spacing:-.005em;text-transform:uppercase;white-space:nowrap;color:#efe8d2;text-shadow:0 0 70px rgba(255,236,170,.16);padding-top:.06em}
+.slate{max-width:620px;border-top:1px solid rgba(243,239,226,.3);padding-top:9px;display:grid;gap:6px}
+.sfilm{margin:0;font:700 clamp(21px,2.4vw,32px)/1.02 var(--disp);letter-spacing:.02em;text-transform:uppercase;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sfilm i{font:500 .46em var(--mono);font-style:normal;color:var(--dim);margin-left:.7em;letter-spacing:.08em;vertical-align:.18em;white-space:nowrap}
+.srow{display:grid;grid-template-columns:54px minmax(0,1fr);gap:8px;font:400 12px/1.4 var(--mono);color:#ddd7c5}
+.srow b{font-weight:500;color:var(--dim);letter-spacing:.1em}
+.srow span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.srow .mem{letter-spacing:.2em;color:var(--mark)}
+.subs{position:relative;z-index:3;text-align:center;padding-bottom:6px}
+.sdh{font:700 clamp(13px,.7vw + 9px,17px)/1.1 var(--subf);letter-spacing:.06em;text-transform:uppercase;color:#e8e2cf;margin:0 0 6px;min-height:1.1em;text-shadow:-1.5px 0 #000,1.5px 0 #000,0 -1.5px #000,0 1.5px #000,0 2px 5px rgba(0,0,0,.8)}
+.cue{margin:0 auto;max-width:26em;min-height:2.6em;font:700 clamp(20px,1.5vw + 12px,34px)/1.3 var(--subf);color:var(--sub);cursor:default;
+  text-shadow:-2px 0 #000,2px 0 #000,0 -2px #000,0 2px #000,-1.5px -1.5px 0 #000,1.5px -1.5px 0 #000,-1.5px 1.5px 0 #000,1.5px 1.5px 0 #000,0 3px 8px rgba(0,0,0,.9);overflow-wrap:anywhere}
+.cue.multi{cursor:pointer}
+.cue .ln{display:block}
+.cue mark{background:none;color:var(--mark)}
+@supports (paint-order:stroke fill){.cue,.sdh{paint-order:stroke fill;-webkit-text-stroke:.14em #000}.sdh{-webkit-text-stroke:.2em #000}}
+.subctl{display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap;padding-top:8px;min-height:44px}
+.cbtn{font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.28);color:#f3efe2;min-height:34px;padding:0 11px;display:inline-flex;align-items:center;gap:8px}
+.cbtn:hover{border-color:#fff}
+.cbtn[aria-pressed="true"]{background:#f3efe2;color:#0a0907;border-color:#f3efe2}
+@media (pointer:coarse){.cbtn{min-height:44px}}
+.pips{display:inline-flex;gap:3px}
+.pips i{width:7px;height:7px;border:1px solid #cfc8b4;display:block}
+.pips i.on{background:#f3efe2}
+.pips i.has{border-color:var(--mark);box-shadow:0 0 0 1px var(--mark)}
+.scrubbing .slate,.scrubbing .subs{opacity:.18}
+.slate,.subs{transition:opacity .15s}
+
+/* academy leader */
+.leader{position:absolute;left:0;right:0;top:var(--bar);bottom:var(--bar);z-index:4;background:#15130f;display:none;overflow:hidden;cursor:pointer}
+.leading .leader{display:block;animation:ldout 900ms linear both}
+.leader::before,.leader::after{content:"";position:absolute;background:rgba(243,239,226,.55)}
+.leader::before{left:0;right:0;top:50%;height:1px}
+.leader::after{top:0;bottom:0;left:50%;width:1px}
+.ld-ring{position:absolute;left:50%;top:50%;width:min(62vmin,420px);aspect-ratio:1;transform:translate(-50%,-50%);border:2px solid rgba(243,239,226,.7);border-radius:50%}
+.ld-ring.o{width:min(74vmin,500px);border-width:1px;border-color:rgba(243,239,226,.4)}
+.ld-sweep{position:absolute;left:50%;top:50%;width:min(62vmin,420px);aspect-ratio:1;margin:calc(min(62vmin,420px)/-2) 0 0 calc(min(62vmin,420px)/-2);border-radius:50%;background:conic-gradient(from -90deg,rgba(255,236,170,0) 0deg,rgba(255,236,170,.32) 86deg,rgba(255,236,170,.9) 90deg,rgba(255,236,170,0) 90.4deg)}
+.leading .ld-sweep{animation:sweep 300ms linear 3}
+.ld-num{position:absolute;inset:0;display:grid;place-items:center;font:900 min(46vmin,330px)/1 var(--disp);color:#f3efe2;pointer-events:none}
+.ld-num span{grid-area:1/1;opacity:0}
+.leading .ld-num span:nth-child(1){animation:n3 900ms steps(1,end) both}
+.leading .ld-num span:nth-child(2){animation:n2 900ms steps(1,end) both}
+.leading .ld-num span:nth-child(3){animation:n1 900ms steps(1,end) both}
+.ld-skip{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:10px}
+@keyframes sweep{to{transform:rotate(360deg)}}
+@keyframes n3{0%{opacity:1}33.3%,100%{opacity:0}}
+@keyframes n2{0%{opacity:0}33.3%{opacity:1}66.6%,100%{opacity:0}}
+@keyframes n1{0%,66.5%{opacity:0}66.6%,100%{opacity:1}}
+@keyframes ldout{0%,86%{opacity:1}100%{opacity:0}}
+
+/* grain, vignette, gate flicker */
+.grain{position:absolute;inset:-80px;z-index:7;pointer-events:none;opacity:.13;background-size:200px 200px;animation:grain .7s steps(1) infinite}
+@keyframes grain{0%{transform:translate(0,0)}12%{transform:translate(-30px,18px)}25%{transform:translate(22px,-26px)}38%{transform:translate(-12px,-34px)}50%{transform:translate(34px,12px)}62%{transform:translate(-38px,-6px)}75%{transform:translate(8px,30px)}88%{transform:translate(-20px,24px)}}
+.vig{position:absolute;inset:0;z-index:6;pointer-events:none;background:radial-gradient(ellipse at 50% 46%,transparent 52%,rgba(0,0,0,.6) 100%)}
+.flick{position:absolute;inset:0;z-index:6;pointer-events:none;background:#fff;opacity:0;animation:flick 4.6s steps(1) infinite}
+@keyframes flick{0%{opacity:0}8%{opacity:.03}9%{opacity:0}31%{opacity:.045}32%{opacity:.01}33%{opacity:0}57%{opacity:.025}58%{opacity:0}82%{opacity:.04}83%{opacity:.012}84%{opacity:0}}
+.cut .card,.cut .subs{animation:cutin 260ms steps(3) both}
+.cut .flick{animation:cutflash 200ms linear 1}
+@keyframes cutin{0%{opacity:0}34%{opacity:.8}67%{opacity:.2}100%{opacity:1}}
+@keyframes cutflash{0%{opacity:.34}100%{opacity:0}}
+
+/* ---------- film strip ---------- */
+.stripwrap{background:#050504;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0 12px}
+.strip-hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.months{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2px;margin-bottom:10px}
+.months button{background:transparent;border:0;border-bottom:2px solid var(--line);font:500 10px/1 var(--mono);letter-spacing:.04em;color:var(--dim);padding:10px 0 8px;min-height:36px}
+.months button:hover{color:var(--ink)}
+.months button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--cue)}
+.stage{position:relative}
+.strip{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x pan-y;cursor:grab;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.strip::-webkit-scrollbar{display:none}
+.strip.grab{cursor:grabbing}
+.track{display:flex;width:max-content;background:var(--film)}
+.sp{flex:none;height:92px;background:var(--film)}
+.fr{flex:none;width:var(--fw);height:92px;position:relative;scroll-snap-align:center;background:var(--film);--f:var(--f1);--fi:#cbc4b0}
+.fr::before,.fr::after{content:"";position:absolute;left:0;right:0;height:9px;background:repeating-linear-gradient(90deg,transparent 0 7px,var(--hole) 7px 17px,transparent 17px 28px)}
+.fr::before{top:5px}.fr::after{bottom:5px}
+.pic{position:absolute;left:3px;right:3px;top:19px;bottom:19px;background:var(--f);color:var(--fi);display:block;font-style:normal}
+.pic b{position:absolute;left:5px;top:4px;font:500 12px/1 var(--mono)}
+.pic em{position:absolute;left:5px;bottom:4px;font:500 9px/1 var(--mono);letter-spacing:.06em;font-style:normal}
+.fr[data-m="1"]{--f:var(--f1)}
+.fr[data-m="2"]{--f:var(--f2)}
+.fr[data-m="3"]{--f:var(--f3);--fi:#f3ecd2}
+.fr[data-m="4"]{--f:var(--f4);--fi:#17120a}
+.fr[data-m="5"]{--f:var(--f5);--fi:#17120a}
+.fr[data-m="0"] .pic{background:linear-gradient(to top right,transparent calc(50% - .6px),#3a362d,transparent calc(50% + .6px)),linear-gradient(to top left,transparent calc(50% - .6px),#3a362d,transparent calc(50% + .6px)),#0a0908;color:var(--faint)}
+.fr.first{box-shadow:inset 2px 0 0 var(--cue)}
+.fr.today .pic::after{content:"";position:absolute;right:4px;top:4px;width:6px;height:6px;background:var(--cue)}
+.fr:hover .pic{filter:brightness(1.3)}
+.fr.sel .pic{outline:2px solid var(--cue);outline-offset:1px}
+.gate{position:absolute;left:50%;top:0;bottom:0;width:calc(var(--fw) + 8px);transform:translateX(-50%);pointer-events:none;border-left:1px solid rgba(255,90,42,.55);border-right:1px solid rgba(255,90,42,.55)}
+.gate::before,.gate::after{content:"";position:absolute;left:50%;margin-left:-6px;border:6px solid transparent}
+.gate::before{top:-1px;border-top-color:var(--cue)}
+.gate::after{bottom:-1px;border-bottom-color:var(--cue)}
+
+/* ---------- projector controls ---------- */
+.ctl{padding-top:16px;padding-bottom:16px;display:grid;gap:14px;border-bottom:1px solid var(--line)}
+.ctl-row{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+.seg{display:flex;flex-wrap:wrap}
+.seg .mbtn{margin-left:-1px}
+.seg .mbtn:first-child{margin-left:0}
+.seg .mbtn[aria-pressed="true"]{position:relative;z-index:1}
+.find{display:flex;align-items:center;gap:10px;flex:1 1 260px;max-width:520px;border-bottom:1px solid var(--line2);padding-bottom:2px}
+.find:focus-within{border-bottom-color:var(--cue)}
+.find input{flex:1;min-width:0;background:transparent;border:0;outline:0;padding:9px 0;font:400 16px/1.2 var(--subf);color:var(--ink)}
+.find input::placeholder{color:var(--faint)}
+.nav{display:flex}
+.nav .mbtn{margin-left:-1px}
+.nav .mbtn:first-child{margin-left:0}
+#counts{font-variant-numeric:tabular-nums}
+
+/* ---------- alternate takes ---------- */
+.takes{padding-top:22px;padding-bottom:40px}
+.takes-hd{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:12px;flex-wrap:wrap}
+.takes-hd h2{font:800 clamp(22px,2.6vw,30px)/1 var(--disp);letter-spacing:.04em;text-transform:uppercase;margin:0}
+.reel{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:10px}
+.take{position:relative;text-align:left;background:var(--panel);border:1px solid var(--line);padding:22px 14px 22px;display:grid;gap:7px;align-content:start;min-width:0}
+.take::before,.take::after{content:"";position:absolute;left:0;right:0;height:7px;background:repeating-linear-gradient(90deg,transparent 0 6px,var(--hole) 6px 14px,transparent 14px 24px)}
+.take::before{top:6px}.take::after{bottom:6px}
+.take:hover{border-color:var(--ink);background:var(--panel2)}
+.tk-top{display:flex;justify-content:space-between;gap:10px;font:500 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.tk-top b{color:var(--cue);font-weight:500;flex:none}
+.tk-top span{text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tk-sdh{font:700 12px/1.1 var(--subf);letter-spacing:.06em;text-transform:uppercase;color:#cfc8b4}
+.tk-q{font:700 16px/1.35 var(--subf);color:#fff;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.tk-q mark{background:none;color:var(--mark)}
+.tk-ft{font:400 11px/1.2 var(--mono);letter-spacing:.08em;color:var(--dim);text-transform:uppercase}
+.tk-ft .mem{color:var(--mark);letter-spacing:.2em}
+.only{font:400 12px/1.5 var(--mono);color:var(--dim);letter-spacing:.06em;text-transform:uppercase;border:1px dashed var(--line2);padding:14px}
+.morebtn{margin-top:12px}
+.foot{padding-top:18px;padding-bottom:30px;border-top:1px solid var(--line)}
+
+@media (min-width:700px){
+  .srow{font-size:13px}
+  :root{--fw:62px}
+  .fr::before,.fr::after{background:repeating-linear-gradient(90deg,transparent 0 8px,var(--hole) 8px 19px,transparent 19px 31px)}
+}
+@media (prefers-reduced-motion:reduce){
+  .grain,.flick{animation:none}
+  .cut .card,.cut .subs,.cut .flick{animation:none}
+  .leading .leader,.leading .ld-sweep,.leading .ld-num span{animation:none}
+  .slate,.subs,.mbtn{transition:none}
+}
+</style>
+
+<div class="app">
+  <main>
+    <section class="screen" id="screen" aria-label="Projection screen">
+      <div class="bar gut">
+        <span class="lab tc" id="tc"><span class="rec" aria-hidden="true"></span>TC 00:00:00:00</span>
+        <span class="lab" id="reel">REEL 00</span>
+      </div>
+      <div class="card gut">
+        <h2 class="date" id="date">&nbsp;</h2>
+        <div class="slate">
+          <p class="sfilm" id="sFilm"></p>
+          <div class="srow"><b>SCENE</b><span id="sScene"></span></div>
+          <div class="srow"><b>TAKE</b><span id="sTake"></span></div>
+        </div>
+      </div>
+      <div class="subs gut">
+        <p class="sdh" id="sdh"></p>
+        <p class="cue" id="cue"></p>
+        <div class="subctl">
+          <span id="acts" hidden style="display:contents"></span>
+          <button type="button" class="cbtn" id="fullbtn" aria-pressed="false" hidden>Full text</button>
+          <button type="button" class="cbtn" id="cuebtn" hidden aria-label="Next subtitle card"><span>Cue</span><span class="pips" id="pips"></span><span aria-hidden="true">&#9656;</span></button>
+        </div>
+        <div class="vh" id="live" aria-live="polite"></div>
+      </div>
+      <div class="bar gut">
+        <span class="lab">Said on this day</span>
+        <span class="lab" id="frame">FRAME 000 / 366</span>
+      </div>
+      <div class="leader" id="leader" aria-hidden="true">
+        <div class="ld-ring o"></div><div class="ld-ring"></div><div class="ld-sweep"></div>
+        <div class="ld-num"><span>3</span><span>2</span><span>1</span></div>
+        <span class="lab ld-skip">Click or press a key to skip</span>
+      </div>
+      <div class="vig"></div><div class="flick"></div><div class="grain" id="grain"></div>
+    </section>
+    <h1 class="vh">Said On This Day</h1>
+
+    <section class="stripwrap" aria-label="Film strip day navigator">
+      <div class="strip-hd gut">
+        <span class="lab">35mm &middot; 366 frames &middot; one per day</span>
+        <span class="lab">Drag, scroll or use &larr; &rarr;</span>
+      </div>
+      <div class="months gut" id="months" role="group" aria-label="Jump to month"></div>
+      <div class="stage">
+        <div class="strip" id="strip" tabindex="0" role="slider" aria-label="Day of the year" aria-valuemin="1" aria-valuemax="366" aria-valuenow="1" aria-orientation="horizontal">
+          <div class="track" id="track"></div>
+        </div>
+        <div class="gate" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="ctl gut" aria-label="Projector controls">
+      <div class="ctl-row">
+        <div class="seg" id="filters" role="group" aria-label="Filter lines">
+          <button type="button" class="mbtn" data-f="all" aria-pressed="true">All</button>
+          <button type="button" class="mbtn" data-f="movie" aria-pressed="false">Films</button>
+          <button type="button" class="mbtn" data-f="tv" aria-pressed="false">Shows</button>
+          <button type="button" class="mbtn" data-f="mine" aria-pressed="false">Seen by me</button>
+        </div>
+        <div class="nav" role="group" aria-label="Change day">
+          <button type="button" class="mbtn" id="prev" aria-label="Previous day">&larr; Prev</button>
+          <button type="button" class="mbtn" id="today">Today</button>
+          <button type="button" class="mbtn" id="next" aria-label="Next day">Next &rarr;</button>
+        </div>
+      </div>
+      <div class="ctl-row">
+        <label class="find"><span class="lab">Find</span><input id="q" type="search" placeholder="title, speaker or quote" autocomplete="off" spellcheck="false"></label>
+        <output class="lab" id="counts" aria-live="polite"></output>
+      </div>
+    </section>
+
+    <section class="takes gut" aria-labelledby="takesH">
+      <div class="takes-hd"><h2 id="takesH">Alternate takes</h2><span class="lab" id="takesN"></span></div>
+      <div class="reel" id="reel2"></div>
+      <div id="moreWrap"></div>
+    </section>
+    <footer class="foot gut"><p class="lab" id="foot"></p></footer>
+  </main>
+</div>
+
+<script>
+const LINES = __DATA__;
+(function () {
+"use strict";
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const MON = MONTHS.map(m => m.slice(0, 3).toUpperCase());
+const MAXD = [31,29,31,30,31,30,31,31,30,31,30,31];
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pad = (n, w = 2) => String(n).padStart(w, "0");
+const reMq = matchMedia("(prefers-reduced-motion: reduce)");
+let reduced = reMq.matches;
+try { reMq.addEventListener("change", e => { reduced = e.matches }) } catch (e) {}
+
+/* ---------- data: sort once, group per filter ---------- */
+const rank = l => [-l.mem, l.tag === "watched" ? 0 : l.tag === "watchlist" ? 1 : 2, l.k === "movie" ? 0 : 1, l.sp === "unknown" ? 1 : 0];
+const cmp = (a, b) => { const x = rank(a), y = rank(b); for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return x[i] - y[i]; return 0 };
+const SORTED = LINES.slice().sort(cmp);
+for (const l of SORTED) l._h = (l.t + " " + l.sp + " " + l.q).toLowerCase();
+function byDay(list) {            // list is already ranked, grouping preserves the order
+  const m = new Map();
+  for (const l of list) { const k = l.m * 100 + l.d; let a = m.get(k); if (!a) m.set(k, a = []); a.push(l) }
+  return m;
+}
+const DAYS = [], IDX = new Map();
+MAXD.forEach((n, i) => { for (let d = 1; d <= n; d++) { IDX.set((i + 1) * 100 + d, DAYS.length); DAYS.push((i + 1) * 100 + d) } });
+const N = DAYS.length;
+const ALL = byDay(SORTED);
+
+let kind = "all", query = "", sel = 0, pick = 0, showAll = false;
+let days = ALL;
+let cur = null, full = false;
+
+function visible() {
+  const q = query.trim().toLowerCase();
+  if (kind === "all" && !q) return SORTED;
+  return SORTED.filter(l =>
+    (kind === "all" || (kind === "mine" ? l.tag === "watched" : l.k === kind)) &&
+    (!q || l._h.includes(q)));
+}
+
+/* ---------- the spoken date inside the quote ---------- */
+function matchRange(l) {
+  if (l._r) return l._r;
+  const q = l.q, ql = q.toLowerCase(), m = (l.match || "").toLowerCase().trim();
+  let i = m ? ql.indexOf(m) : -1, n = m.length;
+  const rx = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  if (i < 0 && m) {
+    const r = new RegExp(rx(m).replace(/\s+/g, "\\s+").replace(/[\u2019']/g, "[\u2019']"), "i").exec(q);
+    if (r) { i = r.index; n = r[0].length }
+  }
+  if (i < 0) {
+    const mo = MONTHS[l.m - 1];
+    const pats = [
+      "\\d{1,2}(?:st|nd|rd|th)?\\s+(?:of\\s+)?" + mo + "(?:\\s+\\d{4})?",
+      mo + "\\s+(?:the\\s+)?\\d{1,2}(?:st|nd|rd|th)?(?:,?\\s+\\d{4})?",
+      "\\w+\\s+of\\s+" + mo,
+      mo
+    ];
+    for (const p of pats) { const r = new RegExp(p, "i").exec(q); if (r) { i = r.index; n = r[0].length; break } }
+  }
+  return l._r = i < 0 ? [-1, -1] : [i, i + n];
+}
+function seg(q, s, e, ms, me) {
+  const a = Math.max(s, ms), b = Math.min(e, me);
+  if (ms < 0 || a >= b) return esc(q.slice(s, e));
+  return esc(q.slice(s, a)) + "<mark>" + esc(q.slice(a, b)) + "</mark>" + esc(q.slice(b, e));
+}
+const sdhTag = l => "[" + (l.sp === "unknown" ? "UNIDENTIFIED VOICE" : l.sp === "Narrator" ? "NARRATOR, V.O." : l.sp.toUpperCase()) + "]";
+const memDots = n => "\u25CF".repeat(n) + "\u25CB".repeat(5 - n);
+const tagTxt = l => l.tag === "watched" ? "SEEN BY ME" : l.tag === "watchlist" ? "WATCHLIST" : "";
+const dateLabel = k => MONTHS[(k / 100 | 0) - 1].toUpperCase() + " " + (k % 100);
+
+/* ---------- elements ---------- */
+const screen = $("screen"), dateEl = $("date"), tcEl = $("tc"), reelEl = $("reel"), frameEl = $("frame");
+const sFilm = $("sFilm"), sScene = $("sScene"), sTake = $("sTake"), sdhEl = $("sdh"), cueEl = $("cue");
+const cuebtn = $("cuebtn"), fullbtn = $("fullbtn"), pipsEl = $("pips"), acts = $("acts"), liveEl = $("live");
+const strip = $("strip"), track = $("track"), leader = $("leader");
+
+/* ---------- grain (one small noise tile, jittered by CSS) ---------- */
+(function () {
+  try {
+    const c = document.createElement("canvas"); c.width = c.height = 128;
+    const x = c.getContext("2d"), im = x.createImageData(128, 128);
+    for (let i = 0; i < im.data.length; i += 4) { const v = Math.random() * 255 | 0; im.data[i] = im.data[i + 1] = im.data[i + 2] = v; im.data[i + 3] = 255 }
+    x.putImageData(im, 0, 0);
+    $("grain").style.backgroundImage = "url(" + c.toDataURL("image/png") + ")";
+  } catch (e) {}
+})();
+
+/* ---------- text measuring (date fit + subtitle wrapping) ---------- */
+const mctx = document.createElement("canvas").getContext("2d");
+function wrapLines(q, maxW, font) {
+  mctx.font = font;
+  const re = /\S+/g; let m, s = -1, e = -1; const lines = [];
+  while ((m = re.exec(q))) {
+    const ws = m.index, we = ws + m[0].length;
+    if (s < 0) { s = ws; e = we; continue }
+    if (mctx.measureText(q.slice(s, we)).width <= maxW) e = we; else { lines.push([s, e]); s = ws; e = we }
+  }
+  if (s >= 0) lines.push([s, e]);
+  return lines;
+}
+const DATE_LABELS = DAYS.map(dateLabel);
+function fitDate() {
+  const cs = getComputedStyle(dateEl);
+  mctx.font = cs.fontWeight + " 100px " + cs.fontFamily;
+  let w = 0; for (const s of DATE_LABELS) w = Math.max(w, mctx.measureText(s).width);
+  const card = dateEl.parentElement, ccs = getComputedStyle(card);
+  const availW = card.clientWidth - parseFloat(ccs.paddingLeft) - parseFloat(ccs.paddingRight);
+  const reserve = innerWidth < 700 ? 150 : 135;
+  const availH = card.clientHeight - parseFloat(ccs.paddingTop) - parseFloat(ccs.paddingBottom) - reserve;
+  const fs = Math.max(44, Math.min(availW / w * 100 * 0.985, availH / 0.9, 360));
+  dateEl.style.fontSize = fs.toFixed(1) + "px";
+}
+
+/* ---------- subtitle cards ---------- */
+let cueT = 0;
+function layoutCues(reset) {
+  if (!cur) return;
+  const cs = getComputedStyle(cueEl);
+  const w = cueEl.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  const lines = wrapLines(cur.l.q, (w || 320) * 0.95, cs.fontWeight + " " + cs.fontSize + " " + cs.fontFamily);
+  cur.cards = [];
+  for (let i = 0; i < lines.length; i += 2) cur.cards.push(lines.slice(i, i + 2));
+  if (!cur.cards.length) cur.cards.push([[0, cur.l.q.length]]);
+  cur.mc = cur.cards.findIndex(c => c.some(([s, e]) => cur.ms < e && cur.me > s));
+  cur.ci = reset ? 0 : Math.min(cur.ci, cur.cards.length - 1);
+  drawCue();
+}
+function drawCue() {
+  if (!cur) return;
+  const { l, cards, ci, ms, me } = cur, q = l.q;
+  cueEl.innerHTML = full
+    ? `<span class="ln">${seg(q, 0, q.length, ms, me)}</span>`
+    : cards[ci].map(([s, e]) => `<span class="ln">${seg(q, s, e, ms, me)}</span>`).join("");
+  sdhEl.style.visibility = full || ci === 0 ? "visible" : "hidden";
+  const multi = cards.length > 1;
+  cueEl.classList.toggle("multi", multi && !full);
+  cuebtn.hidden = !multi || full;
+  fullbtn.hidden = !multi;
+  if (multi) pipsEl.innerHTML = cards.map((_, i) => `<i class="${i <= ci ? "on" : ""}${i === cur.mc ? " has" : ""}"></i>`).join("");
+  cuebtn.setAttribute("aria-label", "Next subtitle card, " + (ci + 1) + " of " + cards.length);
+}
+function scheduleCue() {
+  clearTimeout(cueT);
+  if (!cur || !cur.auto || full || cur.ci >= cur.cards.length - 1) return;
+  const n = cur.cards[cur.ci].reduce((a, [s, e]) => a + e - s, 0);
+  cueT = setTimeout(() => { if (!cur) return; cur.ci++; drawCue(); scheduleCue() }, Math.min(7000, Math.max(2400, 1400 + n * 62)));
+}
+function startCues() {
+  clearTimeout(cueT);
+  t0 = performance.now();
+  if (!cur) return;
+  cur.ci = 0; cur.auto = !reduced; drawCue(); scheduleCue();
+}
+function stepCue() {
+  if (!cur || cur.cards.length < 2) return;
+  clearTimeout(cueT); cur.auto = false;
+  cur.ci = (cur.ci + 1) % cur.cards.length; drawCue();
+}
+cuebtn.onclick = stepCue;
+cueEl.addEventListener("click", () => { if (!full) stepCue() });
+fullbtn.onclick = () => {
+  full = !full; fullbtn.setAttribute("aria-pressed", full);
+  if (cur) { cur.auto = false; clearTimeout(cueT); drawCue() }
+};
+
+/* ---------- live timecode ---------- */
+let t0 = performance.now(), lastTC = -1, scrubKey = 0;
+function tcBase(k) { return "TC " + pad(k / 100 | 0) + ":" + pad(k % 100) + ":" }
+function setTC(txt) { tcEl.lastChild.textContent = txt }
+function tick(now) {
+  if (!reduced && !scrubKey && !leaderOn) {
+    const t = Math.max(0, now - t0), s = Math.floor(t / 1000) % 60, f = Math.floor((t % 1000) / (1000 / 24)), key = s * 100 + f;
+    if (key !== lastTC) { lastTC = key; setTC(tcBase(sel) + pad(s) + ":" + pad(f)) }
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ---------- academy leader ---------- */
+let leaderOn = false, leaderT = 0;
+function playLeader() {
+  leaderOn = true; setTC(tcBase(sel) + "00:00");
+  screen.classList.remove("leading"); void screen.offsetWidth; screen.classList.add("leading");
+  clearTimeout(leaderT); leaderT = setTimeout(endLeader, 900);
+}
+function endLeader() {
+  if (!leaderOn) return;
+  clearTimeout(leaderT); leaderOn = false;
+  screen.classList.remove("leading");
+  startCues();
+}
+leader.addEventListener("pointerdown", endLeader);
+
+/* ---------- screen rendering ---------- */
+function setLabels(k) {
+  const m = k / 100 | 0;
+  dateEl.textContent = dateLabel(k);
+  reelEl.textContent = "REEL " + pad(m);
+  frameEl.textContent = "FRAME " + pad(IDX.get(k) + 1, 3) + " / " + N;
+  setTC(tcBase(k) + "00:00"); lastTC = -1;
+}
+function renderScreen(o) {
+  o = o || {};
+  setLabels(sel);
+  const ls = days.get(sel) || [];
+  if (ls.length) renderHero(ls); else renderEmpty();
+  screen.classList.remove("scrubbing"); scrubKey = 0;
+  if (o.leader && !reduced) playLeader();
+  else {
+    leaderOn = false; screen.classList.remove("leading");
+    if (o.cut && !reduced) { screen.classList.remove("cut"); void screen.offsetWidth; screen.classList.add("cut"); setTimeout(() => screen.classList.remove("cut"), 300) }
+    startCues();
+  }
+}
+function renderHero(ls) {
+  pick = Math.min(pick, ls.length - 1);
+  const l = ls[pick], r = matchRange(l);
+  cur = { l, ms: r[0], me: r[1], cards: [], ci: 0, auto: true, mc: -1 };
+  const ym = /^(.*?)\s*\((\d{4}[^)]*)\)\s*$/.exec(l.t);
+  sFilm.innerHTML = (ym ? esc(ym[1]) + "<i>" + esc(ym[2]) + "</i>" : esc(l.t)) + (l.ep ? "<i>" + esc(l.ep) + "</i>" : "");
+  sScene.textContent = l.sc || "\u2014";
+  sTake.innerHTML = pad(pick + 1) + "/" + pad(ls.length) + " &middot; " + (l.k === "movie" ? "FILM" : "SHOW") + (tagTxt(l) ? " &middot; " + tagTxt(l) : "") + ' &middot; <span class="mem" role="img" aria-label="memorable ' + l.mem + ' of 5">' + memDots(l.mem) + "</span>";
+  sdhEl.textContent = sdhTag(l);
+  acts.hidden = true; acts.innerHTML = "";
+  layoutCues(true);
+  const m = sel / 100 | 0;
+  liveEl.textContent = MONTHS[m - 1] + " " + (sel % 100) + ". " + (l.sp === "unknown" ? "Unidentified speaker" : l.sp) + ", in " + l.t + (l.ep ? " " + l.ep : "") + ": " + l.q + " Take " + (pick + 1) + " of " + ls.length + ".";
+}
+function renderEmpty() {
+  cur = null; clearTimeout(cueT);
+  const total = (ALL.get(sel) || []).length, k = sel;
+  const filtered = kind !== "all" || query.trim();
+  sFilm.textContent = "NO PRINT";
+  sScene.textContent = total && filtered ? total + (total > 1 ? " lines are" : " line is") + " filtered out of this day." : "Nobody says " + MONTHS[(k / 100 | 0) - 1] + " " + (k % 100) + " out loud in the archive. Yet.";
+  sTake.textContent = "00/00";
+  sdhEl.textContent = ""; sdhEl.style.visibility = "visible";
+  cueEl.classList.remove("multi");
+  const word = total && filtered ? "NO MATCHES" : "SILENCE";
+  cueEl.innerHTML = `<span class="ln">[${word}]</span>`;
+  cuebtn.hidden = true; fullbtn.hidden = true;
+  let h = "";
+  if (filtered) h += '<button type="button" class="cbtn" data-act="clear">Clear filters</button>';
+  if (days.size) h += '<button type="button" class="cbtn" data-act="next">Next dialogue &#9656;</button>';
+  acts.innerHTML = h; acts.hidden = !h;
+  liveEl.textContent = MONTHS[(k / 100 | 0) - 1] + " " + (k % 100) + ". No dialogue.";
+}
+acts.addEventListener("click", e => {
+  const b = e.target.closest("button[data-act]"); if (!b) return;
+  if (b.dataset.act === "clear") {
+    kind = "all"; query = ""; $("q").value = "";
+    [...$("filters").children].forEach(x => x.setAttribute("aria-pressed", x.dataset.f === "all"));
+    refilter(); renderScreen({ cut: true }); renderTakes();
+  } else { const k = nextWithLines(sel, 1); if (k) go(k) }
+});
+function nextWithLines(k, dir) {
+  if (!days.size) return 0;
+  let i = IDX.get(k);
+  for (let n = 0; n < N; n++) { i = (i + dir + N) % N; if (days.has(DAYS[i])) return DAYS[i] }
+  return 0;
+}
+
+/* ---------- alternate takes ---------- */
+function renderTakes() {
+  const ls = days.get(sel) || [];
+  const rest = ls.map((l, i) => [l, i]).filter(([, i]) => i !== pick);
+  $("takesN").textContent = ls.length ? ls.length + " on " + dateLabel(sel) : "";
+  const shown = showAll ? rest : rest.slice(0, 8);
+  if (!ls.length) $("reel2").innerHTML = '<div class="only">Reel is empty. Nothing was shot for this date.</div>';
+  else if (!rest.length) $("reel2").innerHTML = '<div class="only">One take only. Print it.</div>';
+  else $("reel2").innerHTML = shown.map(([l, i]) => {
+    const r = matchRange(l);
+    return `<button type="button" class="take" data-i="${i}" aria-label="Project take ${i + 1}: ${esc(l.t)}">
+      <span class="tk-top"><b>TAKE ${pad(i + 1)}</b><span>${esc(l.t)}${l.ep ? " " + esc(l.ep) : ""}</span></span>
+      <span class="tk-sdh">${esc(sdhTag(l))}</span>
+      <span class="tk-q">${seg(l.q, 0, l.q.length, r[0], r[1])}</span>
+      <span class="tk-ft">${l.k === "movie" ? "Film" : "Show"}${tagTxt(l) ? " &middot; " + tagTxt(l) : ""} &middot; <span class="mem" role="img" aria-label="memorable ${l.mem} of 5">${memDots(l.mem)}</span></span></button>`;
+  }).join("");
+  $("moreWrap").innerHTML = !showAll && rest.length > 8 ? `<button type="button" class="mbtn morebtn" id="more">Show all ${rest.length}</button>` : "";
+}
+$("reel2").addEventListener("click", e => {
+  const b = e.target.closest(".take"); if (!b) return;
+  pick = +b.dataset.i; renderScreen({ cut: true }); renderTakes();
+  window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+});
+$("moreWrap").addEventListener("click", e => { if (e.target.closest("#more")) { showAll = true; renderTakes() } });
+
+/* ---------- film strip ---------- */
+let FR = [], FW = 56, glideRaf = 0, animating = false, dragging = false;
+function buildStrip() {
+  let h = '<div class="sp" id="spL"></div>';
+  DAYS.forEach(k => {
+    const m = k / 100 | 0, d = k % 100;
+    h += `<div class="fr${d === 1 ? " first" : ""}" data-k="${k}" data-m="0"><i class="pic"><b>${d}</b>${d === 1 ? "<em>" + MON[m - 1] + "</em>" : ""}</i></div>`;
+  });
+  h += '<div class="sp" id="spR"></div>';
+  track.innerHTML = h;
+  FR = [...track.querySelectorAll(".fr")];
+  const now = new Date(), tk = (now.getMonth() + 1) * 100 + now.getDate(), ti = IDX.get(tk);
+  if (ti != null) FR[ti].classList.add("today");
+  $("months").innerHTML = MON.map((n, i) => `<button type="button" data-m="${i + 1}" aria-pressed="false" aria-label="${MONTHS[i]}">${n}</button>`).join("");
+}
+function shadeStrip() {
+  for (let i = 0; i < N; i++) {
+    const ls = days.get(DAYS[i]), m = ls ? ls[0].mem : 0, el = FR[i];
+    if (el._m !== m) { el._m = m; el.dataset.m = m }
+  }
+}
+let prevSel = null;
+function markSel() {
+  if (prevSel != null) FR[prevSel].classList.remove("sel");
+  const i = IDX.get(sel); FR[i].classList.add("sel"); prevSel = i;
+  const m = sel / 100 | 0, n = (days.get(sel) || []).length;
+  strip.setAttribute("aria-valuenow", i + 1);
+  strip.setAttribute("aria-valuetext", MONTHS[m - 1] + " " + (sel % 100) + ", " + (n ? n + (n > 1 ? " lines" : " line") : "no lines"));
+  [...$("months").children].forEach(b => b.setAttribute("aria-pressed", +b.dataset.m === m));
+}
+function measureStrip() {
+  FW = FR[0].offsetWidth || 56;
+  const w = Math.max(0, (strip.clientWidth - FW) / 2) + "px";
+  $("spL").style.width = w; $("spR").style.width = w;
+}
+function glide(to, ms, done) {
+  cancelAnimationFrame(glideRaf);
+  const from = strip.scrollLeft;
+  const fin = () => { animating = false; strip.style.scrollSnapType = ""; done && done() };
+  if (reduced || Math.abs(to - from) < 1 || ms <= 0) { strip.style.scrollSnapType = "none"; strip.scrollLeft = to; animating = true; requestAnimationFrame(fin); return }
+  animating = true; strip.style.scrollSnapType = "none";
+  const t = performance.now();
+  const step = now => {
+    const p = Math.min(1, (now - t) / ms), e = 1 - Math.pow(1 - p, 3);
+    strip.scrollLeft = from + (to - from) * e;
+    if (p < 1) glideRaf = requestAnimationFrame(step); else fin();
+  };
+  glideRaf = requestAnimationFrame(step);
+}
+function centerStrip(smooth) {
+  const to = IDX.get(sel) * FW;
+  glide(to, smooth ? Math.min(700, 260 + Math.abs(to - strip.scrollLeft) * 0.03) : 0);
+}
+const idxFromScroll = () => Math.max(0, Math.min(N - 1, Math.round(strip.scrollLeft / FW)));
+function scrubTo(i) {
+  const k = DAYS[i];
+  if (k === sel) { unscrub(); return }
+  if (k === scrubKey) return;
+  scrubKey = k; screen.classList.add("scrubbing");
+  setLabels(k);
+}
+function unscrub() {
+  if (!scrubKey) return;
+  scrubKey = 0; screen.classList.remove("scrubbing"); setLabels(sel);
+}
+function settle() {
+  if (dragging || animating) return;
+  const k = DAYS[idxFromScroll()];
+  if (k !== sel) go(k, { fromStrip: true }); else unscrub();
+}
+let scrollRaf = 0, settleT = 0;
+strip.addEventListener("scroll", () => {
+  if (animating) return;
+  if (!scrollRaf) scrollRaf = requestAnimationFrame(() => { scrollRaf = 0; if (!animating) scrubTo(idxFromScroll()) });
+  clearTimeout(settleT); settleT = setTimeout(settle, 140);
+}, { passive: true });
+try { strip.addEventListener("scrollend", () => { clearTimeout(settleT); settle() }) } catch (e) {}
+
+/* mouse drag with a little momentum; touch uses native scrolling + snap */
+let drag = null, suppress = false;
+strip.addEventListener("pointerdown", e => {
+  if (e.pointerType === "touch" || e.button !== 0) return;
+  cancelAnimationFrame(glideRaf); animating = false;
+  drag = { x: e.clientX, left: strip.scrollLeft, id: e.pointerId, moved: false, v: 0, lx: e.clientX, lt: performance.now() };
+});
+strip.addEventListener("pointermove", e => {
+  if (!drag) return;
+  const dx = e.clientX - drag.x;
+  if (!drag.moved && Math.abs(dx) > 5) {
+    drag.moved = true; dragging = true;
+    try { strip.setPointerCapture(drag.id) } catch (er) {}
+    strip.classList.add("grab"); strip.style.scrollSnapType = "none";
+  }
+  if (drag.moved) {
+    strip.scrollLeft = drag.left - dx;
+    const now = performance.now(), dt = now - drag.lt;
+    if (dt > 0) drag.v = 0.7 * drag.v + 0.3 * ((e.clientX - drag.lx) / dt);
+    drag.lx = e.clientX; drag.lt = now;
+    scrubTo(idxFromScroll());
+  }
+});
+function endDrag() {
+  if (!drag) return;
+  const d = drag; drag = null;
+  if (!d.moved) return;
+  dragging = false; strip.classList.remove("grab");
+  suppress = true; setTimeout(() => { suppress = false }, 60);
+  const v = performance.now() - d.lt > 90 ? 0 : d.v;
+  const i = Math.max(0, Math.min(N - 1, Math.round((strip.scrollLeft - v * 320) / FW)));
+  glide(i * FW, 420 + Math.min(500, Math.abs(i * FW - strip.scrollLeft) * 0.25), settle);
+}
+strip.addEventListener("pointerup", endDrag);
+strip.addEventListener("pointercancel", endDrag);
+strip.addEventListener("click", e => {
+  if (suppress) { e.stopPropagation(); e.preventDefault(); return }
+  const f = e.target.closest(".fr"); if (f) go(+f.dataset.k);
+}, true);
+strip.addEventListener("wheel", e => {
+  if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+  const max = strip.scrollWidth - strip.clientWidth;
+  if ((e.deltaY < 0 && strip.scrollLeft <= 0) || (e.deltaY > 0 && strip.scrollLeft >= max)) return;
+  e.preventDefault(); cancelAnimationFrame(glideRaf); animating = false;
+  strip.scrollLeft += e.deltaY;
+}, { passive: false });
+$("months").addEventListener("click", e => {
+  const b = e.target.closest("button[data-m]"); if (!b) return;
+  const m = +b.dataset.m; go(m * 100 + Math.min(sel % 100, MAXD[m - 1]));
+});
+
+/* ---------- navigation ---------- */
+function refilter() {
+  days = byDay(visible());
+  shadeStrip();
+  $("counts").textContent = [...days.values()].reduce((a, v) => a + v.length, 0).toLocaleString("en-US") + " lines \u00B7 " + days.size + " days";
+  markSel();
+}
+function select(k, o) {
+  o = o || {};
+  if (!IDX.has(k)) return;
+  sel = k; pick = 0; showAll = false;
+  try { history.replaceState(null, "", "#d" + k) } catch (e) {}
+  if (!o.fromStrip) centerStrip(!o.instant);
+  markSel();
+  renderScreen({ leader: o.leader !== false });
+  renderTakes();
+}
+function go(k, o) {                 // user-driven change: a running leader is skipped instead of restarted
+  const was = leaderOn;
+  if (was) endLeader();
+  select(k, Object.assign({}, o, { leader: !was }));
+}
+function step(dir) { go(DAYS[(IDX.get(sel) + dir + N) % N]) }
+function stepMonth(dir) {
+  const m = ((sel / 100 | 0) - 1 + dir + 12) % 12;
+  go((m + 1) * 100 + Math.min(sel % 100, MAXD[m]));
+}
+$("prev").onclick = () => step(-1);
+$("next").onclick = () => step(1);
+$("today").onclick = () => { const n = new Date(); go((n.getMonth() + 1) * 100 + n.getDate()) };
+$("filters").addEventListener("click", e => {
+  const b = e.target.closest("button[data-f]"); if (!b) return;
+  kind = b.dataset.f; pick = 0; showAll = false;
+  [...$("filters").children].forEach(x => x.setAttribute("aria-pressed", x === b));
+  refilter(); renderScreen({ cut: true }); renderTakes();
+});
+let qT = 0;
+$("q").addEventListener("input", e => {
+  query = e.target.value; pick = 0; showAll = false;
+  refilter(); renderScreen({ cut: true }); renderTakes();
+  clearTimeout(qT);
+  qT = setTimeout(() => {           // searching should land on a day that has a hit
+    if (query.trim() && !days.has(sel)) { const k = nextWithLines(sel, 1); if (k) go(k) }
+  }, 350);
+});
+document.addEventListener("keydown", e => {
+  const was = leaderOn;
+  if (was) endLeader();
+  if (e.target.closest && e.target.closest("input,textarea,select")) return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  let k = 0;
+  switch (e.key) {
+    case "ArrowLeft": k = DAYS[(IDX.get(sel) - 1 + N) % N]; break;
+    case "ArrowRight": k = DAYS[(IDX.get(sel) + 1) % N]; break;
+    case "PageUp": { const m = ((sel / 100 | 0) - 2 + 12) % 12; k = (m + 1) * 100 + Math.min(sel % 100, MAXD[m]); break }
+    case "PageDown": { const m = (sel / 100 | 0) % 12; k = (m + 1) * 100 + Math.min(sel % 100, MAXD[m]); break }
+    case "Home": k = 101; break;
+    case "End": k = 1231; break;
+    default: return;
+  }
+  e.preventDefault();
+  select(k, { leader: !was });
+});
+
+/* ---------- resize / fonts ---------- */
+let rzRaf = 0;
+function relayout() {
+  measureStrip(); strip.style.scrollSnapType = "none"; strip.scrollLeft = IDX.get(sel) * FW; strip.style.scrollSnapType = "";
+  fitDate(); layoutCues(false);
+}
+addEventListener("resize", () => { cancelAnimationFrame(rzRaf); rzRaf = requestAnimationFrame(relayout) });
+try { document.fonts.ready.then(() => { fitDate(); layoutCues(false) }) } catch (e) {}
+
+/* ---------- boot ---------- */
+$("foot").textContent = LINES.length.toLocaleString("en-US") + " lines spoken aloud, pulled from subtitles. Hash links: #d1031 = October 31.";
+buildStrip();
+const hk = +(location.hash.match(/^#d(\d{3,4})$/) || [])[1];
+const now0 = new Date();
+sel = IDX.has(hk) ? hk : (now0.getMonth() + 1) * 100 + now0.getDate();
+measureStrip();
+refilter();
+fitDate();
+strip.scrollLeft = IDX.get(sel) * FW;
+select(sel, { instant: true });
+fitDate();
+requestAnimationFrame(tick);
+addEventListener("hashchange", () => {
+  const k = +(location.hash.match(/^#d(\d{3,4})$/) || [])[1];
+  if (IDX.has(k) && k !== sel) go(k);
+});
+})();
+</script>
