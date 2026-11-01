@@ -1,4 +1,7 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Admit One</title>
+<script>document.documentElement.lang = "en"</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,6 +76,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .datemeta .mon { color: var(--text) }
 .today-btn { border: 1.5px solid var(--line); padding: 3px 8px; color: var(--text) }
 .today-btn:hover { background: var(--text); color: var(--ink) }
+@media (pointer: coarse) { .today-btn { min-height: 32px } }
 .today-btn[hidden] { display: none }
 h2#dtitle { margin: 10px 0 0; font: inherit }
 .num {
@@ -205,6 +209,8 @@ mark { background: var(--ink); color: var(--paper); padding: 0 .14em; margin: 0 
 .seat { margin: 0; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 26px; padding-top: 14px; border-top: 2px solid var(--ink) }
 .seat div { display: flex; flex-direction: column; gap: 3px }
 .seat dt { font: 500 10px var(--f-mono); letter-spacing: .12em }
+.seat .stampw { margin-left: auto; align-self: flex-end }
+.seat .stampw .stamp { display: inline-block }
 .seat dd { margin: 0; font-family: var(--f-disp); font-weight: 900; font-size: 30px; line-height: .85; letter-spacing: .02em }
 .mem { display: flex; gap: 3px; padding-top: 2px }
 .mem i { width: 9px; height: 15px; border: 1.5px solid var(--ink); display: block }
@@ -259,7 +265,7 @@ mark { background: var(--ink); color: var(--paper); padding: 0 .14em; margin: 0 
 .mini:hover { transform: translateY(-4px) rotate(-.4deg); background: #dce7ef }
 .mini:focus-visible { outline: none; background: var(--focus) }
 .mini .m-top { display: flex; justify-content: space-between; gap: 8px; padding: 12px 18px 0; font: 500 10px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; opacity: .85 }
-.mini .m-top .seen { color: #b6290b; font-weight: 500; opacity: 1 }
+.mini .m-top .seen { color: #8a1c05; font-weight: 600 }
 .mini .m-q { flex: 1; padding: 10px 18px 0; margin-bottom: 14px; max-height: calc(1.25em * 5 + 10px); font-family: var(--f-quote); font-weight: 600; font-size: 17px; line-height: 1.25; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; line-clamp: 5; overflow: hidden; overflow-wrap: anywhere }
 .mini mark { background: var(--ink); color: var(--paper2) }
 .mini .m-foot { height: var(--mf); border-top: 2px dashed rgba(11, 18, 26, .5); padding: 8px 18px 0; display: flex; flex-direction: column; gap: 2px; min-width: 0 }
@@ -294,6 +300,7 @@ mark { background: var(--ink); color: var(--paper); padding: 0 .14em; margin: 0 
   .seat { gap: 10px 20px }
   .mem { padding-top: 0 }
   .stamp { font-size: 17px; margin-left: 0 }
+  .seat .stampw { margin-left: 0 }
   .tear .s-top { display: none }
 }
 @media (max-width: 420px) {
@@ -447,7 +454,7 @@ function ticketHTML(l, k, i, n) {
         <div><dt>SCREEN</dt><dd>${screen}</dd></div>
         <div><dt>LINE</dt><dd>${i + 1}/${n}</dd></div>
         <div><dt>MEM</dt><dd>${memBars(l.mem)}</dd></div>
-        ${stamp}
+        ${stamp ? `<div class="stampw"><dt class="sr">Status</dt><dd>${stamp}</dd></div>` : ""}
       </dl>
     </div>
     <div class="stub">
@@ -610,7 +617,15 @@ $("filters").addEventListener("click", e => {
   refilter();
 });
 let qTimer = 0;
-$("q").addEventListener("input", e => { query = e.target.value; cancelAnimationFrame(qTimer); qTimer = requestAnimationFrame(refilter) });
+let qJump = 0;
+$("q").addEventListener("input", e => {
+  query = e.target.value; cancelAnimationFrame(qTimer); qTimer = requestAnimationFrame(refilter);
+  clearTimeout(qJump);
+  qJump = setTimeout(() => {        // searching should land on a day that has a hit
+    if (!query.trim() || view === ALL || !view.size || view.has(sel)) return;
+    const ks = [...view.keys()].sort((a, b) => a - b); select(ks.find(k => k > sel) || ks[0]);
+  }, 350);
+});
 $("others").addEventListener("click", e => {
   if (e.target.closest("#more")) { showAll = true; renderStage(); return }
   const b = e.target.closest(".mini"); if (!b) return;

@@ -1,4 +1,7 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Said On This Day</title>
+<script>document.documentElement.lang = "en"</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap">
@@ -221,7 +224,15 @@ $("filters").addEventListener("click", e => {
   [...$("filters").children].forEach(x => x.setAttribute("aria-pressed", x === b));
   render();
 });
-$("q").addEventListener("input", e => { query = e.target.value; pick = 0; render() });
+let qT = 0;
+$("q").addEventListener("input", e => {
+  query = e.target.value; pick = 0; render();
+  clearTimeout(qT);
+  qT = setTimeout(() => {           // searching should land on a day that has a hit
+    const days = byDay(visible()); if (!query.trim() || !days.size || days.has(sel)) return;
+    const ks = [...days.keys()].sort((a, b) => a - b); select(ks.find(k => k > sel) || ks[0]);
+  }, 350);
+});
 document.addEventListener("keydown", e => { if (e.target.tagName === "INPUT") return; if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1) });
 
 const hk = +(location.hash.match(/^#d(\d{3,4})$/) || [])[1];

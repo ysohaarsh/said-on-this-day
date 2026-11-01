@@ -1,4 +1,7 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Film Leader</title>
+<script>document.documentElement.lang = "en"</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,6 +108,7 @@ button{cursor:pointer;border-radius:0}
 .stripwrap{background:#050504;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0 12px}
 .strip-hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
 .months{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2px;margin-bottom:10px}
+@media (max-width:359px){.months{gap:0}}
 .months button{background:transparent;border:0;border-bottom:2px solid var(--line);font:500 10px/1 var(--mono);letter-spacing:.04em;color:var(--dim);padding:10px 0 8px;min-height:36px}
 .months button:hover{color:var(--ink)}
 .months button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--cue)}
