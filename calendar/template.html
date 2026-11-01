@@ -1,0 +1,232 @@
+<title>Said On This Day</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: screenplay reader takes the stage (featured line as a big script page, the day's other lines below); a narrow sticky sidebar holds the month/day picker and filters. */
+:root {
+  --bg: #eef1f4;
+  --page: #fbfbfa;
+  --ink: #141a24;
+  --muted: #5b6574;
+  --rule: #d5dae1;
+  --red: #b4232a;
+  --heat0: #e2e6ec;
+  --heat1: #f1c9c4;
+  --heat2: #e3928a;
+  --heat3: #c8473f;
+  --heat4: #8f1c22;
+  --display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --body: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  --script: "Courier Prime", "Courier New", Courier, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1319; --page: #171c24; --ink: #e8ebf0; --muted: #9aa3b1; --rule: #2a313c; --red: #ff6b62;
+  --heat0: #222833; --heat1: #4a2a2c; --heat2: #7c3434; --heat3: #c2463f; --heat4: #ff7a6e; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1319; --page: #171c24; --ink: #e8ebf0; --muted: #9aa3b1; --rule: #2a313c; --red: #ff6b62;
+  --heat0: #222833; --heat1: #4a2a2c; --heat2: #7c3434; --heat3: #c2463f; --heat4: #ff7a6e; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5 }
+.app { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 36px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 24px 72px }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--red); outline-offset: 2px }
+
+/* sidebar */
+aside { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); align-self: start; display: grid; gap: 18px }
+.brand { font-family: var(--display); font-size: 30px; line-height: .95; text-transform: uppercase; margin: 0 }
+.brand span { color: var(--red) }
+.blurb { margin: 6px 0 0; color: var(--muted); font-size: 13px }
+.stats { display: flex; gap: 16px; font-variant-numeric: tabular-nums }
+.stats div { display: grid }
+.stats b { font-family: var(--display); font-weight: 400; font-size: 22px; line-height: 1 }
+.stats small { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .06em }
+.box { background: var(--page); border: 1px solid var(--rule); border-radius: 8px; padding: 12px; display: grid; gap: 10px }
+.months { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px }
+.months button { font: 600 12px var(--body); text-transform: uppercase; letter-spacing: .04em; padding: 6px 0; border-radius: 5px; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer }
+.months button[aria-pressed=true] { background: var(--ink); color: var(--bg); border-color: var(--ink) }
+.days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px }
+.day { aspect-ratio: 1; border: 0; border-radius: 4px; font: 11px var(--script); color: var(--ink); background: var(--heat0); cursor: pointer; padding: 0 }
+.day.h1 { background: var(--heat1) } .day.h2 { background: var(--heat2) }
+.day.h3 { background: var(--heat3); color: #fff } .day.h4 { background: var(--heat4); color: #fff }
+.day.sel { box-shadow: 0 0 0 2px var(--ink) }
+.day.today { text-decoration: underline; font-weight: 700 }
+.legend { display: flex; gap: 4px; align-items: center; font-size: 11px; color: var(--muted) }
+.legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block }
+.filters { display: flex; flex-wrap: wrap; gap: 6px }
+.filters button { font: 500 12px var(--body); padding: 5px 10px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer }
+.filters button[aria-pressed=true] { background: var(--ink); color: var(--bg); border-color: var(--ink) }
+.box input { font: inherit; font-size: 13px; padding: 7px 10px; border-radius: 6px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink); min-width: 0 }
+
+/* stage */
+main { min-width: 0; display: grid; gap: 22px; align-content: start }
+.dayhead { display: flex; align-items: center; gap: 14px; flex-wrap: wrap }
+.dayhead h2 { font-family: var(--display); font-weight: 400; font-size: clamp(40px, 6vw, 68px); text-transform: uppercase; margin: 0; line-height: .95 }
+.dayhead p { margin: 0; color: var(--muted) }
+.nav { margin-left: auto; display: flex; gap: 6px }
+.nav button { font: 600 13px var(--body); padding: 7px 12px; border-radius: 6px; border: 1px solid var(--rule); background: var(--page); color: var(--ink); cursor: pointer }
+
+.hero { background: var(--page); border: 1px solid var(--rule); border-top: 4px solid var(--red); border-radius: 4px; padding: clamp(24px, 5vw, 56px) clamp(18px, 6vw, 72px) clamp(22px, 4vw, 40px); display: grid; gap: 18px }
+.hero .film { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px }
+.hero .film h3 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 4vw, 44px); line-height: 1; margin: 0; text-transform: uppercase; text-wrap: balance }
+.hero .film .ep { font: 700 14px var(--script); color: var(--muted) }
+.slug { font: 700 13px var(--script); text-transform: uppercase; color: var(--muted); letter-spacing: .02em; overflow-wrap: anywhere }
+.hero .who { font: 700 clamp(15px, 1.8vw, 19px) var(--script); text-transform: uppercase; text-align: center; letter-spacing: .05em; margin-top: 8px }
+.who em { font-style: normal; font-weight: 400; color: var(--muted) }
+.hero .said { font: clamp(20px, 2.6vw, 30px)/1.5 var(--script); margin: 0 auto; max-width: 30ch; overflow-wrap: anywhere }
+.said mark { background: none; color: var(--red); font-weight: 700 }
+.foot { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; color: var(--muted) }
+.chip { border: 1px solid var(--rule); border-radius: 999px; padding: 1px 9px }
+.chip.w { border-color: var(--red); color: var(--red) }
+.stars { margin-left: auto; letter-spacing: 2px; color: var(--red) }
+
+.others h4 { font: 600 12px var(--body); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 6px 0 10px }
+.list { display: grid; gap: 10px }
+.line { background: var(--page); border: 1px solid var(--rule); border-radius: 4px; padding: 16px 20px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; cursor: pointer; text-align: left; font: inherit; color: inherit; width: 100% }
+.line:hover { border-color: var(--red) }
+.line .top { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline }
+.line .t { font-family: var(--display); font-size: 20px; text-transform: uppercase; line-height: 1.05 }
+.line .w2 { font: 700 12px var(--script); text-transform: uppercase; color: var(--muted) }
+.line .said { font: 15px/1.5 var(--script); margin: 0 }
+.empty { color: var(--muted); font: 17px/1.6 var(--script); padding: 40px 28px; background: var(--page); border: 1px dashed var(--rule); border-radius: 4px }
+.more { justify-self: start; font: 600 13px var(--body); padding: 7px 14px; border-radius: 6px; border: 1px solid var(--rule); background: var(--page); color: var(--ink); cursor: pointer }
+
+@media (max-width: 860px) {
+  .app { grid-template-columns: minmax(0, 1fr); gap: 20px }
+  aside { position: static }
+  .pickers { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px }
+}
+@media (max-width: 520px) { .pickers { grid-template-columns: minmax(0, 1fr) } .nav { margin-left: 0 } }
+@media (prefers-reduced-motion: no-preference) { .hero { animation: rise .25s ease-out } @keyframes rise { from { transform: translateY(6px) } to { transform: none } } }
+</style>
+
+<div class="app">
+  <aside>
+    <div>
+      <h1 class="brand">Said On <span>This Day</span></h1>
+      <p class="blurb">Dates spoken out loud by a character or narrator in famous films and shows, pulled from their transcripts.</p>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="pickers">
+      <div class="box">
+        <div class="months" id="months" role="group" aria-label="Month"></div>
+        <div class="days" id="days"></div>
+        <div class="legend">Weaker <i style="background:var(--heat1)"></i><i style="background:var(--heat2)"></i><i style="background:var(--heat3)"></i><i style="background:var(--heat4)"></i> iconic</div>
+      </div>
+      <div class="box">
+        <div class="filters" id="filters" role="group" aria-label="Filter">
+          <button type="button" data-k="all" aria-pressed="true">All</button>
+          <button type="button" data-k="movie" aria-pressed="false">Films</button>
+          <button type="button" data-k="tv" aria-pressed="false">Shows</button>
+          <button type="button" data-k="mine" aria-pressed="false">Seen by me</button>
+        </div>
+        <input type="search" id="q" placeholder="Search title, character, line" aria-label="Search">
+      </div>
+    </div>
+  </aside>
+
+  <main aria-live="polite">
+    <div class="dayhead"><h2 id="dtitle"></h2><p id="dcount"></p>
+      <div class="nav"><button type="button" id="prev" aria-label="Previous day">← Prev</button><button type="button" id="next" aria-label="Next day">Next →</button></div></div>
+    <div id="hero"></div>
+    <section class="others" id="others"></section>
+  </main>
+</div>
+
+<script>
+const LINES = __DATA__;
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const MAXD = [31,29,31,30,31,30,31,31,30,31,30,31];
+let kind = "all", query = "", sel = null, pick = 0, showAll = false;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function visible() {
+  const q = query.trim().toLowerCase();
+  return LINES.filter(l =>
+    (kind === "all" || (kind === "mine" ? l.tag === "watched" : l.k === kind)) &&
+    (!q || (l.t + " " + l.sp + " " + l.q).toLowerCase().includes(q)));
+}
+const rank = l => [-l.mem, l.tag === "watched" ? 0 : l.tag === "watchlist" ? 1 : 2, l.k === "movie" ? 0 : 1, l.sp === "unknown" ? 1 : 0];
+const cmp = (a, b) => { const x = rank(a), y = rank(b); for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return x[i] - y[i]; return 0 };
+function byDay(list) {
+  const m = new Map();
+  for (const l of list) { const k = l.m * 100 + l.d; (m.get(k) || m.set(k, []).get(k)).push(l) }
+  for (const v of m.values()) v.sort(cmp);
+  return m;
+}
+const heat = b => b >= 5 ? 4 : b >= 4 ? 3 : b >= 3 ? 2 : 1;
+const who = l => l.sp === "unknown" ? "UNKNOWN SPEAKER" : esc(l.sp) + (l.sp === "Narrator" ? " <em>(V.O.)</em>" : "");
+const said = l => esc(l.q).replace(new RegExp(esc(l.match).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"), s => `<mark>${s}</mark>`);
+const chips = l => `<span class="chip">${l.k === "movie" ? "Film" : "Show"}</span>${l.tag === "watched" ? '<span class="chip w">Seen</span>' : l.tag === "watchlist" ? '<span class="chip">Watchlist</span>' : ""}<span class="stars" aria-label="memorable ${l.mem} of 5">${"●".repeat(l.mem)}${"○".repeat(5 - l.mem)}</span>`;
+
+function renderSide(days) {
+  const m = Math.floor(sel / 100);
+  $("months").innerHTML = MONTHS.map((n, i) => `<button type="button" data-m="${i + 1}" aria-pressed="${i + 1 === m}">${n.slice(0, 3)}</button>`).join("");
+  const now = new Date(), tk = (now.getMonth() + 1) * 100 + now.getDate();
+  let h = "";
+  for (let d = 1; d <= MAXD[m - 1]; d++) {
+    const k = m * 100 + d, ls = days.get(k);
+    h += `<button type="button" class="day${ls ? " h" + heat(ls[0].mem) : ""}${k === sel ? " sel" : ""}${k === tk ? " today" : ""}" data-k="${k}" aria-label="${MONTHS[m - 1]} ${d}: ${ls ? ls.length + " lines" : "no lines"}">${d}</button>`;
+  }
+  $("days").innerHTML = h;
+  const v = visible();
+  $("stats").innerHTML = `<div><b>${days.size}</b><small>days</small></div><div><b>${v.length}</b><small>lines</small></div><div><b>${new Set(v.map(l => l.t)).size}</b><small>titles</small></div>`;
+}
+
+function renderStage(days) {
+  const m = Math.floor(sel / 100), d = sel % 100;
+  const ls = days.get(sel) || [];
+  $("dtitle").textContent = `${MONTHS[m - 1]} ${d}`;
+  $("dcount").textContent = ls.length ? `${ls.length} line${ls.length > 1 ? "s" : ""}` : "";
+  if (!ls.length) {
+    $("hero").innerHTML = `<div class="empty">INT. ARCHIVE — NIGHT<br><br>Nobody says ${MONTHS[m - 1]} ${d} out loud in anything searched so far.</div>`;
+    $("others").innerHTML = "";
+    return;
+  }
+  const i0 = Math.min(pick, ls.length - 1), f = ls[i0];
+  $("hero").innerHTML = `<article class="hero">
+    <div class="film"><h3>${esc(f.t)}</h3>${f.ep ? `<span class="ep">${esc(f.ep)}</span>` : ""}</div>
+    <div class="slug">${esc(f.sc || "")}</div>
+    <div class="who">${who(f)}</div>
+    <p class="said">${said(f)}</p>
+    <div class="foot">${chips(f)}</div></article>`;
+  const rest = ls.map((l, i) => [l, i]).filter(([, i]) => i !== i0);
+  const shown = showAll ? rest : rest.slice(0, 8);
+  $("others").innerHTML = rest.length ? `<h4>Also said on ${MONTHS[m - 1]} ${d}</h4><div class="list">${shown.map(([l, i]) => `
+    <button type="button" class="line" data-i="${i}">
+      <span class="top"><span class="t">${esc(l.t)}</span><span class="w2">${l.ep ? esc(l.ep) + " · " : ""}${who(l)}</span></span>
+      <span class="said">${said(l)}</span>
+      <span class="foot">${chips(l)}</span></button>`).join("")}</div>
+    ${!showAll && rest.length > 8 ? `<button type="button" class="more" id="more">Show all ${rest.length}</button>` : ""}` : "";
+}
+
+function render() { const days = byDay(visible()); renderSide(days); renderStage(days) }
+function select(k) { sel = k; pick = 0; showAll = false; render(); try { history.replaceState(null, "", "#d" + k) } catch (e) {} }
+function step(dir) {
+  let m = Math.floor(sel / 100), d = sel % 100 + dir;
+  if (d < 1) { m = m === 1 ? 12 : m - 1; d = MAXD[m - 1] }
+  if (d > MAXD[m - 1]) { m = m === 12 ? 1 : m + 1; d = 1 }
+  select(m * 100 + d);
+}
+
+$("months").addEventListener("click", e => { const b = e.target.closest("button[data-m]"); if (b) select(+b.dataset.m * 100 + Math.min(sel % 100, MAXD[+b.dataset.m - 1])) });
+$("days").addEventListener("click", e => { const b = e.target.closest("button[data-k]"); if (b) select(+b.dataset.k) });
+$("others").addEventListener("click", e => {
+  if (e.target.closest("#more")) { showAll = true; render(); return }
+  const b = e.target.closest(".line"); if (b) { pick = +b.dataset.i; render(); window.scrollTo({ top: 0, behavior: "smooth" }) }
+});
+$("prev").onclick = () => step(-1); $("next").onclick = () => step(1);
+$("filters").addEventListener("click", e => {
+  const b = e.target.closest("button[data-k]"); if (!b) return;
+  kind = b.dataset.k; pick = 0;
+  [...$("filters").children].forEach(x => x.setAttribute("aria-pressed", x === b));
+  render();
+});
+$("q").addEventListener("input", e => { query = e.target.value; pick = 0; render() });
+document.addEventListener("keydown", e => { if (e.target.tagName === "INPUT") return; if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1) });
+
+const hk = +(location.hash.match(/^#d(\d{3,4})$/) || [])[1];
+const now = new Date();
+sel = hk && MAXD[Math.floor(hk / 100) - 1] >= hk % 100 ? hk : (now.getMonth() + 1) * 100 + now.getDate();
+render();
+window.addEventListener("hashchange", () => { const k = +(location.hash.match(/^#d(\d{3,4})$/) || [])[1]; if (k && k !== sel) select(k) });
+</script>

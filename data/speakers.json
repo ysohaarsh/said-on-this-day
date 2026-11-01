@@ -1,0 +1,1738 @@
+{
+"transcripts/movies/conversation-the.txt|12|2": {
+"speaker": "Harry Caul",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/big-bang-theory/s09e09.txt|12|2": {
+"speaker": "Sheldon",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/steins-gate-2011/s01e19.txt|8|15": {
+"speaker": "Okabe Rintarou",
+"speaker_confidence": "high"
+},
+"transcripts/tv/ms-marvel-2022/s01e05.txt|8|15": {
+"speaker": "Kamala Khan",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/lost/s01e22.txt|8|15": {
+"speaker": "Kate Austen",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/24.txt|1|13": {
+"speaker": "Athreya",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-flash-2014/s03e19.txt|5|23": {
+"speaker": "Savitar",
+"speaker_confidence": "high"
+},
+"transcripts/movies/american-psycho.txt|12|20": {
+"speaker": "Donald Kimball",
+"speaker_confidence": "high"
+},
+"transcripts/tv/criminal-minds/s07e11.txt|12|20": {
+"speaker": "Reid",
+"speaker_confidence": "high"
+},
+"transcripts/movies/dial-m-for-murder.txt|9|26": {
+"speaker": "Inspector Hubbard",
+"speaker_confidence": "high"
+},
+"transcripts/movies/the-watchers.txt|9|24": {
+"speaker": "Professor Rory Kilmartin",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/mean-girls.txt|10|3": {
+"speaker": "Aaron Samuels",
+"speaker_confidence": "high"
+},
+"transcripts/tv/dexter/s02e05.txt|10|3": {
+"speaker": "Dexter Morgan",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-vampire-diaries/s06e02.txt|5|10": {
+"speaker": "Bonnie",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/back-to-the-future-part-iii.txt|11|13": {
+"speaker": "Doc Brown",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-x-files/s02e09.txt|11|13": {
+"speaker": "Scully",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-vampire-diaries/s04e17.txt|6|5": {
+"speaker": "Stefan",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/brokeback-mountain.txt|6|5": {
+"speaker": "Alma Jr.",
+"speaker_confidence": "high"
+},
+"transcripts/movies/brothers.txt|10|7": {
+"speaker": "Sam Cahill",
+"speaker_confidence": "high"
+},
+"transcripts/tv/seinfeld/s09e23.txt|10|7": {
+"speaker": "Hoyt",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/whiplash.txt|7|17": {
+"speaker": "Andrew Neiman",
+"speaker_confidence": "high"
+},
+"transcripts/movies/bananas.txt|12|23": {
+"speaker": "Fielding Mellish",
+"speaker_confidence": "high"
+},
+"transcripts/movies/zodiac.txt|11|29": {
+"speaker": "Robert Graysmith",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-x-files/s07e04.txt|1|1": {
+"speaker": "Mulder",
+"speaker_confidence": "high"
+},
+"transcripts/tv/parks-and-recreation/s07e05.txt|12|18": {
+"speaker": "Ben Wyatt",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/american-crime-story-2016/s01e07.txt|12|18": {
+"speaker": "Vannatter",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/zodiac.txt|8|7": {
+"speaker": "Robert Graysmith",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-west-wing/s02e14.txt|8|4": {
+"speaker": "Leo McGarry",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/das-weisse-band-eine-deutsche-kindergeschichte-the-white-ribbon.txt|8|1": {
+"speaker": "Narrator",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/zombieland-double-tap.txt|11|17": {
+"speaker": "Tallahassee",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/jfk.txt|11|17": {
+"speaker": "Jim Garrison",
+"speaker_confidence": "high"
+},
+"transcripts/tv/ncis/s10e15.txt|11|17": {
+"speaker": "McGee",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/brooklyn-nine-nine/s03e04.txt|5|18": {
+"speaker": "Jake Peralta",
+"speaker_confidence": "high"
+},
+"transcripts/movies/a-few-good-men.txt|5|18": {
+"speaker": "Santiago",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/a-few-good-men.txt|9|6": {
+"speaker": "Kaffee",
+"speaker_confidence": "high"
+},
+"transcripts/tv/house-of-cards-2013/s03e12.txt|9|3": {
+"speaker": "Thomas Yates",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-flash-2014/s06e02.txt|12|11": {
+"speaker": "Barry Allen",
+"speaker_confidence": "high"
+},
+"transcripts/movies/english-patient-the.txt|12|22": {
+"speaker": "Katharine",
+"speaker_confidence": "high"
+},
+"transcripts/tv/buffy-the-vampire-slayer/s03e17.txt|5|26": {
+"speaker": "Willow",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/napoleon-2023.txt|5|26": {
+"speaker": "Hortense",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/seinfeld/s05e09.txt|6|29": {
+"speaker": "Jerry",
+"speaker_confidence": "high"
+},
+"transcripts/tv/seinfeld/s05e14.txt|6|29": {
+"speaker": "Jerry",
+"speaker_confidence": "high"
+},
+"transcripts/tv/squid-game/s02e02.txt|10|31": {
+"speaker": "Recruiter (phone voice)",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/the-batman.txt|7|16": {
+"speaker": "The Riddler (Edward Nashton)",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/criminal-minds/s09e24.txt|7|16": {
+"speaker": "David Rossi",
+"speaker_confidence": "high"
+},
+"transcripts/tv/stranger-things-2016/s04e07.txt|11|6": {
+"speaker": "Nancy Wheeler",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/law-and-order-special-victims-unit/s02e11.txt|12|9": {
+"speaker": "Cabot",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/mash/s04e16.txt|12|9": {
+"speaker": "Radar",
+"speaker_confidence": "high"
+},
+"transcripts/movies/crimes-and-misdemeanors.txt|4|20": {
+"speaker": "Cliff Stern",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/30-rock/s05e13.txt|4|20": {
+"speaker": "Jenna Maroney",
+"speaker_confidence": "high"
+},
+"transcripts/movies/back-to-the-future-part-ii.txt|3|15": {
+"speaker": "Marty McFly",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-orville-2017/s03e06.txt|7|12": {
+"speaker": "Isaac",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/killers-of-the-flower-moon.txt|6|16": {
+"speaker": "Martin Scorsese",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/stranger-things-2016/s05e02.txt|11|3": {
+"speaker": "Mike Wheeler",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/mad-men/s03e09.txt|9|4": {
+"speaker": "Nathaniel",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/black-friday-2004.txt|2|11": {
+"speaker": "Badshah Khan",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/longlegs.txt|3|8": {
+"speaker": "Lee Harker",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-x-files/s09e08.txt|3|8": {
+"speaker": "Scully",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/succession-2018/s02e09.txt|3|12": {
+"speaker": "Gil Eavis",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/final-countdown-the.txt|12|6": {
+"speaker": "Captain Yelland",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-boys-2019/s04e08.txt|1|6": {
+"speaker": "VNN Anchor",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/er/s11e06.txt|4|10": {
+"speaker": "Mr. Metcalf",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/omen-the.txt|6|6": {
+"speaker": "Robert Thorn",
+"speaker_confidence": "high"
+},
+"transcripts/movies/pressure-2026.txt|6|6": {
+"speaker": "James Stagg",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/fringe/s03e05.txt|10|17": {
+"speaker": "Walternate",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/civil-war.txt|7|4": {
+"speaker": "Joel",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/cloud-atlas.txt|9|18": {
+"speaker": "Archivist",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/split.txt|9|18": {
+"speaker": "Kevin",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/born-on-the-fourth-of-july.txt|9|18": {
+"speaker": "Timmy",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/money-heist-2017/s04e07.txt|1|20": {
+"speaker": "Rio",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/fugitive-the.txt|1|20": {
+"speaker": "Prosecutor",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/marvels-jessica-jones-2015/s01e02.txt|1|20": {
+"speaker": "Claire Temple",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-umbrella-academy-2019/s02e10.txt|10|1": {
+"speaker": "Diego Hargreeves",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/auntie-mame.txt|10|1": {
+"speaker": "Mame Dennis",
+"speaker_confidence": "high"
+},
+"transcripts/tv/mad-men/s07e07.txt|7|20": {
+"speaker": "Walter Cronkite",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-twilight-zone-1959/s01e33.txt|4|4": {
+"speaker": "Ray",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/big-bang-theory/s11e03.txt|6|15": {
+"speaker": "Amy",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/stranger-things-2016/s02e08.txt|3|22": {
+"speaker": "Joyce Byers",
+"speaker_confidence": "high"
+},
+"transcripts/movies/frequency.txt|3|22": {
+"speaker": "John Sullivan",
+"speaker_confidence": "high"
+},
+"transcripts/tv/oz/s06e04.txt|1|10": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "high"
+},
+"transcripts/movies/ghostbusters-ii.txt|2|14": {
+"speaker": "Elaine",
+"speaker_confidence": "high"
+},
+"transcripts/movies/the-gorge.txt|2|14": {
+"speaker": "Drasa's father",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/tinker-tailor-soldier-spy.txt|12|4": {
+"speaker": "Peter Guillam",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/fallen-angels.txt|6|22": {
+"speaker": "Ho Chi Moo",
+"speaker_confidence": "high"
+},
+"transcripts/movies/asteroid-city.txt|7|1": {
+"speaker": "General Gibson",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/ted-lasso-2020/s02e11.txt|3|10": {
+"speaker": "Higgins",
+"speaker_confidence": "high"
+},
+"transcripts/movies/vincere.txt|1|11": {
+"speaker": "Ida Dalser",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-handmaids-tale-2017/s01e10.txt|12|2": {
+"speaker": "Maria Navarro",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/all-the-presidents-men.txt|3|1": {
+"speaker": "Bernstein",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/steve-jobs.txt|1|24": {
+"speaker": "Narrator",
+"speaker_confidence": "high"
+},
+"transcripts/movies/good-newwz.txt|1|12": {
+"speaker": "Deepti",
+"speaker_confidence": "high"
+},
+"transcripts/movies/dead-of-night.txt|2|2": {
+"speaker": "Sylvester Kee",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/futurama/s01e01.txt|12|31": {
+"speaker": "Leela",
+"speaker_confidence": "high"
+},
+"transcripts/tv/futurama/s05e08.txt|12|31": {
+"speaker": "Nibblonians",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/harry-potter-and-the-order-of-the-phoenix.txt|8|12": {
+"speaker": "Cornelius Fudge",
+"speaker_confidence": "high"
+},
+"transcripts/movies/rain-man.txt|8|12": {
+"speaker": "Raymond Babbitt",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/big-bang-theory/s03e11.txt|12|25": {
+"speaker": "Sheldon",
+"speaker_confidence": "high"
+},
+"transcripts/movies/heretic-2024.txt|12|25": {
+"speaker": "Mr. Reed",
+"speaker_confidence": "high"
+},
+"transcripts/tv/gilmore-girls/s05e10.txt|11|30": {
+"speaker": "Lorelai Gilmore",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-flash-2014/s06e01.txt|12|10": {
+"speaker": "The Monitor",
+"speaker_confidence": "high"
+},
+"transcripts/movies/men-in-black.txt|3|2": {
+"speaker": "Kay",
+"speaker_confidence": "high"
+},
+"transcripts/tv/mindhunter-2017/s02e09.txt|3|2": {
+"speaker": "Holden Ford",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/frequency.txt|10|12": {
+"speaker": "John Sullivan",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/homicide-life-on-the-street/s03e15.txt|9|25": {
+"speaker": "Frank Pembleton",
+"speaker_confidence": "high"
+},
+"transcripts/movies/late-night-with-the-devil.txt|7|10": {
+"speaker": "Dr. June Ross-Mitchell",
+"speaker_confidence": "high"
+},
+"transcripts/tv/peaky-blinders-2013/s03e03.txt|6|21": {
+"speaker": "Tommy Shelby",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/el-secreto-de-sus-ojos-the-secret-in-their-eyes.txt|6|21": {
+"speaker": "Narrator",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/lincoln.txt|4|15": {
+"speaker": "Edwin Stanton",
+"speaker_confidence": "high"
+},
+"transcripts/movies/butterfly-effect-the.txt|4|15": {
+"speaker": "Evan Treborn",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/leben-der-anderen-das-the-lives-of-others.txt|9|28": {
+"speaker": "Gerd Wiesler",
+"speaker_confidence": "high"
+},
+"transcripts/tv/south-park/s20e05.txt|11|8": {
+"speaker": "Mr. Garrison",
+"speaker_confidence": "high"
+},
+"transcripts/tv/south-park/s20e06.txt|11|8": {
+"speaker": "Mr. Garrison",
+"speaker_confidence": "high"
+},
+"transcripts/tv/american-horror-story/s02e04.txt|11|15": {
+"speaker": "Lana Winters",
+"speaker_confidence": "high"
+},
+"transcripts/tv/band-of-brothers/s01e07.txt|1|9": {
+"speaker": "Richard Winters",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/i-love-lucy-1951/s01e32.txt|11|19": {
+"speaker": "Freddy Fillmore",
+"speaker_confidence": "high"
+},
+"transcripts/movies/the-grand-budapest-hotel.txt|10|23": {
+"speaker": "Inspector Henckels",
+"speaker_confidence": "high"
+},
+"transcripts/tv/ozark-2017/s02e04.txt|12|17": {
+"speaker": "Joe Friday",
+"speaker_confidence": "high"
+},
+"transcripts/movies/the-hunt.txt|12|17": {
+"speaker": "Paul",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/homeland/s02e05.txt|12|17": {
+"speaker": "Saul Berenson",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/the-killer-2023.txt|11|28": {
+"speaker": "Dolores",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/oz/s06e06.txt|8|5": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "high"
+},
+"transcripts/tv/mad-men/s03e13.txt|12|13": {
+"speaker": "Roger Sterling",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/twelve-monkeys.txt|12|13": {
+"speaker": "James Cole",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/12-monkeys.txt|12|13": {
+"speaker": "James Cole",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/better-call-saul-2015/s06e13.txt|12|8": {
+"speaker": "Mike Ehrmantraut",
+"speaker_confidence": "high"
+},
+"transcripts/tv/homeland/s02e01.txt|10|16": {
+"speaker": "Carrie Mathison",
+"speaker_confidence": "high"
+},
+"transcripts/movies/terminator-the.txt|5|12": {
+"speaker": "Kyle Reese",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/wazir.txt|11|24": {
+"speaker": "Danish Ali",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/line-of-duty-2012/s06e06.txt|11|24": {
+"speaker": "Steve Arnott",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/broadchurch-2013/s02e03.txt|5|29": {
+"speaker": "Jocelyn Knight",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-x-files/s06e08.txt|9|20": {
+"speaker": "Mulder",
+"speaker_confidence": "high"
+},
+"transcripts/movies/dirty-dozen-the.txt|3|25": {
+"speaker": "Major Reisman",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/oz/s04e05.txt|3|25": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/the-double-life-of-veronique.txt|11|23": {
+"speaker": "Alexandre",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/ready-player-one.txt|11|23": {
+"speaker": "Wade Watts",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-wire/s01e13.txt|9|17": {
+"speaker": "Rhonda Pearlman",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/back-to-the-future-part-iii.txt|9|7": {
+"speaker": "Marty McFly",
+"speaker_confidence": "high"
+},
+"transcripts/movies/the-virgin-suicides.txt|9|7": {
+"speaker": "Narrator",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/dont-let-go.txt|6|25": {
+"speaker": "Ashley",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-twilight-zone-1959/s05e10.txt|6|25": {
+"speaker": "Rod Serling",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-vampire-diaries/s05e10.txt|6|25": {
+"speaker": "Wes Maxfield",
+"speaker_confidence": "high"
+},
+"transcripts/tv/how-i-met-your-mother/s07e13.txt|6|17": {
+"speaker": "Announcer",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/american-gangster.txt|1|27": {
+"speaker": "Richard Nixon",
+"speaker_confidence": "high"
+},
+"transcripts/tv/from-the-earth-to-the-moon-1998/s01e02.txt|1|27": {
+"speaker": "Walter Mondale",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/deep-impact.txt|8|16": {
+"speaker": "President Beck",
+"speaker_confidence": "high"
+},
+"transcripts/movies/anatomy-of-a-murder.txt|8|16": {
+"speaker": "Claude Dancer",
+"speaker_confidence": "high"
+},
+"transcripts/tv/red-dwarf/s06e06.txt|8|16": {
+"speaker": "Kryten",
+"speaker_confidence": "high"
+},
+"transcripts/tv/alfred-hitchcock-presents/s04e09.txt|9|2": {
+"speaker": "Sherman",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/mindhunter-2017/s02e05.txt|8|9": {
+"speaker": "Holden Ford",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/bojack-horseman-2014/s06e01.txt|3|4": {
+"speaker": "Pastor Jim",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/arsenic-and-old-lace.txt|3|4": {
+"speaker": "Teddy Brewster",
+"speaker_confidence": "high"
+},
+"transcripts/movies/autumn-sonata.txt|8|18": {
+"speaker": "Charlotte",
+"speaker_confidence": "high"
+},
+"transcripts/movies/wild-strawberries.txt|5|1": {
+"speaker": "Examiner",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/chungking-express.txt|4|30": {
+"speaker": "Shopkeeper",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/operation-mincemeat.txt|4|30": {
+"speaker": "Charles Cholmondeley",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/oz/s04e01.txt|2|3": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/oz/s06e07.txt|2|3": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/fallen-angels.txt|5|30": {
+"speaker": "Ho Chi Moo",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/terminator-2-judgment-day.txt|8|29": {
+"speaker": "Sarah Connor",
+"speaker_confidence": "high"
+},
+"transcripts/movies/fallen-angels.txt|8|29": {
+"speaker": "Ho Chi Moo",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-wire/s01e01.txt|5|4": {
+"speaker": "Ilene Nathan",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/a-matter-of-life-and-death.txt|5|2": {
+"speaker": "Narrator",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-x-files/s01e15.txt|5|2": {
+"speaker": "Dana Scully",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/paths-of-glory.txt|8|3": {
+"speaker": "Narrator",
+"speaker_confidence": "high"
+},
+"transcripts/tv/columbo-1971/s02e05.txt|9|15": {
+"speaker": "Columbo",
+"speaker_confidence": "high"
+},
+"transcripts/tv/black-mirror-2011/s04e06.txt|9|15": {
+"speaker": "Reporter",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/a-very-long-engagement.txt|1|7": {
+"speaker": "Germain Pire",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/longlegs.txt|3|14": {
+"speaker": "Lee Harker",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/adams-rib.txt|3|14": {
+"speaker": "Doris Attinger",
+"speaker_confidence": "high"
+},
+"transcripts/tv/frasier/s09e14.txt|2|9": {
+"speaker": "Ryan",
+"speaker_confidence": "high"
+},
+"transcripts/tv/oz/s05e06.txt|2|9": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-bridge-us/s01e08.txt|2|10": {
+"speaker": "David Tate",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-bridge-us/s01e09.txt|2|10": {
+"speaker": "David Tate",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/amarcord.txt|7|13": {
+"speaker": "The Lawyer",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/ted-lasso-2020/s01e06.txt|11|18": {
+"speaker": "Higgins",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/the-philadelphia-experiment.txt|9|14": {
+"speaker": "Radio announcer",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/quantum-leap/s01e03.txt|6|20": {
+"speaker": "Al",
+"speaker_confidence": "high"
+},
+"transcripts/movies/all-quiet-on-the-western-front-2022.txt|11|11": {
+"speaker": "Radio voice",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/vincere.txt|11|11": {
+"speaker": "Ida Dalser",
+"speaker_confidence": "high"
+},
+"transcripts/tv/downton-abbey/s02e06.txt|11|11": {
+"speaker": "Robert Crawley",
+"speaker_confidence": "high"
+},
+"transcripts/movies/napoleon-2023.txt|5|29": {
+"speaker": "Hortense",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/marvels-runaways-2017/s03e10.txt|6|14": {
+"speaker": "Gert Yorkes",
+"speaker_confidence": "high"
+},
+"transcripts/tv/seinfeld/s03e17.txt|6|14": {
+"speaker": "Jerry",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/seinfeld/s06e14.txt|6|14": {
+"speaker": "Jerry",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/apocalypse-now.txt|6|18": {
+"speaker": "Colonel Lucas",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/pressure-2026.txt|6|18": {
+"speaker": "James Stagg",
+"speaker_confidence": "high"
+},
+"transcripts/tv/castle/s04e14.txt|6|18": {
+"speaker": "Castle",
+"speaker_confidence": "high"
+},
+"transcripts/movies/apocalypse-now.txt|12|30": {
+"speaker": "Colonel Kurtz",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/the-thin-man.txt|12|30": {
+"speaker": "Clyde Wynant",
+"speaker_confidence": "high"
+},
+"transcripts/tv/brooklyn-nine-nine/s03e03.txt|7|21": {
+"speaker": "Jake Peralta",
+"speaker_confidence": "high"
+},
+"transcripts/movies/april-and-the-extraordinary-world.txt|7|21": {
+"speaker": "Narrator",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-west-wing/s01e18.txt|1|16": {
+"speaker": "Josiah Bartlet",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-umbrella-academy-2019/s02e06.txt|2|21": {
+"speaker": "Diego Hargreeves",
+"speaker_confidence": "high"
+},
+"transcripts/movies/argo.txt|2|21": {
+"speaker": "Cora Amburn-Lijek",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/life-of-emile-zola-the.txt|10|15": {
+"speaker": "Major du Paty de Clam",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/fargo-2014/s03e06.txt|6|28": {
+"speaker": "Narrator",
+"speaker_confidence": "high"
+},
+"transcripts/movies/back-to-the-future-part-ii.txt|11|12": {
+"speaker": "Doc Brown",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-umbrella-academy-2019/s02e01.txt|11|25": {
+"speaker": "Five",
+"speaker_confidence": "high"
+},
+"transcripts/movies/mishima-a-life-in-four-chapters.txt|11|25": {
+"speaker": "Narrator",
+"speaker_confidence": "high"
+},
+"transcripts/tv/red-dwarf/s01e06.txt|11|25": {
+"speaker": "Lister",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/longlegs.txt|7|14": {
+"speaker": "Lee Harker",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-flash-2014/s08e08.txt|2|1": {
+"speaker": "Joe West",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/disclosure-day.txt|7|8": {
+"speaker": "News anchor",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/crash.txt|9|30": {
+"speaker": "Vaughan",
+"speaker_confidence": "high"
+},
+"transcripts/movies/viskningar-och-rop-cries-and-whispers.txt|9|30": {
+"speaker": "Karin",
+"speaker_confidence": "high"
+},
+"transcripts/tv/13-reasons-why-2017/s02e11.txt|9|30": {
+"speaker": "Sonya",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/whats-up-doc.txt|7|30": {
+"speaker": "Bailiff",
+"speaker_confidence": "high"
+},
+"transcripts/tv/fringe/s04e07.txt|7|30": {
+"speaker": "Astrid Farnsworth",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/quantum-leap/s05e22.txt|8|8": {
+"speaker": "Sam Beckett",
+"speaker_confidence": "high"
+},
+"transcripts/tv/modern-family/s08e14.txt|10|14": {
+"speaker": "Cameron Tucker",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-umbrella-academy-2019/s04e03.txt|10|14": {
+"speaker": "Five",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/witness-for-the-prosecution.txt|10|14": {
+"speaker": "Mr Myers",
+"speaker_confidence": "high"
+},
+"transcripts/movies/witness-for-the-prosecution.txt|10|8": {
+"speaker": "Janet McKenzie",
+"speaker_confidence": "high"
+},
+"transcripts/tv/law-and-order-1990/s06e23.txt|10|8": {
+"speaker": "Manny Rose",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/witness-for-the-prosecution.txt|10|20": {
+"speaker": "Sir Wilfrid Robarts",
+"speaker_confidence": "high"
+},
+"transcripts/tv/friends/s01e04.txt|10|20": {
+"speaker": "Ross Geller",
+"speaker_confidence": "high"
+},
+"transcripts/movies/the-color-purple.txt|4|18": {
+"speaker": "Nettie",
+"speaker_confidence": "high"
+},
+"transcripts/tv/friends/s02e03.txt|4|18": {
+"speaker": "Joey Tribbiani",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/witness-for-the-prosecution.txt|4|18": {
+"speaker": "Mr Myers",
+"speaker_confidence": "high"
+},
+"transcripts/movies/zero-motivation.txt|8|24": {
+"speaker": "Inspection officer",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/mindhunter-2017/s01e09.txt|7|14": {
+"speaker": "Holden Ford",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/roxanne.txt|7|14": {
+"speaker": "Roxanne Kowalski",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/mad-men/s03e12.txt|10|24": {
+"speaker": "Henry Francis",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/suits/s04e06.txt|4|22": {
+"speaker": "Louis Litt",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/minority-report.txt|4|22": {
+"speaker": "Precrime ad announcer",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/agents-of-s-h-i-e-l-d/s02e17.txt|7|2": {
+"speaker": "Jiaying",
+"speaker_confidence": "high"
+},
+"transcripts/tv/agents-of-s-h-i-e-l-d/s02e21.txt|7|2": {
+"speaker": "Calvin Zabo",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/agents-of-s-h-i-e-l-d/s02e22.txt|7|2": {
+"speaker": "Calvin Zabo",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/oppenheimer.txt|9|1": {
+"speaker": "Lomanitz",
+"speaker_confidence": "high"
+},
+"transcripts/movies/one-life-2023.txt|9|1": {
+"speaker": "Nicholas Winton",
+"speaker_confidence": "high"
+},
+"transcripts/movies/back-to-the-future-part-iii.txt|9|1": {
+"speaker": "Doc Brown",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/brooklyn-nine-nine/s03e09.txt|11|10": {
+"speaker": "Jake Peralta",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/predestination.txt|9|13": {
+"speaker": "The Unmarried Mother (Jane)",
+"speaker_confidence": "high"
+},
+"transcripts/movies/road-to-morocco.txt|9|13": {
+"speaker": "Orville 'Turkey' Jackson",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/predestination.txt|4|3": {
+"speaker": "The Bartender",
+"speaker_confidence": "high"
+},
+"transcripts/movies/prisoners.txt|8|19": {
+"speaker": "Holly Jones",
+"speaker_confidence": "high"
+},
+"transcripts/movies/scott-pilgrim-vs-the-world.txt|2|1": {
+"speaker": "Vegan Police Officer",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/24/s02e16.txt|4|5": {
+"speaker": "Jack Bauer",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/buffy-the-vampire-slayer/s04e15.txt|2|25": {
+"speaker": "Faith",
+"speaker_confidence": "high"
+},
+"transcripts/movies/courage-under-fire.txt|2|25": {
+"speaker": "Serling",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/legion-2017/s01e06.txt|1|2": {
+"speaker": "Ptonomy Wallace",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/peaky-blinders-2013/s05e05.txt|1|2": {
+"speaker": "Ben Younger",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/ted-lasso-2020/s04e09.txt|1|2": {
+"speaker": "Ted Lasso",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/das-weisse-band-eine-deutsche-kindergeschichte-the-white-ribbon.txt|7|28": {
+"speaker": "Narrator",
+"speaker_confidence": "high"
+},
+"transcripts/tv/steins-gate-2011/s01e23.txt|7|28": {
+"speaker": "Amane Suzuha",
+"speaker_confidence": "high"
+},
+"transcripts/tv/1883-2021/s01e02.txt|4|9": {
+"speaker": "Shea Brennan",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-vampire-diaries/s05e09.txt|6|11": {
+"speaker": "Enzo",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/devil-in-a-blue-dress.txt|6|11": {
+"speaker": "Easy Rawlins",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/dial-m-for-murder.txt|3|27": {
+"speaker": "Inspector Hubbard",
+"speaker_confidence": "high"
+},
+"transcripts/tv/american-horror-story/s07e09.txt|3|26": {
+"speaker": "Kai Anderson",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/dial-m-for-murder.txt|3|26": {
+"speaker": "Mark Halliday",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-x-files/s01e02.txt|11|21": {
+"speaker": "Colonel Budahas",
+"speaker_confidence": "high"
+},
+"transcripts/movies/dirty-harry.txt|11|21": {
+"speaker": "Lieutenant Bressler",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/futurama/s04e01.txt|7|9": {
+"speaker": "Professor Farnsworth",
+"speaker_confidence": "high"
+},
+"transcripts/movies/double-indemnity.txt|7|9": {
+"speaker": "Barton Keyes",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-flash-2014/s04e13.txt|6|27": {
+"speaker": "Marlize",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/pressure-2026.txt|6|2": {
+"speaker": "Irving Krick",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/gilmore-girls/s06e19.txt|6|3": {
+"speaker": "Lorelai Gilmore",
+"speaker_confidence": "high"
+},
+"transcripts/tv/suits/s01e08.txt|6|3": {
+"speaker": "Donna Paulsen",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/brooklyn-nine-nine/s02e13.txt|6|3": {
+"speaker": "Charles Boyle",
+"speaker_confidence": "high"
+},
+"transcripts/tv/how-i-met-your-mother/s09e09.txt|1|5": {
+"speaker": "Barney Stinson",
+"speaker_confidence": "high"
+},
+"transcripts/tv/line-of-duty-2012/s06e06.txt|1|5": {
+"speaker": "Steve Arnott",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/marvels-agent-carter-2015/s01e05.txt|4|27": {
+"speaker": "Edwin Jarvis",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-x-files/s01e09.txt|1|21": {
+"speaker": "Scully",
+"speaker_confidence": "high"
+},
+"transcripts/tv/how-i-met-your-mother/s07e05.txt|5|25": {
+"speaker": "Barney Stinson",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-flash-2014/s02e01.txt|3|18": {
+"speaker": "Harrison Wells",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/housebound.txt|3|18": {
+"speaker": "Amos",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-x-files/s03e23.txt|4|23": {
+"speaker": "Scully",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/project-almanac.txt|4|23": {
+"speaker": "David",
+"speaker_confidence": "high"
+},
+"transcripts/tv/homicide-life-on-the-street/s01e03.txt|12|24": {
+"speaker": "John Munch",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/pride-and-prejudice/s01e05.txt|11|26": {
+"speaker": "Mr. Bingley",
+"speaker_confidence": "high"
+},
+"transcripts/tv/law-and-order-special-victims-unit/s01e08.txt|7|18": {
+"speaker": "John Munch",
+"speaker_confidence": "high"
+},
+"transcripts/movies/memories-of-murder.txt|12|19": {
+"speaker": "Seo Tae-yoon",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/money-heist-2017/s04e03.txt|3|17": {
+"speaker": "Berlin",
+"speaker_confidence": "high"
+},
+"transcripts/tv/better-call-saul-2015/s06e13.txt|3|17": {
+"speaker": "Mike Ehrmantraut",
+"speaker_confidence": "high"
+},
+"transcripts/tv/parks-and-recreation/s03e03.txt|1|18": {
+"speaker": "Leslie Knope",
+"speaker_confidence": "high"
+},
+"transcripts/tv/parks-and-recreation/s04e05.txt|1|18": {
+"speaker": "Leslie Knope",
+"speaker_confidence": "high"
+},
+"transcripts/movies/vincere.txt|1|18": {
+"speaker": "Ida Dalser",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/criminal-minds/s09e13.txt|4|11": {
+"speaker": "Spencer Reid",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/criminal-minds/s11e16.txt|11|7": {
+"speaker": "Penelope Garcia",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/house-of-cards-2013/s03e08.txt|11|7": {
+"speaker": "Thomas Yates",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/frequency.txt|10|22": {
+"speaker": "John Sullivan",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/thing-from-another-world-the.txt|11|2": {
+"speaker": "Dr. Carrington",
+"speaker_confidence": "high"
+},
+"transcripts/tv/twin-peaks/s02e04.txt|3|3": {
+"speaker": "Sheriff Truman",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/hajime-no-ippo-2000/s01e69.txt|11|20": {
+"speaker": "Ippo Makunouchi",
+"speaker_confidence": "high"
+},
+"transcripts/movies/grey-gardens.txt|7|29": {
+"speaker": "Little Edie Beale",
+"speaker_confidence": "high"
+},
+"transcripts/movies/top-gun.txt|7|29": {
+"speaker": "Admiral",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-vampire-diaries/s05e10.txt|6|26": {
+"speaker": "Wes Maxfield",
+"speaker_confidence": "high"
+},
+"transcripts/tv/modern-family/s05e21.txt|6|10": {
+"speaker": "Phil",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/father-of-the-bride-1950.txt|6|10": {
+"speaker": "Stanley Banks",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-handmaids-tale-2017/s01e06.txt|4|29": {
+"speaker": "Serena Joy Waterford",
+"speaker_confidence": "high"
+},
+"transcripts/movies/underground.txt|4|6": {
+"speaker": "Narrator",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/good-morning-vietnam.txt|8|13": {
+"speaker": "Adrian Cronauer",
+"speaker_confidence": "high"
+},
+"transcripts/movies/honey-boy.txt|6|4": {
+"speaker": "James",
+"speaker_confidence": "high"
+},
+"transcripts/tv/oz/s04e15.txt|6|4": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "high"
+},
+"transcripts/tv/brooklyn-nine-nine/s05e04.txt|4|28": {
+"speaker": "Jake Peralta",
+"speaker_confidence": "high"
+},
+"transcripts/movies/network.txt|9|22": {
+"speaker": "Narrator",
+"speaker_confidence": "high"
+},
+"transcripts/movies/in-cold-blood.txt|11|14": {
+"speaker": "Dick Hickock",
+"speaker_confidence": "high"
+},
+"transcripts/movies/capote.txt|11|14": {
+"speaker": "Truman Capote",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/north-by-northwest.txt|8|11": {
+"speaker": "Philip Vandamm",
+"speaker_confidence": "high"
+},
+"transcripts/movies/perfect-blue.txt|6|24": {
+"speaker": "Mima Kirigoe",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/love-death-robots-2019/s01e06.txt|6|27": {
+"speaker": "Narrator",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/two-and-a-half-men/s07e07.txt|6|26": {
+"speaker": "Evelyn Harper",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/house-of-cards-2013/s03e07.txt|8|14": {
+"speaker": "Frank Underwood",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/bojack-horseman-2014/s06e15.txt|8|22": {
+"speaker": "Secretariat",
+"speaker_confidence": "high"
+},
+"transcripts/tv/bojack-horseman-2014/s01e12.txt|8|22": {
+"speaker": "Radio announcer",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/south-park/s14e07.txt|4|26": {
+"speaker": "Narrator",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-flash-2014/s01e20.txt|4|25": {
+"speaker": "Cisco Ramon",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/chernobyl-2019/s01e05.txt|4|25": {
+"speaker": "Ulana Khomyuk",
+"speaker_confidence": "high"
+},
+"transcripts/tv/dark-2017/s01e05.txt|11|4": {
+"speaker": "Michael Kahnwald",
+"speaker_confidence": "high"
+},
+"transcripts/tv/dark-2017/s02e06.txt|11|4": {
+"speaker": "Jonas Kahnwald",
+"speaker_confidence": "high"
+},
+"transcripts/movies/back-to-the-future-part-iii.txt|10|27": {
+"speaker": "Doc Brown",
+"speaker_confidence": "high"
+},
+"transcripts/movies/boys-dont-cry.txt|10|27": {
+"speaker": "Brandon Teena",
+"speaker_confidence": "high"
+},
+"transcripts/tv/dark-2017/s01e06.txt|10|27": {
+"speaker": "Aleksander Tiedemann",
+"speaker_confidence": "high"
+},
+"transcripts/tv/friends/s02e03.txt|4|17": {
+"speaker": "Joey Tribbiani",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/oz/s04e13.txt|2|16": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-x-files/s06e03.txt|11|16": {
+"speaker": "Mulder",
+"speaker_confidence": "high"
+},
+"transcripts/tv/lost/s01e06.txt|8|24": {
+"speaker": "Michael",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/red-dwarf/s02e03.txt|3|16": {
+"speaker": "Rimmer",
+"speaker_confidence": "high"
+},
+"transcripts/tv/american-crime-story-2016/s02e05.txt|12|21": {
+"speaker": "Schlesinger",
+"speaker_confidence": "high"
+},
+"transcripts/tv/oz/s04e14.txt|2|28": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/jacket-the.txt|12|26": {
+"speaker": "Dr. Becker",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/riverdale-2017/s01e03.txt|7|11": {
+"speaker": "Sheriff Keller",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/roxanne.txt|7|11": {
+"speaker": "Roxanne",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/downton-abbey/s02e02.txt|2|17": {
+"speaker": "Mr Carson",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/the-wave.txt|1|15": {
+"speaker": "Narrator",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/law-and-order-1990/s01e20.txt|5|6": {
+"speaker": "Stone",
+"speaker_confidence": "high"
+},
+"transcripts/movies/the-hindenburg.txt|5|6": {
+"speaker": "Narrator",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/marvels-agent-carter-2015/s01e08.txt|5|8": {
+"speaker": "Peggy Carter",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/shallow-grave.txt|9|19": {
+"speaker": "Travel agent",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-flash-2014/s05e15.txt|5|22": {
+"speaker": "Lyla Michaels",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/curious-case-of-benjamin-button-the.txt|12|7": {
+"speaker": "Franklin D. Roosevelt",
+"speaker_confidence": "high"
+},
+"transcripts/movies/stalag-17.txt|12|7": {
+"speaker": "Price",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/from-here-to-eternity.txt|12|7": {
+"speaker": "Lorene",
+"speaker_confidence": "high"
+},
+"transcripts/tv/better-call-saul-2015/s01e10.txt|11|22": {
+"speaker": "Jimmy McGill",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-umbrella-academy-2019/s02e02.txt|11|22": {
+"speaker": "Dan Frankel",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/better-call-saul-2015/s06e13.txt|10|4": {
+"speaker": "Jimmy McGill",
+"speaker_confidence": "high"
+},
+"transcripts/tv/homeland/s07e06.txt|10|4": {
+"speaker": "Saul Berenson",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/dexter/s02e08.txt|4|16": {
+"speaker": "Neighbor",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/frequency.txt|4|16": {
+"speaker": "Satch DeLeon",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/v-for-vendetta.txt|5|27": {
+"speaker": "Delia Surridge",
+"speaker_confidence": "high"
+},
+"transcripts/tv/kota-factory-2019/s02e01.txt|5|27": {
+"speaker": "Jeetu Bhaiya",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/legion-2017/s02e08.txt|1|17": {
+"speaker": "David Haller",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/30-rock/s01e11.txt|1|17": {
+"speaker": "Liz Lemon",
+"speaker_confidence": "high"
+},
+"transcripts/tv/seinfeld/s02e10.txt|3|20": {
+"speaker": "Leslie",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-x-files/s11e02.txt|3|28": {
+"speaker": "Mulder",
+"speaker_confidence": "high"
+},
+"transcripts/tv/sacred-games-2018/s01e07.txt|8|10": {
+"speaker": "Guruji",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/the-battle-at-lake-changjin.txt|7|7": {
+"speaker": "Radio announcer",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/community/s06e06.txt|2|7": {
+"speaker": "Jeff Winger",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-americans-2013/s04e12.txt|2|7": {
+"speaker": "Stan Beeman",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/ted-lasso-2020/s02e04.txt|12|28": {
+"speaker": "Roy Kent",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/criminal-minds/s02e18.txt|2|19": {
+"speaker": "Penelope Garcia",
+"speaker_confidence": "high"
+},
+"transcripts/tv/doctor-who-1963/s01e41.txt|7|27": {
+"speaker": "Robespierre",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/star-trek-deep-space-nine/s03e11.txt|8|30": {
+"speaker": "Julian Bashir",
+"speaker_confidence": "high"
+},
+"transcripts/tv/ted-lasso-2020/s02e11.txt|6|7": {
+"speaker": "Higgins",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-vampire-diaries/s02e10.txt|8|31": {
+"speaker": "Alaric Saltzman",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-simpsons/s13e06.txt|8|31": {
+"speaker": "Richard Gere",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-vampire-diaries/s06e18.txt|10|10": {
+"speaker": "Tyler",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-flash-2014/s04e12.txt|10|10": {
+"speaker": "Cisco Ramon",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-vampire-diaries/s07e02.txt|7|15": {
+"speaker": "Julian",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/quantum-leap/s03e02.txt|4|7": {
+"speaker": "Al",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/money-heist-2017/s04e08.txt|4|7": {
+"speaker": "Alicia Sierra",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/quantum-leap/s03e02.txt|4|8": {
+"speaker": "Al",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/marvels-iron-fist-2017/s01e01.txt|4|1": {
+"speaker": "Danny Rand",
+"speaker_confidence": "high"
+},
+"transcripts/tv/community/s01e20.txt|4|1": {
+"speaker": "Dean Pelton",
+"speaker_confidence": "high"
+},
+"transcripts/tv/mr-robot-2015/s02e06.txt|9|8": {
+"speaker": "Angela Moss",
+"speaker_confidence": "high"
+},
+"transcripts/tv/narcos-2015/s01e02.txt|3|13": {
+"speaker": "Steve Murphy",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/brooklyn-nine-nine/s06e16.txt|3|13": {
+"speaker": "Amy Santiago",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/homeland/s08e04.txt|3|13": {
+"speaker": "President Keane",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/grizzly-man.txt|10|6": {
+"speaker": "Willy Fulton",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/homeland/s06e08.txt|5|14": {
+"speaker": "O'Keefe",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-x-files/s02e24.txt|5|17": {
+"speaker": "Mulder",
+"speaker_confidence": "high"
+},
+"transcripts/tv/american-horror-story/s05e12.txt|8|23": {
+"speaker": "James Patrick March",
+"speaker_confidence": "high"
+},
+"transcripts/tv/doctor-who-1963/s03e25.txt|8|23": {
+"speaker": "Anne Chaplet",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-x-files/s03e23.txt|4|21": {
+"speaker": "Scully",
+"speaker_confidence": "high"
+},
+"transcripts/tv/house-of-cards-2013/s03e13.txt|4|21": {
+"speaker": "Rachel Posner",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-x-files/s01e18.txt|3|7": {
+"speaker": "Scully",
+"speaker_confidence": "high"
+},
+"transcripts/tv/brooklyn-nine-nine/s04e18.txt|1|14": {
+"speaker": "Jake Peralta",
+"speaker_confidence": "high"
+},
+"transcripts/tv/how-i-met-your-mother/s05e03.txt|7|23": {
+"speaker": "Robin",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/blue-bloods/s05e13.txt|3|9": {
+"speaker": "Henry Reagan",
+"speaker_confidence": "high"
+},
+"transcripts/tv/red-dwarf/s02e04.txt|2|26": {
+"speaker": "Rimmer",
+"speaker_confidence": "high"
+},
+"transcripts/tv/x-men-97-2024/s01e07.txt|8|28": {
+"speaker": "Trask",
+"speaker_confidence": "high"
+},
+"transcripts/movies/scenes-from-a-marriage.txt|8|28": {
+"speaker": "Johan",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/parks-and-recreation/s02e21.txt|3|31": {
+"speaker": "April Ludgate",
+"speaker_confidence": "high"
+},
+"transcripts/tv/suits/s01e07.txt|3|31": {
+"speaker": "Mike Ross",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-x-files/s02e23.txt|3|31": {
+"speaker": "Mulder",
+"speaker_confidence": "high"
+},
+"transcripts/tv/northern-exposure/s03e06.txt|4|2": {
+"speaker": "Holling",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-wire/s01e01.txt|5|13": {
+"speaker": "Nakeisha Lyles",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-wire/s02e07.txt|2|4": {
+"speaker": "Lester Freamon",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/click.txt|2|5": {
+"speaker": "Radio newscaster",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/northern-exposure/s03e12.txt|2|5": {
+"speaker": "Maurice Minnifield",
+"speaker_confidence": "high"
+},
+"transcripts/tv/how-i-met-your-mother/s04e16.txt|2|5": {
+"speaker": "Lily",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-wire/s05e07.txt|1|22": {
+"speaker": "Ray Cole",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/kramer-vs-kramer.txt|1|23": {
+"speaker": "John Shaunessy",
+"speaker_confidence": "high"
+},
+"transcripts/tv/modern-family/s05e01.txt|3|19": {
+"speaker": "Phil",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/line-of-duty-2012/s06e07.txt|2|15": {
+"speaker": "Ted Hastings",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/american-horror-story/s02e02.txt|10|28": {
+"speaker": "Sister Jude",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/its-always-sunny-in-philadelphia/s05e06.txt|10|28": {
+"speaker": "Judge",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-twilight-zone-1959/s03e15.txt|8|6": {
+"speaker": "Lt. Katell",
+"speaker_confidence": "high"
+},
+"transcripts/tv/moonlighting/s05e10.txt|8|27": {
+"speaker": "David Addison",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/criminal-minds/s13e02.txt|8|27": {
+"speaker": "Garcia",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/big-bang-theory/s07e04.txt|4|13": {
+"speaker": "Amy",
+"speaker_confidence": "high"
+},
+"transcripts/tv/oz/s04e13.txt|2|20": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "high"
+},
+"transcripts/tv/oz/s05e08.txt|2|20": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "high"
+},
+"transcripts/tv/oz/s06e07.txt|2|6": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "high"
+},
+"transcripts/tv/ncis/s11e14.txt|2|6": {
+"speaker": "Ellie Bishop",
+"speaker_confidence": "medium"
+},
+"gapfill|10|11": {
+"speaker": "Hallie Parker",
+"speaker_confidence": "high"
+},
+"transcripts/tv/criminal-minds/s07e11.txt|10|11": {
+"speaker": "Reid",
+"speaker_confidence": "high"
+},
+"transcripts/tv/steins-gate-2011/s01e05.txt|10|2": {
+"speaker": "Itaru Hashida",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/boardwalk-empire/s02e09.txt|1|19": {
+"speaker": "Esther Randolph",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/gilmore-girls/s03e13.txt|2|7": {
+"speaker": "Lorelai Gilmore",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/archive-81-2022/s01e03.txt|2|24": {
+"speaker": "Steven",
+"speaker_confidence": "high"
+},
+"transcripts/tv/castle/s02e06.txt|12|3": {
+"speaker": "Castle",
+"speaker_confidence": "high"
+},
+"transcripts/tv/northern-exposure/s03e17.txt|12|3": {
+"speaker": "Fleischman",
+"speaker_confidence": "high"
+},
+"transcripts/tv/bones/s02e08.txt|5|20": {
+"speaker": "Agent Zhang",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/frasier/s03e16.txt|2|29": {
+"speaker": "Martin Crane",
+"speaker_confidence": "high"
+},
+"transcripts/tv/modern-family/s03e17.txt|2|29": {
+"speaker": "Cameron",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-simpsons/s07e10.txt|4|19": {
+"speaker": "Troy McClure",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/law-and-order-1990/s13e23.txt|12|5": {
+"speaker": "Helen",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-x-files/s06e05.txt|6|13": {
+"speaker": "Morris Fletcher",
+"speaker_confidence": "high"
+},
+"transcripts/tv/blue-bloods/s14e18.txt|6|13": {
+"speaker": "Jamie Reagan",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-x-files/s06e10.txt|1|4": {
+"speaker": "Scully",
+"speaker_confidence": "high"
+},
+"transcripts/tv/seinfeld/s09e23.txt|1|4": {
+"speaker": "Hoyt",
+"speaker_confidence": "high"
+},
+"transcripts/tv/oz/s04e09.txt|1|4": {
+"speaker": "Augustus Hill",
+"speaker_confidence": "high"
+},
+"transcripts/tv/the-x-files/s04e06.txt|7|31": {
+"speaker": "Mulder",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/moonlighting/s05e06.txt|11|27": {
+"speaker": "David Addison",
+"speaker_confidence": "high"
+},
+"transcripts/tv/community/s04e02.txt|6|30": {
+"speaker": "Abed",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/the-x-files/s04e09.txt|6|30": {
+"speaker": "Mulder",
+"speaker_confidence": "high"
+},
+"transcripts/movies/the-happiest-day-in-the-life-of-olli-maki.txt|8|17": {
+"speaker": "Elis Ask",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/the-post.txt|5|3": {
+"speaker": "Daniel Ellsberg",
+"speaker_confidence": "medium"
+},
+"transcripts/tv/blue-bloods/s03e10.txt|5|24": {
+"speaker": "Frank Reagan",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/i-am-legend.txt|9|9": {
+"speaker": "Anna",
+"speaker_confidence": "high"
+},
+"transcripts/tv/quantum-leap/s05e01.txt|9|12": {
+"speaker": "Lee Harvey Oswald",
+"speaker_confidence": "medium"
+},
+"transcripts/movies/missing-1982.txt|9|12": {
+"speaker": "Terry Simon",
+"speaker_confidence": "medium"
+}
+}

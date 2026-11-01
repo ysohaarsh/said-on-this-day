@@ -1,0 +1,553 @@
+title,year,kind,lists
+The Wire,2002,tv,6
+Battlestar Galactica,2004,tv,6
+Breaking Bad,2008,tv,5
+Sherlock,2010,tv,5
+True Detective,2014,tv,5
+Band of Brothers,2001,tv,5
+The Shield,2002,tv,5
+Dexter,2006,tv,5
+Homicide: Life On The Street,1993,tv,5
+Mad Men,2007,tv,4
+Game of Thrones,2011,tv,4
+BoJack Horseman,2014,tv,4
+Six Feet Under,2001,tv,4
+Chernobyl,2019,tv,4
+30 Rock,2006,tv,4
+Deadwood,2004,tv,4
+Lost,2004,tv,4
+Curb Your Enthusiasm,2000,tv,4
+Black Mirror,2011,tv,4
+Better Call Saul,2015,tv,4
+Line of Duty,2012,tv,4
+Friday Night Lights,2006,tv,4
+Arrested Development,2003,tv,4
+Fargo,2014,tv,4
+Stranger Things,2016,tv,4
+Rick and Morty,2013,tv,4
+Mindhunter,2017,tv,4
+House,2004,tv,4
+Big Little Lies,2017,tv,4
+Narcos,2015,tv,4
+Westworld,2016,tv,4
+Louie,2010,tv,4
+Hannibal,2013,tv,4
+Justified,2010,tv,4
+The Twilight Zone,1959,tv,4
+The X-Files,1993,tv,4
+Twin Peaks,1990,tv,4
+The Sopranos,1999,tv,4
+Fleabag,2016,tv,3
+The Office (UK),2001,tv,3
+Parks and Recreation,2009,tv,3
+The Good Wife,2009,tv,3
+The Bridge,2011,tv,3
+Downton Abbey,2010,tv,3
+The Office (US),2005,tv,3
+Community,2009,tv,3
+Homeland,2011,tv,3
+The Good Place,2016,tv,3
+24,2001,tv,3
+How I Met Your Mother,2005,tv,3
+It's Always Sunny in Philadelphia,2005,tv,3
+Luther,2010,tv,3
+The Queen's Gambit,2020,tv,3
+NYPD Blue,1993,tv,3
+The Expanse,2015,tv,3
+Cheers,1982,tv,3
+South Park,1997,tv,3
+Boardwalk Empire,2010,tv,3
+Hill Street Blues,1981,tv,3
+Oz,1997,tv,3
+Firefly,2002,tv,3
+Star Trek,1966,tv,3
+Frasier,1993,tv,3
+Seinfeld,1989,tv,3
+Peaky Blinders,2013,tv,3
+Star Trek: The Next Generation,1987,tv,3
+The Simpsons,1989,tv,3
+The West Wing,1999,tv,3
+Friends,1994,tv,3
+Law and Order,1990,tv,3
+Freaks and Geeks,1999,tv,3
+"I, Claudius",1976,tv,3
+Lonesome Dove,1989,tv,3
+The Leftovers,2014,tv,2
+The Americans,2013,tv,2
+Succession,2018,tv,2
+Twin Peaks: The Return,2017,tv,2
+Atlanta,2016,tv,2
+The Crown,2016,tv,2
+The Thick of It,2005,tv,2
+Veep,2012,tv,2
+The Handmaid's Tale,2017,tv,2
+Schitt's Creek,2015,tv,2
+Peep Show,2003,tv,2
+The Big Bang Theory,2007,tv,2
+House of Cards,2013,tv,2
+Pose,2018,tv,2
+Mare of Easttown,2021,tv,2
+Gilmore Girls,2000,tv,2
+Planet Earth,2006,tv,2
+American Crime Story,2016,tv,2
+Insecure,2016,tv,2
+The Comeback,2005,tv,2
+The OA,2016,tv,2
+Rome,2005,tv,2
+Farscape,1999,tv,2
+Broadchurch,2013,tv,2
+Quantum Leap,1989,tv,2
+Monty Python's Flying Circus,1969,tv,2
+Brooklyn Nine-Nine,2013,tv,2
+Red Dwarf,1988,tv,2
+Sex And The City,1998,tv,2
+Fringe,2008,tv,2
+Scrubs,2001,tv,2
+Northern Exposure,1990,tv,2
+Star Trek: Deep Space Nine,1993,tv,2
+Fawlty Towers,1975,tv,2
+Sons Of Anarchy,2008,tv,2
+M*A*S*H,1972,tv,2
+ER,1994,tv,2
+Doctor Who,1963,tv,2
+Buffy The Vampire Slayer,1997,tv,2
+NCIS,2003,tv,2
+CSI: Crime Scene Investigation,2000,tv,2
+The Closer,2005,tv,2
+Law and Order: Special Victims Unit,1999,tv,2
+Moonlighting,,tv,2
+Bones,2005,tv,2
+Blue Bloods,2010,tv,2
+Criminal Minds,2005,tv,2
+Castle,2009,tv,2
+Boston Legal,2004,tv,2
+Columbo,,tv,2
+Bosch,2014,tv,2
+Ozark,2017,tv,2
+The Orville,2017,tv,2
+Better Off Ted,2009,tv,2
+Cowboy Bebop,1998,tv,2
+The Prisoner,,tv,2
+Futurama,1999,tv,2
+When They See Us,2019,tv,2
+Pride and Prejudice,1995,tv,2
+Steins;Gate,2011,tv,2
+1883,2021,tv,2
+The Marvelous Mrs. Maisel,2017,tv,2
+The Offer,2022,tv,2
+Dopesick,2021,tv,2
+From the Earth to the Moon,1998,tv,2
+Entourage,2004,tv,2
+Alfred Hitchcock Presents,1955,tv,2
+Spartacus: Gods of the Arena,2011,tv,2
+Generation Kill,2008,tv,2
+Jesus of Nazareth,1977,tv,2
+Modern Family,2009,tv,2
+I Love Lucy,1951,tv,2
+The Larry Sanders Show,1992,tv,2
+The Andy Griffith Show,1960,tv,2
+The Dick Van Dyke Show,1961,tv,2
+Get Smart,1965,tv,2
+Soap,1977,tv,2
+I May Destroy You,2020,tv,1
+Watchmen,2019,tv,1
+Girls,2012,tv,1
+Borgen,2010,tv,1
+Money Heist,2017,tv,1
+The Good Fight,2017,tv,1
+Grey's Anatomy,2005,tv,1
+Inside No 9,2014,tv,1
+The Bureau,2015,tv,1
+Halt and Catch Fire,2014,tv,1
+Small Axe,2020,tv,1
+"This Is England '86, '88 and '90",2010,tv,1
+Call My Agent!,2015,tv,1
+Happy Valley,2014,tv,1
+The Young Pope,2016,tv,1
+Dark,2017,tv,1
+The Underground Railroad,2021,tv,1
+Avatar: The Last Airbender,2005,tv,1
+Detectorists,2014,tv,1
+Orange Is the New Black,2013,tv,1
+RuPaul's Drag Race,2009,tv,1
+Enlightened,2011,tv,1
+Utopia (UK),2013,tv,1
+Babylon Berlin,2017,tv,1
+The Killing (Denmark),2007,tv,1
+O.J.: Made in America,2016,tv,1
+Normal People,2020,tv,1
+Show Me a Hero,2015,tv,1
+Treme,2010,tv,1
+Catastrophe,2015,tv,1
+Crazy Ex-Girlfriend,2015,tv,1
+Steven Universe,2013,tv,1
+Life On Mars,2006,tv,1
+I'm Alan Partridge,1997,tv,1
+Cracker,1993,tv,1
+Angel,1999,tv,1
+Father Ted,1995,tv,1
+Prime Suspect,1991,tv,1
+Only Fools And Horses,1981,tv,1
+Spaced,1999,tv,1
+Killing Eve,2018,tv,1
+Blackadder,1983,tv,1
+The Walking Dead,2010,tv,1
+Reacher,,tv,1
+FBI: Most Wanted,,tv,1
+Kojak,1973,tv,1
+Dragnet,1949,tv,1
+Hunter,1984,tv,1
+Mayor of Kingstown,,tv,1
+Cold Case,2003,tv,1
+Matlock,2024,tv,1
+Veronica Mars,2004,tv,1
+"Murder, She Wrote",1984,tv,1
+The Untouchables,1959,tv,1
+High Potential,,tv,1
+Perry Mason,1957,tv,1
+Southland,2009,tv,1
+Elsbeth,,tv,1
+Giri/Haji,,tv,1
+Only Murders in the Building,,tv,1
+Under the Dome,,tv,1
+The Jetsons,,tv,1
+Astro Boy,,tv,1
+Thunderbirds,,tv,1
+Mork & Mindy,,tv,1
+ALF,,tv,1
+Planet of the Apes,,tv,1
+The Outer Limits,,tv,1
+Killjoys,,tv,1
+Roswell,,tv,1
+V: The Final Battle,,tv,1
+Millennium,,tv,1
+Logan's Run,,tv,1
+seaQuest DSV,,tv,1
+Almost Human,,tv,1
+Terra Nova,,tv,1
+Sanctuary,,tv,1
+Dark Angel,,tv,1
+Lexx,,tv,1
+3rd Rock From the Sun,,tv,1
+Andromeda,,tv,1
+The 4400,,tv,1
+Knight Rider,,tv,1
+Land of the Lost,,tv,1
+War of the Worlds,,tv,1
+Space: Above and Beyond,,tv,1
+Aeon Flux,,tv,1
+The Middleman,,tv,1
+Star Trek: Enterprise,,tv,1
+Altered Carbon,,tv,1
+Electric Dreams,,tv,1
+Lost in Space,,tv,1
+Hitchhiker's Guide to the Galaxy,,tv,1
+Buck Rogers in the 25th Century,,tv,1
+Star Wars: The Clone Wars,,tv,1
+Alien Nation,,tv,1
+Stargate Universe,,tv,1
+Defiance,,tv,1
+Warehouse 13,,tv,1
+Dark Matter,,tv,1
+Mystery Science Theater 3000,,tv,1
+Falling Skies,,tv,1
+Continuum,,tv,1
+The Six Million Dollar Man,,tv,1
+Timeless,,tv,1
+Now and Again,,tv,1
+V,,tv,1
+Sliders,,tv,1
+Dollhouse,,tv,1
+Space: 1999,,tv,1
+Stargate Atlantis,,tv,1
+Caprica,,tv,1
+Colony,,tv,1
+Stargate SG-1,,tv,1
+Terminator: The Sarah Connor Chronicles,,tv,1
+Eureka,,tv,1
+Star Trek: Voyager,,tv,1
+The Man in the High Castle,,tv,1
+Sense8,,tv,1
+Blake's 7,,tv,1
+The Rain,,tv,1
+Max Headroom,,tv,1
+Mystery Science Theater 3000: The Return,,tv,1
+Star Trek: Discovery,,tv,1
+The 100,,tv,1
+Torchwood,,tv,1
+Humans,,tv,1
+Babylon 5,,tv,1
+Counterpart,,tv,1
+Orphan Black,,tv,1
+The Last of Us,2023,tv,1
+Yellowstone,2018,tv,1
+Severance,2022,tv,1
+This Is Us,2016,tv,1
+Invincible,2021,tv,1
+Anne with an E,2017,tv,1
+The Adventures of Sherlock Holmes,1984,tv,1
+Endeavour,2012,tv,1
+Shameless,2011,tv,1
+Doctor Who,2005,tv,1
+Daredevil,2015,tv,1
+The Newsroom,2012,tv,1
+Wentworth,2013,tv,1
+North & South,2004,tv,1
+1923,2022,tv,1
+House of the Dragon,2022,tv,1
+Vikings,2013,tv,1
+Suits,2011,tv,1
+Cobra Kai,2018,tv,1
+Mr. Robot,2015,tv,1
+Person of Interest,2011,tv,1
+The Punisher,2017,tv,1
+Spartacus,2010,tv,1
+The Night Of,2016,tv,1
+The Knick,2014,tv,1
+Anne of Green Gables,1985,tv,1
+John Adams,2008,tv,1
+Please Like Me,2013,tv,1
+House of Cards,1990,tv,1
+Horace and Pete,2016,tv,1
+The Office,2005,tv,1
+Ted Lasso,2020,tv,1
+Archer,2009,tv,1
+Adventure Time,2010,tv,1
+Flight of the Conchords,2007,tv,1
+Silicon Valley,2014,tv,1
+Regular Show,2009,tv,1
+Derry Girls,2018,tv,1
+The Boondocks,2005,tv,1
+Broad City,2014,tv,1
+The Adventures of Pete & Pete,1992,tv,1
+Extras,2005,tv,1
+Blue Mountain State,2010,tv,1
+The League,2009,tv,1
+The Amazing World of Gumball,2011,tv,1
+Ghosts,2019,tv,1
+The Life & Times of Tim,2008,tv,1
+Family Guy,1999,tv,1
+SpongeBob SquarePants,1999,tv,1
+Bob's Burgers,2011,tv,1
+Master of None,2015,tv,1
+Eastbound & Down,2009,tv,1
+Grace and Frankie,2015,tv,1
+Party Down,2009,tv,1
+Abbott Elementary,2021,tv,1
+One Day at a Time,2017,tv,1
+Home Movies,1999,tv,1
+Clone High,2002,tv,1
+That '70s Show,1998,tv,1
+Malcolm in the Middle,2000,tv,1
+Married... with Children,1987,tv,1
+Workaholics,2011,tv,1
+Boy Meets World,1993,tv,1
+Resident Alien,2021,tv,1
+Raising Hope,2010,tv,1
+You're the Worst,2014,tv,1
+Daria,1997,tv,1
+Reservation Dogs,2021,tv,1
+Galavant,2015,tv,1
+High Maintenance,2016,tv,1
+Legit,2013,tv,1
+F Is for Family,2015,tv,1
+The Goldbergs,2013,tv,1
+Solar Opposites,2020,tv,1
+The Addams Family,1964,tv,1
+NewsRadio,1995,tv,1
+Life in Pieces,2015,tv,1
+"Harvey Birdman, Attorney at Law",2000,tv,1
+Ugly Americans,2010,tv,1
+The Fresh Prince of Bel-Air,1990,tv,1
+Weeds,2005,tv,1
+Big Mouth,2017,tv,1
+Dexter's Laboratory,1996,tv,1
+Rocko's Modern Life,1993,tv,1
+Reno 911!,2003,tv,1
+Undeclared,2001,tv,1
+We Bare Bears,2014,tv,1
+Sanford and Son,1972,tv,1
+The Critic,1994,tv,1
+The Tick,1994,tv,1
+Fresh Off the Boat,2015,tv,1
+New Girl,2011,tv,1
+Wilfred,2011,tv,1
+Planet Earth II,2016,tv,1
+The Godfather Saga,1977,tv,1
+Blue Planet II,2017,tv,1
+Cosmos,1980,tv,1
+Seven Worlds One Planet,2019,tv,1
+Cosmos: A Spacetime Odyssey,2014,tv,1
+The Last Dance,2020,tv,1
+Life,2009,tv,1
+The Vietnam War,2017,tv,1
+The Beatles Anthology,1995,tv,1
+Frozen Planet,2011,tv,1
+Human Planet,2011,tv,1
+The Civil War,1990,tv,1
+Apocalypse: The Second World War,2009,tv,1
+Cosmos: Possible Worlds,2020,tv,1
+The War,2007,tv,1
+The Beatles: Get Back,2021,tv,1
+Dekalog,1989,tv,1
+Africa,2013,tv,1
+Over the Garden Wall,2014,tv,1
+Das Boot,1985,tv,1
+Not Me,2021,tv,1
+The Century of the Self,2002,tv,1
+One Strange Rock,2018,tv,1
+World War II in Colour,2009,tv,1
+It's a Sin,2021,tv,1
+Rurouni Kenshin: Trust and Betrayal,1999,tv,1
+Long Way Round,2004,tv,1
+Greatest Events of WWII in Colour,2019,tv,1
+The Untold History of the United States,2012,tv,1
+The Memoirs of Sherlock Holmes,1994,tv,1
+Brideshead Revisited,1981,tv,1
+The Haunting of Hill House,2018,tv,1
+Garth Marenghi's Darkplace,2004,tv,1
+Bosch: Legacy,2022,tv,1
+Psych,2006,tv,1
+The Killing,2011,tv,1
+Lucifer,2016,tv,1
+The Mentalist,2008,tv,1
+Chicago P.D.,2014,tv,1
+Lie to Me,2009,tv,1
+Monk,2002,tv,1
+The Rookie,2018,tv,1
+Elementary,2012,tv,1
+Sousou no Frieren,2023,tv,1
+Fullmetal Alchemist: Brotherhood,2009,tv,1
+Re:Zero kara Hajimeru Isekai Seikatsu 4th Season,2026,tv,1
+Gintama°,2015,tv,1
+Shingeki no Kyojin Season 3 Part 2,2019,tv,1
+Hunter x Hunter (2011),2011,tv,1
+Gintama',2011,tv,1
+Gintama': Enchousen,2012,tv,1
+Gintama.,2017,tv,1
+Bleach: Sennen Kessen-hen,2022,tv,1
+Kaguya-sama wa Kokurasetai: Ultra Romantic,2022,tv,1
+Clannad: After Story,2008,tv,1
+Fruits Basket: The Final,2021,tv,1
+Gintama,2006,tv,1
+Code Geass: Hangyaku no Lelouch R2,2008,tv,1
+Kusuriya no Hitorigoto 2nd Season,2025,tv,1
+Monster,2004,tv,1
+3-gatsu no Lion 2nd Season,2017,tv,1
+Gintama. Shirogane no Tamashii-hen - Kouhan-sen,2018,tv,1
+Bleach: Sennen Kessen-hen - Kashin-tan,2026,tv,1
+Kingdom 3rd Season,2020,tv,1
+Kusuriya no Hitorigoto,2023,tv,1
+Sousou no Frieren 2nd Season,2026,tv,1
+Vinland Saga Season 2,2023,tv,1
+Ashita no Joe 2,1980,tv,1
+Black Clover 2nd Season,2026,tv,1
+Gintama. Shirogane no Tamashii-hen,2018,tv,1
+Shingeki no Kyojin: The Final Season,2020,tv,1
+Hajime no Ippo,2000,tv,1
+Mob Psycho 100 II,2019,tv,1
+Shingeki no Kyojin: The Final Season Part 2,2022,tv,1
+Vinland Saga,2019,tv,1
+Haikyuu!! Karasuno Koukou vs. Shiratorizawa Gakuen Koukou,2016,tv,1
+Monogatari Series: Second Season,2013,tv,1
+86 Part 2,2021,tv,1
+Hibike! Euphonium 3,2024,tv,1
+Bocchi the Rock!,2022,tv,1
+Chi. Chikyuu no Undou ni Tsuite,2024,tv,1
+Kingdom 4th Season,2022,tv,1
+Kingdom 5th Season,2024,tv,1
+Mob Psycho 100 III,2022,tv,1
+Mushishi Zoku Shou 2nd Season,2014,tv,1
+One Piece,1999,tv,1
+Code Geass: Hangyaku no Lelouch,2006,tv,1
+Bleach: Sennen Kessen-hen - Ketsubetsu-tan,2023,tv,1
+Boku no Hero Academia: Final Season,2025,tv,1
+Ikoku Nikki,2026,tv,1
+Jujutsu Kaisen 2nd Season,2023,tv,1
+Shouwa Genroku Rakugo Shinjuu: Sukeroku Futatabi-hen,2017,tv,1
+Violet Evergarden,2018,tv,1
+Great Teacher Onizuka,1999,tv,1
+Kimetsu no Yaiba: Yuukaku-hen,2021,tv,1
+Mushishi Zoku Shou,2014,tv,1
+Bleach: Sennen Kessen-hen - Soukoku-tan,2024,tv,1
+Boku no Kokoro no Yabai Yatsu 2nd Season,2024,tv,1
+Hajime no Ippo: New Challenger,2009,tv,1
+Uma Musume: Cinderella Gray Part 2,2025,tv,1
+[Oshi no Ko] 3rd Season,2026,tv,1
+Kingdom 6th Season,2025,tv,1
+Mushoku Tensei III: Isekai Ittara Honki Dasu,2026,tv,1
+Mushishi,2005,tv,1
+Shingeki no Kyojin Season 3,2018,tv,1
+Tengen Toppa Gurren Lagann,2007,tv,1
+Kusuriya no Hitorigoto 3rd Season,2026,tv,1
+Shigatsu wa Kimi no Uso,2014,tv,1
+Chiikawa,2022,tv,1
+Natsume Yuujinchou Shi,2012,tv,1
+Ping Pong the Animation,2014,tv,1
+Death Note,2006,tv,1
+Made in Abyss,2017,tv,1
+Odd Taxi,2021,tv,1
+Haikyuu!! Second Season,2015,tv,1
+Hajime no Ippo: Rising,2013,tv,1
+Kaguya-sama wa Kokurasetai? Tensai-tachi no Renai Zunousen,2020,tv,1
+Kenpuu Denki Berserk,1997,tv,1
+Natsume Yuujinchou Roku,2017,tv,1
+Bungou Stray Dogs 5th Season,2023,tv,1
+Made in Abyss: Retsujitsu no Ougonkyou,2022,tv,1
+Mushoku Tensei: Isekai Ittara Honki Dasu Part 2,2021,tv,1
+Dungeon Meshi,2024,tv,1
+JoJo no Kimyou na Bouken Part 5: Ougon no Kaze,2018,tv,1
+Jujutsu Kaisen: Shimetsu Kaiyuu - Zenpen,2026,tv,1
+Nana,2006,tv,1
+Natsume Yuujinchou Shichi,2024,tv,1
+Shingeki no Kyojin,2013,tv,1
+Uma Musume: Cinderella Gray,2025,tv,1
+Haikyuu!! To the Top Part 2,2020,tv,1
+Natsume Yuujinchou Go,2016,tv,1
+Natsume Yuujinchou San,2011,tv,1
+Slam Dunk,1993,tv,1
+Steins;Gate 0,2018,tv,1
+Shingeki no Kyojin Season 2,2017,tv,1
+Yojouhan Shinwa Taikei,2010,tv,1
+Shouwa Genroku Rakugo Shinjuu,2016,tv,1
+Fate/Zero 2nd Season,2012,tv,1
+Zoku Natsume Yuujinchou,2009,tv,1
+Fruits Basket 2nd Season,2020,tv,1
+Nippon Sangoku,2026,tv,1
+All in the Family,,tv,1
+The Mary Tyler Moore Show,,tv,1
+The Daily Show with Jon Stewart,,tv,1
+Taxi,,tv,1
+Saturday Night Live,,tv,1
+The Cosby Show,,tv,1
+The Honeymooners,,tv,1
+The Carol Burnett Show,,tv,1
+The Bob Newhart Show,,tv,1
+Your Show of Shows,,tv,1
+Thirtysomething,,tv,1
+St. Elsewhere,,tv,1
+The Colbert Report,,tv,1
+The Wonder Years,,tv,1
+L.A. Law,,tv,1
+Sesame Street,,tv,1
+The Rockford Files,,tv,1
+Roots,,tv,1
+Everybody Loves Raymond,,tv,1
+Playhouse 90,,tv,1
+My So-Called Life,,tv,1
+The Golden Girls,,tv,1
+Roseanne,,tv,1
+Murphy Brown,,tv,1
+Barney Miller,,tv,1
+The Odd Couple,,tv,1
+"Upstairs, Downstairs",,tv,1
+The Defenders,,tv,1
+Gunsmoke,,tv,1
+Sgt. Bilko (The Phil Silvers Show),,tv,1
+Rowan & Martin's Laugh-In,,tv,1
+The Muppet Show,,tv,1
+Absolutely Fabulous (U.K.),,tv,1
+Will & Grace,,tv,1
+Family Ties,,tv,1
+The Fugitive,,tv,1
+Late Night with David Letterman,,tv,1

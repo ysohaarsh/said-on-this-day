@@ -1,0 +1,684 @@
+title,year,rank
+A Trip to the Moon,1902,1
+The Great Train Robbery,1903,2
+The Birth of a Nation,1915,3
+Les Vampires,1915,4
+Intolerance,1916,5
+The Cabinet of Dr. Caligari,1920,6
+Broken Blossoms,1919,7
+Within Our Gates,1920,8
+Way Down East,1920,9
+Orphans of the Storm,1921,10
+The Phantom Carriage,1921,11
+The Smiling Madame Beudet,1922,12
+Dr. Mabuse Parts 1 and 2,1922,13
+Nanook of the North,1922,14
+Nosferatu,1922,15
+Haxan,1923,16
+Foolish Wives,1922,17
+Our Hospitality,1923,18
+The Wheel,1923,19
+The Last Laugh,1924,20
+Strike,1924,21
+"Sherlock, Jr.",1924,22
+The Great White Silence,1924,23
+Greed,1924,24
+The Thief of Bagdad,1924,25
+The Eagle,1925,26
+The Phantom of the Opera,1925,27
+Battleship Potemkin,1925,28
+The Gold Rush,1925,29
+The Big Parade,1925,30
+Seven Chances,1925,31
+The Adventures of Prince Achmed,1926,32
+Metropolis,1927,33
+Sunrise,1927,34
+The General,1927,35
+The Unknown,1927,36
+October,1927,37
+The Jazz Singer,1927,38
+Napoleon,1927,39
+The Kid Brother,1927,40
+The Crowd,1928,41
+The Docks of New York,1928,42
+The Passion of Joan of Arc,1928,43
+Un Chien Andalou,1928,44
+"Steamboat Bill, Jr.",1928,45
+Storm over Asia,1928,46
+A Throw of Dice,1929,47
+The Man with the Movie Camera,1929,48
+Pandora’s Box,1929,49
+Blackmail,1929,50
+Little Caesar,1930,51
+The Blue Angel,1930,52
+All Quiet on the Western Front,1930,53
+L’Age D’Or,1930,54
+Earth,1930,55
+À Nous la Liberté,1931,56
+Limite,1931,57
+Tabu,1931,58
+City Lights,1931,59
+Dracula,1931,60
+Frankenstein,1931,61
+The Public Enemy,1931,62
+M,1931,63
+Le Million,1931,64
+La Chienne,1931,65
+Vampyr,1932,66
+I Am a Fugitive from a Chain Gang,1932,67
+Boudu Saved from Drowning,1932,68
+Love Me Tonight,1932,69
+Shanghai Express,1932,70
+Trouble in Paradise,1932,71
+Scarface: The Shame of a Nation,1932,72
+Freaks,1932,73
+Me and My Gal,1932,74
+42nd Street,1933,75
+Footlight Parade,1933,76
+The Bitter Tea of General Yen,1933,77
+She Done Him Wrong,1933,78
+Duck Soup,1933,79
+Zero for Conduct,1933,80
+Gold Diggers of 1933,1933,81
+King Kong,1933,82
+Land Without Bread,1933,83
+Sons of the Desert,1933,84
+Queen Christina,1933,85
+Triumph of the Will,1934,86
+It’s a Gift,1934,87
+The Goddess,1934,88
+It Happened One Night,1934,89
+L’Atalante,1934,90
+The Black Cat,1934,91
+The Thin Man,1934,92
+Judge Priest,1934,93
+Mutiny on the Bounty,1935,94
+The 39 Steps,1935,95
+A Night at the Opera,1935,96
+Bride of Frankenstein,1935,97
+Captain Blood,1935,98
+Top Hat,1935,99
+Peter Ibbetson,1935,100
+Modern Times,1936,101
+Swing Time,1936,102
+Mr. Deeds Goes to Town,1936,103
+My Man Godfrey,1936,104
+The Story of a Cheat,1936,105
+Camille,1936,106
+Things to Come,1936,107
+Dodsworth,1936,108
+A Day in the Country,1936,109
+Sabotage,1936,110
+Pepe Le Moko,1937,111
+Make Way for Tomorrow,1937,112
+La Grande Illusion,1937,113
+Stella Dallas,1937,114
+Song At Midnight,1937,115
+Snow White and the Seven Dwarfs,1937,116
+Captains Courageous,1937,117
+The Awful Truth,1937,118
+The Life of Emile Zola,1937,119
+Jezebel,1938,120
+The Adventures of Robin Hood,1938,121
+Angels with Dirty Faces,1938,122
+The Baker’s Wife,1938,123
+Bringing Up Baby,1938,124
+Olympia Part 1,1938,125
+Olympia Part 2,1938,126
+The Lady Vanishes,1938,127
+Wuthering Heights,1939,128
+Mr. Smith Goes to Washington,1939,129
+Stagecoach,1939,130
+Only Angels Have Wings,1939,131
+Destry Rides Again,1939,132
+Gone With the Wind,1939,133
+Daybreak,1939,134
+Gunga Din,1939,135
+Ninotchka,1939,136
+The Wizard of Oz,1939,137
+The Rules of the Game,1939,138
+The Story of the Late Chrysanthemums,1939,139
+Babes in Arms,1939,140
+His Girl Friday,1940,141
+Fantasia,1940,142
+Rebecca,1940,143
+The Philadelphia Story,1940,144
+The Grapes of Wrath,1940,145
+The Mortal Storm,1940,146
+The Bank Dick,1940,147
+Pinocchio,1940,148
+"Dance, Girl, Dance",1940,149
+Citizen Kane,1941,150
+Sergeant York,1941,151
+The Lady Eve,1941,152
+The Wolf Man,1941,153
+High Sierra,1941,154
+How Green Was My Valley,1941,155
+Sullivan’s Travels,1941,156
+The Maltese Falcon,1941,157
+Dumbo,1941,158
+The Palm Beach Story,1942,159
+"Now, Voyager",1942,160
+To Be or Not to Be,1942,161
+The Magnificent Ambersons,1942,162
+Yankee Doodle Dandy,1942,163
+Mrs. Miniver,1942,164
+Casablanca,1942,165
+Cat People,1942,166
+Fires Were Started,1943,167
+The Ox-Bow Incident,1943,168
+The Life and Death of Colonel Blimp,1943,169
+Meshes of the Afternoon,1943,170
+The Seventh Victim,1943,171
+The Man in Grey,1943,172
+Shadow of a Doubt,1943,173
+Ossessione,1943,174
+I Walked with a Zombie,1943,175
+Laura,1944,176
+Meet Me in St. Louis,1944,177
+To Have and Have Not,1944,178
+Gaslight,1944,179
+Henry V,1944,180
+Double Indemnity,1944,181
+"Murder, My Sweet",1944,182
+Ivan the Terrible Part 1,1944,183
+Ivan the Terrible Part 2,1958,184
+Mildred Pierce,1945,185
+Detour,1945,186
+I Know Where I’m Going!,1945,187
+The Lost Weekend,1945,188
+Children of Paradise,1945,189
+The Battle of San Pietro,1945,190
+Brief Encounter,1946,191
+"Rome, Open City",1945,192
+Spellbound,1945,193
+The Best Years of Our Lives,1946,194
+Paisan,1946,195
+The Postman Always Rings Twice,1946,196
+Beauty and the Beast,1946,197
+The Killers,1946,198
+It’s a Wonderful Life,1946,199
+The Big Sleep,1946,200
+Gilda,1946,201
+A Matter of Life and Death,1946,202
+Great Expectations,1946,203
+My Darling Clementine,1946,204
+Notorious,1946,205
+Black Narcissus,1946,206
+The Stranger,1946,207
+Out of the Past,1947,208
+Monsieur Verdoux,1947,209
+Odd Man Out,1947,210
+The Ghost and Mrs. Muir,1947,211
+The Bicycle Thief,1948,212
+Letter from an Unknown Woman,1948,213
+Secret Beyond the Door,1948,214
+Force of Evil,1948,215
+Spring in a Small Town,1948,216
+Red River,1948,217
+Paleface,1948,218
+The Snake Pit,1948,219
+The Lady from Shanghai,1948,220
+Rope,1948,221
+The Red Shoes,1948,222
+The Treasure of the Sierra Madre,1948,223
+Louisiana Story,1948,224
+Gun Crazy,1949,225
+The Reckless Moment,1949,226
+White Heat,1949,227
+Adam’s Rib,1949,228
+The Heiress,1949,229
+The Third Man,1949,230
+Kind Hearts and Coronets,1949,231
+Whisky Galore!,1949,232
+On the Town,1949,233
+Orpheus,1949,234
+The Asphalt Jungle,1950,235
+Rashomon,1950,236
+All About Eve,1950,237
+Winchester ’73,1950,238
+Rio Grande,1950,239
+Sunset Blvd.,1950,240
+Los Olvidados,1950,241
+In a Lonely Place,1950,242
+Ace in the Hole,1951,243
+Strangers on a Train,1951,244
+A Streetcar Named Desire,1951,245
+An American in Paris,1951,246
+Pandora and the Flying Dutchman,1951,247
+The African Queen,1951,248
+A Place in the Sun,1951,249
+The Lavender Hill Mob,1951,250
+Diary of a Country Priest,1951,251
+The Day the Earth Stood Still,1951,252
+The Quiet Man,1952,253
+Forbidden Games,1952,254
+Europa ’51,1952,255
+Singin’ in the Rain,1952,256
+The Bad and the Beautiful,1952,257
+Ikiru,1952,258
+Umberto D,1952,259
+High Noon,1952,260
+The Golden Coach,1952,261
+Angel Face,1952,262
+The Big Sky,1952,263
+Summer with Monika,1953,264
+Pickup on South Street,1953,265
+The Band Wagon,1953,266
+M. Hulot’s Holiday,1953,267
+Madame De…,1953,268
+The Wages of Fear,1953,269
+The Bigamist,1953,270
+The Naked Spur,1953,271
+Tokyo Story,1953,272
+From Here to Eternity,1953,273
+Ugetsu,1953,274
+Voyage in Italy,1953,275
+Shane,1953,276
+Gentlemen Prefer Blondes,1953,277
+Roman Holiday,1953,278
+The Big Heat,1953,279
+Beat the Devil,1953,280
+On the Waterfront,1954,281
+La Strada,1954,282
+Les Diaboliques,1954,283
+A Star Is Born,1954,284
+Rear Window,1954,285
+Senso,1954,286
+Silver Lode,1954,287
+The Barefoot Contessa,1954,288
+Seven Samurai,1954,289
+Sansho the Bailiff,1954,290
+Carmen Jones,1954,291
+Johnny Guitar,1954,292
+Salt of the Earth,1954,293
+Seven Brides for Seven Brothers,1954,294
+Animal Farm,1954,295
+Lola Montes,1955,296
+Pather Panchali,1955,297
+Ordet,1955,298
+Marty,1955,299
+Artists and Models,1955,300
+Rebel without a Cause,1955,301
+The Mad Masters,1955,302
+Hill 24 Doesn’t Answer,1955,303
+Bad Day at Black Rock,1955,304
+Night and Fog,1955,305
+The Phenix City Story,1955,306
+The Man with the Golden Arm,1955,307
+Kiss Me Deadly,1955,308
+Guys and Dolls,1955,309
+The Night of the Hunter,1955,310
+The Ladykillers,1955,311
+Oklahoma!,1955,312
+Smiles of a Summer Night,1955,313
+Bob Le Flambeur,1955,314
+All That Heaven Allows,1956,315
+The Man from Laramie,1955,316
+The Ten Commandments,1956,317
+The Searchers,1956,318
+The Burmese Harp,1956,319
+Forbidden Planet,1956,320
+Written on the Wind,1956,321
+A Man Escaped,1956,322
+Bigger Than Life,1956,323
+Invasion of the Body Snatchers,1956,324
+Giant,1956,325
+The Wrong Man,1956,326
+High Society,1956,327
+The Man Who Knew Too Much,1956,328
+Throne of Blood,1957,329
+Paths of Glory,1957,330
+An Affair to Remember,1957,331
+The Seventh Seal,1957,332
+12 Angry Men,1957,333
+Wild Strawberries,1957,334
+The Incredible Shrinking Man,1957,335
+Gunfight at the O.K. Corral,1957,336
+The Nights of Cabiria,1957,337
+The Cranes Are Flying,1957,338
+Aparajito,1957,339
+The Bridge on the River Kwai,1957,340
+Sweet Smell of Success,1957,341
+Mother India,1957,342
+Touch of Evil,1958,343
+Gigi,1958,344
+The Defiant Ones,1958,345
+Man of the West,1958,346
+Vertigo,1958,347
+Ashes and Diamonds,1958,348
+Cairo Station,1958,349
+The Music Room,1958,350
+Mon Oncle,1958,351
+Some Came Running,1958,352
+Horror of Dracula,1958,353
+Some Like It Hot,1959,354
+North by Northwest,1959,355
+The 400 Blows,1959,356
+Pickpocket,1959,357
+Hiroshima Mon Amour,1959,358
+Ride Lonesome,1959,359
+Black Orpheus,1959,360
+Ben-Hur,1959,361
+Anatomy of a Murder,1959,362
+Shadows,1959,363
+The World of Apu,1959,364
+Rio Bravo,1959,365
+Floating Weeds,1959,366
+Eyes without a Face,1959,367
+Saturday Night and Sunday Morning,1960,368
+La Dolce Vita,1960,369
+The Hole,1959,370
+Rocco and His Brothers,1960,371
+L’Avventura,1960,372
+Breathless,1959,373
+Spartacus,1960,374
+The Apartment,1960,375
+The Housemaid,1960,376
+The Cloud-Capped Star,1960,377
+Psycho,1960,378
+Shoot the Piano Player,1960,379
+Peeping Tom,1960,380
+Black Sunday,1960,381
+La Joven,1960,382
+Splendor in the Grass,1961,383
+Viridiana,1961,384
+La Jetee,1961,385
+Breakfast at Tiffany’s,1961,386
+Lola,1961,387
+The Exiles,1961,388
+La Notte,1961,389
+West Side Story,1961,390
+The Hustler,1961,391
+The Ladies Man,1961,392
+Through a Glass Darkly,1961,393
+Chronicle of a Summer,1961,394
+Last Year at Marienbad,1961,395
+One-Eyed Jacks,1961,396
+Cleo from 5 to 7,1962,397
+Dog Star Man,1962,398
+My Life to Live,1962,399
+An Autumn Afternoon,1962,400
+Lolita,1962,401
+The Man Who Shot Liberty Valance,1962,402
+Heaven and Earth Magic,1962,403
+Lawrence of Arabia,1962,404
+To Kill a Mockingbird,1962,405
+The Given Word,1962,406
+L'Eclisse,1962,407
+Mondo Cane,1962,408
+The Exterminating Angel,1962,409
+Jules and Jim,1961,410
+The Manchurian Candidate,1962,411
+What Ever Happened to Baby Jane?,1962,412
+8 1/2,1963,413
+The Birds,1963,414
+Passenger,1963,415
+The Servant,1963,416
+Flaming Creatures,1963,417
+The House is Black,1963,418
+Hud,1963,419
+The Leopard,1963,420
+Barren Lives,1963,421
+Shock Corridor,1963,422
+Contempt,1963,423
+Blonde Cobra,1963,424
+The Cool World,1963,425
+The Nutty Professor,1963,426
+The Great Escape,1963,427
+Mediteranee,1963,428
+An Actor's Revenge,1963,429
+The Haunting,1963,430
+Winter Light,1963,431
+Goldfinger,1964,432
+My Fair Lady,1964,433
+The Red Desert,1964,434
+Woman in the Dunes,1964,435
+Shadows of Forgotten Ancestors,1964,436
+Scorpio Rising,1964,437
+Marnie,1964,438
+The Masque of the Red Death,1964,439
+Before the Revolution,1964,440
+Dr. Strangelove,1964,441
+"Black God, White Devil",1964,442
+A Hard Day's Night,1964,443
+The Umbrellas of Cherbourg,1964,444
+Gertrud,1964,445
+Mary Poppins,1964,446
+The Demon,1964,447
+The Gospel According to St. Matthew,1964,448
+The Shop on Main Street,1965,449
+Doctor Zhivago,1965,450
+The War Game,1965,451
+Tokyo Olympiad,1965,452
+Juliet of the Spirits,1965,453
+The Battle of Algiers,1965,454
+The Sound of Music,1965,455
+The Man Who Had His Hair Cut Short,1965,456
+Alphaville,1965,457
+Chimes at Midnight,1965,458
+"Faster, Pussy Cat! Kill! Kill!",1965,459
+Vinyl,1965,460
+The Sargossa Manuscript,1965,461
+Repulsion,1965,462
+Pierrot Le Fou,1965,463
+The Golden Thread,1965,464
+Hold Me While I'm Naked,1966,465
+Who's Afraid of Virginia Woolf?,1966,466
+Blow-Up,1966,467
+Daisies,1966,468
+Come Drink with Me,1966,469
+Seconds,1966,470
+"The Good, the Bad and the Ugly",1966,471
+Persona,1966,472
+Au Hazard Balthazar,1966,473
+Masculin-Feminin,1966,474
+Report,1967,475
+Two or Three Things I Know About Her,1967,476
+Belle de Jour,1967,477
+Cool Hand Luke,1967,478
+Playtime,1967,479
+The Red and the White,1967,480
+The Graduate,1967,481
+Point Blank,1967,482
+The Young Girls of Rochefort,1967,483
+Week End,1967,484
+The Godson,1967,485
+Wavelength,1967,486
+Closely Watched Trains,1967,487
+Earth Entranced,1967,488
+In the Heat of the Night,1967,489
+Marketta Lazarova,1967,490
+The Fireman's Ball,1967,491
+The Jungle Book,1967,492
+Bonnie and Clyde,1967,493
+Viy,1967,494
+Hombre,1967,495
+The Cow,1968,496
+Once Upon a Time in the West,1968,497
+Faces,1968,498
+Planet of the Apes,1968,499
+Rosemary's Baby,1968,500
+If...,1968,501
+David Holzman's Diary,1968,502
+Memories of Underdevelopment,1968,503
+High School,1968,504
+Hour of the Wolf,1968,505
+2001: A Space Odyssey,1968,506
+Night of the Living Dead,1968,507
+Targets,1968,508
+Shame,1968,509
+The Producers,1968,510
+Z,1969,511
+Satyricon,1969,512
+Andrei Rublev,1969,513
+The Color of Pomegranates,1969,514
+Midnight Cowboy,1969,515
+Butch Cassidy and the Sundance Kid,1969,516
+A Touch of Zen,1969,517
+Easy Rider,1969,518
+Kes,1969,519
+Lucia,1969,520
+In the Year of the Pig,1969,521
+The Wild Bunch,1969,522
+My Night at Maud's,1969,523
+Tristana,1970,524
+The Conformist,1969,525
+Le Boucher,1969,526
+El Topo,1970,527
+Five Easy Pieces,1970,528
+Deep End,1970,529
+The Spider's Stratagem,1970,530
+The Ear,1970,531
+Little Big Man,1970,532
+Patton,1970,533
+The Bird with The Crystal Plumage,1970,534
+M*A*S*H,1970,535
+Zabriskie Point,1970,536
+Performance,1970,537
+Woodstock,1970,538
+Gimme Shelter,1970,539
+The Garden of the Finzi-Continis,1970,540
+Dirty Harry,1971,541
+A Clockwork Orange,1971,542
+McCabe and Mrs. Miller,1971,543
+The Sorrow and the Pity,1971,544
+Willy Wonka and the Chocolate Factory,1971,545
+The Devils,1971,546
+The Hired Hand,1971,547
+W.R.: Mysteries of the Organism,1971,548
+Walkabout,1971,549
+Klute,1971,550
+Harold and Maude,1971,551
+The French Connection,1971,552
+Red Psalm,1971,553
+Get Carter,1971,554
+Shaft,1971,555
+Sweet Sweetback's Baadassss Song,1971,556
+The Last Picture Show,1971,557
+Wanda,1971,558
+Murmur of the Heart,1971,559
+Straw Dogs,1971,560
+Two-Lane Blacktop,1971,561
+Wake in Fright,1971,562
+Deliverance,1972,563
+"Aguirre, the Wrath of God",1972,564
+Cabaret,1972,565
+Solaris,1972,566
+Cries and Whispers,1972,567
+The Discreet Charm of the Bourgeoisie,1972,568
+The Godfather,1972,569
+Last Tango in Paris,1972,570
+The Bitter Tears of Petra Von Kant,1972,571
+Fat City,1972,572
+The Heartbreak Kid,1972,573
+Frenzy,1972,574
+Pink Flamingos,1972,575
+Sleuth,1972,576
+Superfly,1972,577
+The Sting,1973,578
+The Mother and the Whore,1973,579
+High Plains Drifter,1972,580
+Badlands,1973,581
+American Graffiti,1973,582
+Papillon,1973,583
+The Long Goodbye,1973,584
+The Wicker Man,1973,585
+Enter the Dragon,1973,586
+Serpico,1973,587
+Don't Look Now,1973,588
+Day for Night,1973,589
+Mean Streets,1973,590
+Sleeper,1973,591
+The Exorcist,1973,592
+F for Fake,1973,593
+Pat Garret and Billy the Kid,1973,594
+Turkish Delight,1973,595
+The Spirit of the Beehive,1973,596
+The Harder They Come,1973,597
+Fantastic Planet,1973,598
+Amarcord,1973,599
+The Towering Inferno,1974,600
+Bring Me the Head of Alfredo Garcia,1974,601
+Dersu Uzala,1974,602
+The Godfather Part II,1974,603
+The Conversation,1974,604
+Mirror,1974,605
+Chinatown,1974,606
+A Woman under the Influence,1974,607
+Young Frankenstein,1974,608
+The Texas Chain Saw Massacre,1974,609
+Blazing Saddles,1974,610
+Celine and Julie Go Boating,1974,611
+Ali: Fear Eats the Soul,1974,612
+Barry Lyndon,1975,613
+The Rocky Horror Picture Show,1975,614
+"Jeanne Dielman, 23 Quai Du Commerce, 1080 Bruxelles",1975,615
+The Traveling Players,1975,616
+Monty Python and the Holy Grail,1975,617
+The Wall,1975,618
+Dog Day Afternoon,1975,619
+One Flew over the Cuckoo's Nest,1975,620
+The Nail of Brightness,1975,621
+Fox and His Friends,1975,622
+Nashville,1975,623
+"Salo, or the 120 Days of Sodom",1975,624
+Cria!,1975,625
+Picnic at Hanging Rock,1975,626
+India Song,1975,627
+Jaws,1975,628
+The Man Who Fell to Earth,1976,629
+All the President's Men,1976,630
+The Outlaw Josey Wales,1976,631
+The Killing of a Chinese Bookie,1976,632
+Network,1976,633
+Carrie,1976,634
+Taxi Driver,1976,635
+Rocky,1976,636
+In the Realm of the Senses,1976,637
+1900,1976,638
+Ascent,1976,639
+Close Encounters of the Third Kind,1977,640
+The Last Wave,1977,641
+Star Wars,1977,642
+Storszek,1977,643
+Ceddo,1977,644
+The American Friend,1977,645
+Annie Hall,1977,646
+Suspiria,1977,647
+Sleeping Dogs,1977,648
+Last Chants for a Slow Dance,1977,649
+Man of Marble,1977,650
+Saturday Night Fever,1977,651
+Killer of Sheep,1977,652
+Eraserhead,1977,653
+Soldier of Orange,1977,654
+The Hills Have Eyes,1977,655
+Days of Heaven,1978,656
+Halloween,1978,657
+The Tree of Wooden Clogs,1978,658
+The Chant of Jimmie Blacksmith,1978,659
+The Deer Hunter,1978,660
+Dawn of the Dead,1978,661
+Up in Smoke,1978,662
+Grease,1978,663
+Shaolin Master Killer,1978,664
+Five Deadly Venoms,1978,665
+My Brilliant Career,1979,666
+The Marriage of Maria Braun,1979,667
+Nosferatu The Vampyre,1979,668
+Stalker,1979,669
+Life of Brian,1979,670
+Real Life,1979,671
+Breaking Away,1979,672
+Alien,1979,673
+Being There,1979,674
+Manhattan,1979,675
+Apocalypse Now,1979,676
+All That Jazz,1979,677
+The Muppet Movie,1979,678
+Christ Stopped at Eboli,1979,679
+Mad Max,1979,680
+The Tin Drum,1979,681
+The Jerk,1979,682
+Kramer vs. Kramer,1979,683

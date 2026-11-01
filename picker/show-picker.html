@@ -1,0 +1,169 @@
+<title>Shows I've Watched</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: TV-listings guide. Sticky control strip, then one band per decade (newest first), shows as a dense wrap of tickable rows. */
+:root {
+  --paper: #f3f4f7;
+  --card: #ffffff;
+  --ink: #18202e;
+  --muted: #5d6677;
+  --rule: #d8dce4;
+  --signal: #2346b8;
+  --signal-soft: #e3e9fb;
+  --onair: #c2410c;
+  --display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --body: "Public Sans", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #11151d; --card: #181e29; --ink: #e7eaf1; --muted: #98a1b3; --rule: #2a3241;
+  --signal: #8aa6ff; --signal-soft: #1f2a48; --onair: #fb8a4c; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #11151d; --card: #181e29; --ink: #e7eaf1; --muted: #98a1b3; --rule: #2a3241;
+  --signal: #8aa6ff; --signal-soft: #1f2a48; --onair: #fb8a4c; color-scheme: dark }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.45 }
+.wrap { max-width: 1100px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 64px }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper) }
+header h1 { font-family: var(--display); font-weight: 800; font-size: clamp(34px, 6vw, 54px); line-height: 1; letter-spacing: .01em; text-transform: uppercase; margin: 0; text-wrap: balance }
+header p { color: var(--muted); max-width: 62ch; margin: 10px 0 0 }
+.strip { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 2px solid var(--ink); padding-block: 14px 12px; margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center }
+.strip input[type=search] { flex: 1 1 220px; min-width: 0; font: inherit; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--card); color: var(--ink) }
+.strip input:focus-visible, button:focus-visible, textarea:focus-visible, label:focus-within { outline: 2px solid var(--signal); outline-offset: 2px }
+.count { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 13px; white-space: nowrap }
+.count b { font-size: 20px; color: var(--signal); font-weight: 500 }
+.status { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap }
+.status.err { color: var(--onair) }
+.jump { display: flex; flex-wrap: wrap; gap: 6px; width: 100% }
+.jump button { font-family: var(--mono); font-size: 12px; padding: 4px 9px; border: 1px solid var(--rule); background: var(--card); color: var(--ink); border-radius: 999px; cursor: pointer }
+.jump button[aria-pressed=true] { background: var(--ink); color: var(--paper); border-color: var(--ink) }
+section { margin-top: 30px }
+section h2 { display: flex; align-items: baseline; gap: 12px; font-family: var(--display); font-weight: 700; font-size: 30px; text-transform: uppercase; margin: 0 0 10px; letter-spacing: .02em }
+section h2 small { font-family: var(--mono); font-size: 12px; font-weight: 400; color: var(--muted); text-transform: none; letter-spacing: 0 }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px }
+.show { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 8px 10px; background: var(--card); border: 1px solid var(--rule); border-radius: 6px; cursor: pointer; min-width: 0 }
+.show:hover { border-color: var(--signal) }
+.show input { width: 17px; height: 17px; accent-color: var(--signal); margin: 0 }
+.show .name { min-width: 0; overflow-wrap: anywhere; font-weight: 500 }
+.show .yr { font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums }
+.show .meta { display: block; font-family: var(--mono); font-size: 11px; color: var(--muted); font-weight: 400 }
+.show .meta .hot { color: var(--onair) }
+.show.on { background: var(--signal-soft); border-color: var(--signal) }
+.show.locked { cursor: default }
+.extra { margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--ink) }
+.extra h2 { font-family: var(--display); font-size: 30px; text-transform: uppercase; margin: 0 0 6px }
+.extra p { color: var(--muted); margin: 0 0 10px }
+.extra textarea { width: 100%; box-sizing: border-box; min-height: 110px; font: inherit; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--card); color: var(--ink) }
+.empty { color: var(--muted); font-style: italic; padding: 20px 0 }
+@media (prefers-reduced-motion: no-preference) { .show { transition: background .12s, border-color .12s } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Shows I've Watched</h1>
+    <p>Tick every show you've seen. Your picks get searched first for spoken dates. They save automatically. Shows tagged <b>added</b> are already in.</p>
+  </header>
+
+  <div class="strip">
+    <input type="search" id="q" placeholder="Search shows" aria-label="Search shows">
+    <span class="count"><b id="n">0</b> ticked</span>
+    <span class="status" id="status">Connecting…</span>
+    <div class="jump" id="jump"></div>
+  </div>
+
+  <main id="list"></main>
+
+  <div class="extra">
+    <h2>Not in the list?</h2>
+    <p>Type any other shows you've watched, one per line.</p>
+    <textarea id="extra" placeholder="e.g. Mirzapur&#10;The Haunting of Bly Manor"></textarea>
+  </div>
+</div>
+
+<script>
+const SHOWS = [{"t":"Battlestar Galactica","y":2004,"n":6},{"t":"The Wire","y":2002,"n":6,"p":1},{"t":"Band of Brothers","y":2001,"n":5},{"t":"Breaking Bad","y":2008,"n":5,"p":1},{"t":"Dexter","y":2006,"n":5,"p":1},{"t":"Homicide: Life On The Street","y":1993,"n":5},{"t":"Sherlock","y":2010,"n":5,"p":1},{"t":"The Shield","y":2002,"n":5},{"t":"True Detective","y":2014,"n":5,"p":1},{"t":"30 Rock","y":2006,"n":4},{"t":"Arrested Development","y":2003,"n":4,"p":1},{"t":"Better Call Saul","y":2015,"n":4,"p":1},{"t":"Big Little Lies","y":2017,"n":4,"p":1},{"t":"Black Mirror","y":2011,"n":4,"p":1,"u":1},{"t":"BoJack Horseman","y":2014,"n":4,"p":1,"u":1},{"t":"Chernobyl","y":2019,"n":4,"p":1,"u":1},{"t":"Curb Your Enthusiasm","y":2000,"n":4},{"t":"Deadwood","y":2004,"n":4},{"t":"Fargo","y":2014,"n":4,"p":1},{"t":"Friday Night Lights","y":2006,"n":4},{"t":"Game of Thrones","y":2011,"n":4,"p":1,"u":1},{"t":"Hannibal","y":2013,"n":4,"p":1},{"t":"House","y":2004,"n":4},{"t":"Justified","y":2010,"n":4},{"t":"Line of Duty","y":2012,"n":4},{"t":"Lost","y":2004,"n":4,"p":1},{"t":"Louie","y":2010,"n":4},{"t":"Mad Men","y":2007,"n":4,"p":1},{"t":"Mindhunter","y":2017,"n":4,"p":1},{"t":"Narcos","y":2015,"n":4,"p":1},{"t":"Rick and Morty","y":2013,"n":4,"p":1},{"t":"Six Feet Under","y":2001,"n":4,"p":1},{"t":"Stranger Things","y":2016,"n":4,"p":1},{"t":"The Sopranos","y":1999,"n":4,"p":1},{"t":"The Twilight Zone","y":1959,"n":4},{"t":"The X-Files","y":1993,"n":4,"p":1},{"t":"Twin Peaks","y":1990,"n":4,"p":1},{"t":"Westworld","y":2016,"n":4,"p":1},{"t":"24","y":2001,"n":3,"p":1},{"t":"Boardwalk Empire","y":2010,"n":3,"p":1},{"t":"Cheers","y":1982,"n":3},{"t":"Community","y":2009,"n":3,"p":1},{"t":"Downton Abbey","y":2010,"n":3},{"t":"Firefly","y":2002,"n":3},{"t":"Fleabag","y":2016,"n":3,"p":1},{"t":"Frasier","y":1993,"n":3},{"t":"Freaks and Geeks","y":1999,"n":3},{"t":"Friends","y":1994,"n":3,"p":1,"u":1},{"t":"Hill Street Blues","y":1981,"n":3},{"t":"Homeland","y":2011,"n":3,"p":1},{"t":"How I Met Your Mother","y":2005,"n":3,"p":1},{"t":"I, Claudius","y":1976,"n":3},{"t":"It's Always Sunny in Philadelphia","y":2005,"n":3},{"t":"Law and Order","y":1990,"n":3},{"t":"Lonesome Dove","y":1989,"n":3},{"t":"Luther","y":2010,"n":3},{"t":"NYPD Blue","y":1993,"n":3},{"t":"Oz","y":1997,"n":3},{"t":"Parks and Recreation","y":2009,"n":3,"p":1},{"t":"Peaky Blinders","y":2013,"n":3,"p":1},{"t":"Seinfeld","y":1989,"n":3,"p":1},{"t":"South Park","y":1997,"n":3},{"t":"Star Trek","y":1966,"n":3},{"t":"Star Trek: The Next Generation","y":1987,"n":3},{"t":"The Bridge","y":2011,"n":3},{"t":"The Expanse","y":2015,"n":3},{"t":"The Good Place","y":2016,"n":3,"p":1},{"t":"The Good Wife","y":2009,"n":3},{"t":"The Office (UK)","y":2001,"n":3},{"t":"The Office (US)","y":2005,"n":3},{"t":"The Queen's Gambit","y":2020,"n":3,"p":1},{"t":"The Simpsons","y":1989,"n":3},{"t":"The West Wing","y":1999,"n":3},{"t":"1883","y":2021,"n":2},{"t":"Alfred Hitchcock Presents","y":1955,"n":2},{"t":"American Crime Story","y":2016,"n":2},{"t":"Atlanta","y":2016,"n":2,"p":1},{"t":"Better Off Ted","y":2009,"n":2},{"t":"Blue Bloods","y":2010,"n":2},{"t":"Bones","y":2005,"n":2},{"t":"Bosch","y":2014,"n":2},{"t":"Boston Legal","y":2004,"n":2},{"t":"Broadchurch","y":2013,"n":2},{"t":"Brooklyn Nine-Nine","y":2013,"n":2,"p":1},{"t":"Buffy The Vampire Slayer","y":1997,"n":2,"p":1},{"t":"CSI: Crime Scene Investigation","y":2000,"n":2},{"t":"Castle","y":2009,"n":2},{"t":"Cowboy Bebop","y":1998,"n":2},{"t":"Criminal Minds","y":2005,"n":2},{"t":"Dopesick","y":2021,"n":2},{"t":"ER","y":1994,"n":2},{"t":"Entourage","y":2004,"n":2},{"t":"Farscape","y":1999,"n":2},{"t":"Fawlty Towers","y":1975,"n":2},{"t":"Fringe","y":2008,"n":2,"p":1},{"t":"From the Earth to the Moon","y":1998,"n":2},{"t":"Futurama","y":1999,"n":2},{"t":"Generation Kill","y":2008,"n":2},{"t":"Get Smart","y":1965,"n":2},{"t":"Gilmore Girls","y":2000,"n":2,"p":1},{"t":"I Love Lucy","y":1951,"n":2},{"t":"Insecure","y":2016,"n":2},{"t":"Jesus of Nazareth","y":1977,"n":2},{"t":"Law and Order: Special Victims Unit","y":1999,"n":2},{"t":"M*A*S*H","y":1972,"n":2},{"t":"Mare of Easttown","y":2021,"n":2,"p":1},{"t":"Modern Family","y":2009,"n":2,"p":1},{"t":"Monty Python's Flying Circus","y":1969,"n":2},{"t":"NCIS","y":2003,"n":2},{"t":"Northern Exposure","y":1990,"n":2},{"t":"Ozark","y":2017,"n":2,"p":1},{"t":"Peep Show","y":2003,"n":2},{"t":"Planet Earth","y":2006,"n":2},{"t":"Pose","y":2018,"n":2},{"t":"Pride and Prejudice","y":1995,"n":2},{"t":"Quantum Leap","y":1989,"n":2},{"t":"Red Dwarf","y":1988,"n":2},{"t":"Rome","y":2005,"n":2},{"t":"Schitt's Creek","y":2015,"n":2},{"t":"Scrubs","y":2001,"n":2,"p":1},{"t":"Sex And The City","y":1998,"n":2},{"t":"Soap","y":1977,"n":2},{"t":"Sons Of Anarchy","y":2008,"n":2},{"t":"Spartacus: Gods of the Arena","y":2011,"n":2},{"t":"Star Trek: Deep Space Nine","y":1993,"n":2},{"t":"Steins;Gate","y":2011,"n":2},{"t":"Succession","y":2018,"n":2,"p":1},{"t":"The Americans","y":2013,"n":2},{"t":"The Andy Griffith Show","y":1960,"n":2},{"t":"The Big Bang Theory","y":2007,"n":2,"p":1},{"t":"The Closer","y":2005,"n":2},{"t":"The Comeback","y":2005,"n":2},{"t":"The Crown","y":2016,"n":2,"p":1},{"t":"The Dick Van Dyke Show","y":1961,"n":2},{"t":"The Handmaid's Tale","y":2017,"n":2},{"t":"The Larry Sanders Show","y":1992,"n":2},{"t":"The Leftovers","y":2014,"n":2,"p":1},{"t":"The Marvelous Mrs. Maisel","y":2017,"n":2},{"t":"The OA","y":2016,"n":2},{"t":"The Offer","y":2022,"n":2},{"t":"The Orville","y":2017,"n":2},{"t":"The Thick of It","y":2005,"n":2},{"t":"Twin Peaks: The Return","y":2017,"n":2},{"t":"Veep","y":2012,"n":2},{"t":"When They See Us","y":2019,"n":2},{"t":"1923","y":2022,"n":1},{"t":"3-gatsu no Lion 2nd Season","y":2017,"n":1},{"t":"86 Part 2","y":2021,"n":1},{"t":"Abbott Elementary","y":2021,"n":1,"p":1},{"t":"Adventure Time","y":2010,"n":1},{"t":"Africa","y":2013,"n":1},{"t":"Angel","y":1999,"n":1},{"t":"Anne of Green Gables","y":1985,"n":1},{"t":"Anne with an E","y":2017,"n":1},{"t":"Apocalypse: The Second World War","y":2009,"n":1},{"t":"Archer","y":2009,"n":1},{"t":"Ashita no Joe 2","y":1980,"n":1},{"t":"Avatar: The Last Airbender","y":2005,"n":1},{"t":"Babylon Berlin","y":2017,"n":1},{"t":"Big Mouth","y":2017,"n":1},{"t":"Black Clover 2nd Season","y":2026,"n":1},{"t":"Blackadder","y":1983,"n":1},{"t":"Bleach: Sennen Kessen-hen","y":2022,"n":1},{"t":"Bleach: Sennen Kessen-hen - Kashin-tan","y":2026,"n":1},{"t":"Bleach: Sennen Kessen-hen - Ketsubetsu-tan","y":2023,"n":1},{"t":"Bleach: Sennen Kessen-hen - Soukoku-tan","y":2024,"n":1},{"t":"Blue Mountain State","y":2010,"n":1},{"t":"Blue Planet II","y":2017,"n":1},{"t":"Bob's Burgers","y":2011,"n":1},{"t":"Bocchi the Rock!","y":2022,"n":1},{"t":"Boku no Hero Academia: Final Season","y":2025,"n":1},{"t":"Boku no Kokoro no Yabai Yatsu 2nd Season","y":2024,"n":1},{"t":"Borgen","y":2010,"n":1},{"t":"Bosch: Legacy","y":2022,"n":1},{"t":"Boy Meets World","y":1993,"n":1},{"t":"Brideshead Revisited","y":1981,"n":1},{"t":"Broad City","y":2014,"n":1},{"t":"Bungou Stray Dogs 5th Season","y":2023,"n":1},{"t":"Call My Agent!","y":2015,"n":1},{"t":"Catastrophe","y":2015,"n":1},{"t":"Chi. Chikyuu no Undou ni Tsuite","y":2024,"n":1},{"t":"Chicago P.D.","y":2014,"n":1},{"t":"Chiikawa","y":2022,"n":1},{"t":"Clannad: After Story","y":2008,"n":1},{"t":"Clone High","y":2002,"n":1},{"t":"Cobra Kai","y":2018,"n":1,"p":1},{"t":"Code Geass: Hangyaku no Lelouch","y":2006,"n":1},{"t":"Code Geass: Hangyaku no Lelouch R2","y":2008,"n":1},{"t":"Cold Case","y":2003,"n":1},{"t":"Cosmos","y":1980,"n":1},{"t":"Cosmos: A Spacetime Odyssey","y":2014,"n":1},{"t":"Cosmos: Possible Worlds","y":2020,"n":1},{"t":"Cracker","y":1993,"n":1},{"t":"Crazy Ex-Girlfriend","y":2015,"n":1},{"t":"Daredevil","y":2015,"n":1,"p":1},{"t":"Daria","y":1997,"n":1},{"t":"Dark","y":2017,"n":1,"p":1,"u":1},{"t":"Das Boot","y":1985,"n":1},{"t":"Death Note","y":2006,"n":1},{"t":"Dekalog","y":1989,"n":1},{"t":"Derry Girls","y":2018,"n":1},{"t":"Detectorists","y":2014,"n":1},{"t":"Dexter's Laboratory","y":1996,"n":1},{"t":"Doctor Who","y":2005,"n":1,"p":1},{"t":"Dragnet","y":1949,"n":1},{"t":"Dungeon Meshi","y":2024,"n":1},{"t":"Eastbound & Down","y":2009,"n":1},{"t":"Elementary","y":2012,"n":1},{"t":"Endeavour","y":2012,"n":1},{"t":"Enlightened","y":2011,"n":1},{"t":"Extras","y":2005,"n":1},{"t":"F Is for Family","y":2015,"n":1},{"t":"Family Guy","y":1999,"n":1},{"t":"Fate/Zero 2nd Season","y":2012,"n":1},{"t":"Father Ted","y":1995,"n":1},{"t":"Flight of the Conchords","y":2007,"n":1},{"t":"Fresh Off the Boat","y":2015,"n":1},{"t":"Frozen Planet","y":2011,"n":1},{"t":"Fruits Basket 2nd Season","y":2020,"n":1},{"t":"Fruits Basket: The Final","y":2021,"n":1},{"t":"Fullmetal Alchemist: Brotherhood","y":2009,"n":1},{"t":"Galavant","y":2015,"n":1},{"t":"Garth Marenghi's Darkplace","y":2004,"n":1},{"t":"Ghosts","y":2019,"n":1},{"t":"Gintama","y":2006,"n":1},{"t":"Gintama': Enchousen","y":2012,"n":1},{"t":"Gintama. Shirogane no Tamashii-hen","y":2018,"n":1},{"t":"Gintama. Shirogane no Tamashii-hen - Kouhan-sen","y":2018,"n":1},{"t":"Girls","y":2012,"n":1},{"t":"Grace and Frankie","y":2015,"n":1},{"t":"Great Teacher Onizuka","y":1999,"n":1},{"t":"Greatest Events of WWII in Colour","y":2019,"n":1},{"t":"Grey's Anatomy","y":2005,"n":1,"p":1},{"t":"Haikyuu!! Karasuno Koukou vs. Shiratorizawa Gakuen Koukou","y":2016,"n":1},{"t":"Haikyuu!! Second Season","y":2015,"n":1},{"t":"Haikyuu!! To the Top Part 2","y":2020,"n":1},{"t":"Hajime no Ippo","y":2000,"n":1},{"t":"Hajime no Ippo: New Challenger","y":2009,"n":1},{"t":"Hajime no Ippo: Rising","y":2013,"n":1},{"t":"Halt and Catch Fire","y":2014,"n":1},{"t":"Happy Valley","y":2014,"n":1},{"t":"Harvey Birdman, Attorney at Law","y":2000,"n":1},{"t":"Hibike! Euphonium 3","y":2024,"n":1},{"t":"High Maintenance","y":2016,"n":1},{"t":"Home Movies","y":1999,"n":1},{"t":"Horace and Pete","y":2016,"n":1},{"t":"House of Cards","y":1990,"n":1,"p":1},{"t":"House of the Dragon","y":2022,"n":1,"p":1},{"t":"Human Planet","y":2011,"n":1},{"t":"Hunter","y":1984,"n":1},{"t":"Hunter x Hunter (2011)","y":2011,"n":1},{"t":"I May Destroy You","y":2020,"n":1},{"t":"I'm Alan Partridge","y":1997,"n":1},{"t":"Ikoku Nikki","y":2026,"n":1},{"t":"Inside No 9","y":2014,"n":1},{"t":"Invincible","y":2021,"n":1,"p":1},{"t":"It's a Sin","y":2021,"n":1},{"t":"JoJo no Kimyou na Bouken Part 5: Ougon no Kaze","y":2018,"n":1},{"t":"John Adams","y":2008,"n":1},{"t":"Jujutsu Kaisen 2nd Season","y":2023,"n":1},{"t":"Jujutsu Kaisen: Shimetsu Kaiyuu - Zenpen","y":2026,"n":1},{"t":"Kaguya-sama wa Kokurasetai: Ultra Romantic","y":2022,"n":1},{"t":"Kaguya-sama wa Kokurasetai? Tensai-tachi no Renai Zunousen","y":2020,"n":1},{"t":"Kenpuu Denki Berserk","y":1997,"n":1},{"t":"Killing Eve","y":2018,"n":1,"p":1},{"t":"Kimetsu no Yaiba: Yuukaku-hen","y":2021,"n":1},{"t":"Kingdom 3rd Season","y":2020,"n":1},{"t":"Kingdom 4th Season","y":2022,"n":1},{"t":"Kingdom 5th Season","y":2024,"n":1},{"t":"Kingdom 6th Season","y":2025,"n":1},{"t":"Kojak","y":1973,"n":1},{"t":"Kusuriya no Hitorigoto","y":2023,"n":1},{"t":"Kusuriya no Hitorigoto 2nd Season","y":2025,"n":1},{"t":"Kusuriya no Hitorigoto 3rd Season","y":2026,"n":1},{"t":"Legit","y":2013,"n":1},{"t":"Lie to Me","y":2009,"n":1},{"t":"Life","y":2009,"n":1},{"t":"Life On Mars","y":2006,"n":1},{"t":"Life in Pieces","y":2015,"n":1},{"t":"Long Way Round","y":2004,"n":1},{"t":"Lucifer","y":2016,"n":1,"p":1},{"t":"Made in Abyss","y":2017,"n":1},{"t":"Made in Abyss: Retsujitsu no Ougonkyou","y":2022,"n":1},{"t":"Malcolm in the Middle","y":2000,"n":1,"p":1},{"t":"Married... with Children","y":1987,"n":1},{"t":"Master of None","y":2015,"n":1},{"t":"Matlock","y":2024,"n":1},{"t":"Mob Psycho 100 II","y":2019,"n":1},{"t":"Mob Psycho 100 III","y":2022,"n":1},{"t":"Money Heist","y":2017,"n":1,"p":1},{"t":"Monk","y":2002,"n":1},{"t":"Monogatari Series: Second Season","y":2013,"n":1},{"t":"Monster","y":2004,"n":1},{"t":"Mr. Robot","y":2015,"n":1,"p":1},{"t":"Murder, She Wrote","y":1984,"n":1},{"t":"Mushishi","y":2005,"n":1},{"t":"Mushishi Zoku Shou","y":2014,"n":1},{"t":"Mushishi Zoku Shou 2nd Season","y":2014,"n":1},{"t":"Mushoku Tensei III: Isekai Ittara Honki Dasu","y":2026,"n":1},{"t":"Mushoku Tensei: Isekai Ittara Honki Dasu Part 2","y":2021,"n":1},{"t":"Nana","y":2006,"n":1},{"t":"Natsume Yuujinchou Go","y":2016,"n":1},{"t":"Natsume Yuujinchou Roku","y":2017,"n":1},{"t":"Natsume Yuujinchou San","y":2011,"n":1},{"t":"Natsume Yuujinchou Shi","y":2012,"n":1},{"t":"Natsume Yuujinchou Shichi","y":2024,"n":1},{"t":"New Girl","y":2011,"n":1},{"t":"NewsRadio","y":1995,"n":1},{"t":"Nippon Sangoku","y":2026,"n":1},{"t":"Normal People","y":2020,"n":1,"p":1},{"t":"North & South","y":2004,"n":1},{"t":"Not Me","y":2021,"n":1},{"t":"O.J.: Made in America","y":2016,"n":1},{"t":"Odd Taxi","y":2021,"n":1},{"t":"One Day at a Time","y":2017,"n":1},{"t":"One Piece","y":1999,"n":1},{"t":"One Strange Rock","y":2018,"n":1},{"t":"Only Fools And Horses","y":1981,"n":1},{"t":"Orange Is the New Black","y":2013,"n":1,"p":1},{"t":"Over the Garden Wall","y":2014,"n":1},{"t":"Party Down","y":2009,"n":1},{"t":"Perry Mason","y":1957,"n":1},{"t":"Person of Interest","y":2011,"n":1},{"t":"Ping Pong the Animation","y":2014,"n":1},{"t":"Planet Earth II","y":2016,"n":1},{"t":"Please Like Me","y":2013,"n":1},{"t":"Prime Suspect","y":1991,"n":1},{"t":"Psych","y":2006,"n":1},{"t":"Raising Hope","y":2010,"n":1},{"t":"Re:Zero kara Hajimeru Isekai Seikatsu 4th Season","y":2026,"n":1},{"t":"Regular Show","y":2009,"n":1},{"t":"Reno 911!","y":2003,"n":1},{"t":"Reservation Dogs","y":2021,"n":1},{"t":"Resident Alien","y":2021,"n":1},{"t":"Rocko's Modern Life","y":1993,"n":1},{"t":"RuPaul's Drag Race","y":2009,"n":1},{"t":"Rurouni Kenshin: Trust and Betrayal","y":1999,"n":1},{"t":"Sanford and Son","y":1972,"n":1},{"t":"Seven Worlds One Planet","y":2019,"n":1},{"t":"Severance","y":2022,"n":1,"p":1,"u":1},{"t":"Shameless","y":2011,"n":1,"p":1},{"t":"Shigatsu wa Kimi no Uso","y":2014,"n":1},{"t":"Shingeki no Kyojin","y":2013,"n":1},{"t":"Shingeki no Kyojin Season 2","y":2017,"n":1},{"t":"Shingeki no Kyojin Season 3","y":2018,"n":1},{"t":"Shingeki no Kyojin Season 3 Part 2","y":2019,"n":1},{"t":"Shingeki no Kyojin: The Final Season","y":2020,"n":1},{"t":"Shingeki no Kyojin: The Final Season Part 2","y":2022,"n":1},{"t":"Shouwa Genroku Rakugo Shinjuu","y":2016,"n":1},{"t":"Shouwa Genroku Rakugo Shinjuu: Sukeroku Futatabi-hen","y":2017,"n":1},{"t":"Show Me a Hero","y":2015,"n":1},{"t":"Silicon Valley","y":2014,"n":1},{"t":"Slam Dunk","y":1993,"n":1},{"t":"Small Axe","y":2020,"n":1},{"t":"Solar Opposites","y":2020,"n":1},{"t":"Sousou no Frieren","y":2023,"n":1},{"t":"Sousou no Frieren 2nd Season","y":2026,"n":1},{"t":"Southland","y":2009,"n":1},{"t":"Spaced","y":1999,"n":1},{"t":"Spartacus","y":2010,"n":1},{"t":"SpongeBob SquarePants","y":1999,"n":1},{"t":"Steins;Gate 0","y":2018,"n":1},{"t":"Steven Universe","y":2013,"n":1},{"t":"Suits","y":2011,"n":1,"p":1},{"t":"Ted Lasso","y":2020,"n":1,"p":1},{"t":"Tengen Toppa Gurren Lagann","y":2007,"n":1},{"t":"That '70s Show","y":1998,"n":1,"p":1},{"t":"The Addams Family","y":1964,"n":1},{"t":"The Adventures of Pete & Pete","y":1992,"n":1},{"t":"The Adventures of Sherlock Holmes","y":1984,"n":1},{"t":"The Amazing World of Gumball","y":2011,"n":1},{"t":"The Beatles Anthology","y":1995,"n":1},{"t":"The Beatles: Get Back","y":2021,"n":1},{"t":"The Boondocks","y":2005,"n":1},{"t":"The Bureau","y":2015,"n":1},{"t":"The Century of the Self","y":2002,"n":1},{"t":"The Civil War","y":1990,"n":1},{"t":"The Critic","y":1994,"n":1},{"t":"The Fresh Prince of Bel-Air","y":1990,"n":1},{"t":"The Godfather Saga","y":1977,"n":1},{"t":"The Goldbergs","y":2013,"n":1},{"t":"The Good Fight","y":2017,"n":1},{"t":"The Haunting of Hill House","y":2018,"n":1,"p":1},{"t":"The Killing","y":2011,"n":1},{"t":"The Killing (Denmark)","y":2007,"n":1},{"t":"The Knick","y":2014,"n":1},{"t":"The Last Dance","y":2020,"n":1},{"t":"The Last of Us","y":2023,"n":1,"p":1},{"t":"The League","y":2009,"n":1},{"t":"The Life & Times of Tim","y":2008,"n":1},{"t":"The Memoirs of Sherlock Holmes","y":1994,"n":1},{"t":"The Mentalist","y":2008,"n":1},{"t":"The Newsroom","y":2012,"n":1},{"t":"The Night Of","y":2016,"n":1},{"t":"The Office","y":2005,"n":1,"p":1},{"t":"The Punisher","y":2017,"n":1},{"t":"The Rookie","y":2018,"n":1},{"t":"The Tick","y":1994,"n":1},{"t":"The Underground Railroad","y":2021,"n":1},{"t":"The Untold History of the United States","y":2012,"n":1},{"t":"The Untouchables","y":1959,"n":1},{"t":"The Vietnam War","y":2017,"n":1},{"t":"The Walking Dead","y":2010,"n":1,"p":1},{"t":"The War","y":2007,"n":1},{"t":"The Young Pope","y":2016,"n":1},{"t":"This Is England '86, '88 and '90","y":2010,"n":1},{"t":"This Is Us","y":2016,"n":1},{"t":"Treme","y":2010,"n":1},{"t":"Ugly Americans","y":2010,"n":1},{"t":"Uma Musume: Cinderella Gray","y":2025,"n":1},{"t":"Uma Musume: Cinderella Gray Part 2","y":2025,"n":1},{"t":"Undeclared","y":2001,"n":1},{"t":"Utopia (UK)","y":2013,"n":1},{"t":"Veronica Mars","y":2004,"n":1,"p":1},{"t":"Vikings","y":2013,"n":1,"p":1},{"t":"Vinland Saga","y":2019,"n":1},{"t":"Vinland Saga Season 2","y":2023,"n":1},{"t":"Violet Evergarden","y":2018,"n":1},{"t":"Watchmen","y":2019,"n":1},{"t":"We Bare Bears","y":2014,"n":1},{"t":"Weeds","y":2005,"n":1},{"t":"Wentworth","y":2013,"n":1},{"t":"Wilfred","y":2011,"n":1},{"t":"Workaholics","y":2011,"n":1},{"t":"World War II in Colour","y":2009,"n":1},{"t":"Yellowstone","y":2018,"n":1},{"t":"Yojouhan Shinwa Taikei","y":2010,"n":1},{"t":"You're the Worst","y":2014,"n":1},{"t":"Zoku Natsume Yuujinchou","y":2009,"n":1},{"t":"[Oshi no Ko] 3rd Season","y":2026,"n":1},{"t":"13 Reasons Why","y":2017,"n":0,"p":1,"u":1},{"t":"3 Body Problem","y":2024,"n":0,"p":1},{"t":"Adolescence","y":2025,"n":0,"p":1,"u":1},{"t":"Agents of S.H.I.E.L.D.","y":2013,"n":0,"p":1},{"t":"Alias","y":2001,"n":0,"p":1},{"t":"Alice in Borderland","y":2020,"n":0,"p":1},{"t":"Andor","y":2022,"n":0,"p":1},{"t":"Arcane","y":2021,"n":0,"p":1},{"t":"Arrow","y":2012,"n":0,"p":1},{"t":"Baby Reindeer","y":2024,"n":0,"p":1,"u":1},{"t":"Barry","y":2018,"n":0,"p":1},{"t":"Bridgerton","y":2020,"n":0,"p":1},{"t":"Castlevania","y":2017,"n":0,"p":1},{"t":"Charmed","y":1998,"n":0,"p":1},{"t":"Dark Matter","y":2024,"n":0,"p":1},{"t":"Delhi Crime","y":2019,"n":0,"p":1},{"t":"Desperate Housewives","y":2004,"n":0,"p":1},{"t":"Elite","y":2018,"n":0,"p":1},{"t":"Emily in Paris","y":2020,"n":0,"p":1},{"t":"Euphoria","y":2019,"n":0,"p":1},{"t":"Fallout","y":2024,"n":0,"p":1},{"t":"Foundation","y":2021,"n":0,"p":1},{"t":"Ginny & Georgia","y":2021,"n":0,"p":1},{"t":"Glee","y":2009,"n":0,"p":1},{"t":"Gossip Girl","y":2007,"n":0,"p":1},{"t":"Gotham","y":2014,"n":0,"p":1},{"t":"Heroes","y":2006,"n":0,"p":1},{"t":"Jessica Jones","y":2015,"n":0,"p":1},{"t":"Kota Factory","y":2019,"n":0,"p":1},{"t":"Locke & Key","y":2020,"n":0,"p":1},{"t":"Loki","y":2021,"n":0,"p":1,"u":1},{"t":"Love, Death & Robots","y":2019,"n":0,"p":1},{"t":"Lupin","y":2021,"n":0,"p":1},{"t":"Maid","y":2021,"n":0,"p":1,"u":1},{"t":"Midnight Mass","y":2021,"n":0,"p":1},{"t":"Mirzapur","y":2018,"n":0,"p":1},{"t":"Never Have I Ever","y":2020,"n":0,"p":1},{"t":"One Tree Hill","y":2003,"n":0,"p":1},{"t":"Only Murders in the Building","y":2021,"n":0,"p":1},{"t":"Outer Banks","y":2020,"n":0,"p":1},{"t":"Paatal Lok","y":2020,"n":0,"p":1},{"t":"Panchayat","y":2020,"n":0,"p":1},{"t":"Pretty Little Liars","y":2010,"n":0,"p":1},{"t":"Prison Break","y":2005,"n":0,"p":1},{"t":"Reacher","y":2022,"n":0,"p":1},{"t":"Riverdale","y":2017,"n":0,"p":1},{"t":"Sacred Games","y":2018,"n":0,"p":1},{"t":"Scam 1992","y":2020,"n":0,"p":1},{"t":"Sex Education","y":2019,"n":0,"p":1},{"t":"Shadow and Bone","y":2021,"n":0,"p":1},{"t":"Sharp Objects","y":2018,"n":0,"p":1},{"t":"Shogun","y":2024,"n":0,"p":1},{"t":"Silo","y":2023,"n":0,"p":1,"u":1},{"t":"Slow Horses","y":2022,"n":0,"p":1},{"t":"Smallville","y":2001,"n":0,"p":1},{"t":"Squid Game","y":2021,"n":0,"p":1},{"t":"Supernatural","y":2005,"n":0,"p":1},{"t":"Teen Wolf","y":2011,"n":0,"p":1},{"t":"The 100","y":2014,"n":0,"p":1},{"t":"The Bear","y":2022,"n":0,"p":1},{"t":"The Boys","y":2019,"n":0,"p":1},{"t":"The Family Man","y":2019,"n":0,"p":1},{"t":"The Flash","y":2014,"n":0,"p":1},{"t":"The Mandalorian","y":2019,"n":0,"p":1},{"t":"The Morning Show","y":2019,"n":0,"p":1},{"t":"The Night Agent","y":2023,"n":0,"p":1},{"t":"The O.C.","y":2003,"n":0,"p":1},{"t":"The Originals","y":2013,"n":0,"p":1},{"t":"The Penguin","y":2024,"n":0,"p":1,"u":1},{"t":"The Rings of Power","y":2022,"n":0,"p":1},{"t":"The Sandman","y":2022,"n":0,"p":1},{"t":"The Umbrella Academy","y":2019,"n":0,"p":1},{"t":"The Vampire Diaries","y":2009,"n":0,"p":1,"u":1},{"t":"The White Lotus","y":2021,"n":0,"p":1},{"t":"The Witcher","y":2019,"n":0,"p":1},{"t":"Two and a Half Men","y":2003,"n":0,"p":1},{"t":"Wandavision","y":2021,"n":0,"p":1},{"t":"Wednesday","y":2022,"n":0,"p":1},{"t":"Yellowjackets","y":2021,"n":0,"p":1},{"t":"You","y":2018,"n":0,"p":1}];
+const keyOf = s => s.t + "|" + s.y;
+const picked = new Set(SHOWS.filter(s => s.u).map(keyOf));
+let filter = "all", query = "", ref = null, saveTimer = null, saving = Promise.resolve();
+const $ = id => document.getElementById(id);
+const status = (t, err) => { $("status").textContent = t; $("status").className = "status" + (err ? " err" : "") };
+
+const decades = [...new Set(SHOWS.map(s => Math.floor(s.y / 10) * 10))].sort((a, b) => b - a);
+const label = d => d < 1960 ? "Before 1960" : d + "s";
+const bucket = s => Math.max(1950, Math.floor(s.y / 10) * 10);
+const jumpOpts = [["all", "All"], ["ticked", "Ticked"], ...[...new Set(SHOWS.map(bucket))].sort((a, b) => b - a).map(d => [String(d), label(d)])];
+$("jump").innerHTML = jumpOpts.map(([v, l]) => `<button type="button" data-f="${v}" aria-pressed="${v === filter}">${l}</button>`).join("");
+$("jump").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  filter = b.dataset.f;
+  [...$("jump").children].forEach(x => x.setAttribute("aria-pressed", x === b));
+  render();
+});
+
+function esc(s) { return s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])) }
+
+function render() {
+  const q = query.trim().toLowerCase();
+  const groups = {};
+  for (const s of SHOWS) {
+    if (q && !s.t.toLowerCase().includes(q)) continue;
+    if (filter === "ticked" && !picked.has(keyOf(s))) continue;
+    if (/^\d+$/.test(filter) && bucket(s) !== +filter) continue;
+    (groups[bucket(s)] ||= []).push(s);
+  }
+  const ds = Object.keys(groups).map(Number).sort((a, b) => b - a);
+  $("list").innerHTML = ds.length ? ds.map(d => `
+    <section><h2>${label(d)} <small>${groups[d].length} shows</small></h2>
+    <div class="grid">${groups[d].map(s => {
+      const k = keyOf(s), on = picked.has(k);
+      const meta = s.u ? "added" : s.n ? `on ${s.n} list${s.n > 1 ? "s" : ""}` : "popular";
+      return `<label class="show${on ? " on" : ""}${s.u ? " locked" : ""}">
+        <input type="checkbox" data-k="${esc(k)}" ${on ? "checked" : ""} ${s.u ? "disabled" : ""}>
+        <span class="name">${esc(s.t)}<span class="meta">${s.n >= 4 ? `<span class="hot">${meta}</span>` : meta}</span></span>
+        <span class="yr">${s.y}</span></label>`;
+    }).join("")}</div></section>`).join("") : `<p class="empty">No shows match “${esc(query)}”. Add it in the box below.</p>`;
+  $("n").textContent = picked.size;
+}
+
+$("list").addEventListener("change", e => {
+  const k = e.target.dataset.k; if (!k) return;
+  e.target.checked ? picked.add(k) : picked.delete(k);
+  e.target.closest(".show").classList.toggle("on", e.target.checked);
+  $("n").textContent = picked.size;
+  queueSave();
+});
+$("q").addEventListener("input", e => { query = e.target.value; render() });
+$("extra").addEventListener("input", queueSave);
+
+function queueSave() {
+  if (!ref) { status("Not saved: open this page signed in to claude.ai", true); return }
+  status("Saving…");
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    const body = { ticked: [...picked], extra: $("extra").value };
+    saving = saving.then(() => ref.set(body)).then(() => status("Saved"), () => status("Couldn't save. Your ticks are still on screen; tick again to retry.", true));
+  }, 700);
+}
+
+render();
+
+(async () => {
+  const timer = setTimeout(() => { if (!ref) status("Not connected: ticks won't save", true) }, 10000);
+  const db = await window.claude?.use?.("db");
+  if (!db) { clearTimeout(timer); status("Not connected: ticks won't save", true); return }
+  try {
+    const r = db.doc("picks/main");
+    const snap = await r.get();
+    clearTimeout(timer);
+    if (snap.exists) {
+      const d = snap.data();
+      (d.ticked || []).forEach(k => picked.add(k));
+      $("extra").value = d.extra || "";
+      render();
+    }
+    ref = r;
+    status(snap.exists ? "Saved" : "Ready");
+  } catch (e) { clearTimeout(timer); status("Couldn't load saved picks", true) }
+})();
+</script>

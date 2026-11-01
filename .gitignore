@@ -1,0 +1,19 @@
+# downloaded subtitle transcripts (copyrighted; re-download with scripts/fetch.py)
+transcripts/
+# raw hits carry long transcript excerpts
+data/hits*.jsonl
+data/batches/
+data/rounds/
+# personal data
+data/letterboxd/
+data/titles_letterboxd.csv
+# working files
+data/audit/
+data/fetch_*.out
+data/fetch_log.csv
+data/empty_days.json
+data/titles_dec29.csv
+data/titles_tv_leads.csv
+calendar/template.html.bak
+__pycache__/
+.DS_Store
